@@ -67,6 +67,7 @@ nav {
 
 .menu-items {
     display: flex;
+    font-size: large;
 }
 
 .menu-items a {
@@ -92,5 +93,13 @@ nav {
     background-color: #333;
     color: #fff;
     border: none;
+    border-radius: 2px;
+}
+
+.login-btn {
+    margin-left: 10px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
     border-radius: 2px;
 }

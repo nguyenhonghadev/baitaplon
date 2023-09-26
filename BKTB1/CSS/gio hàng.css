@@ -80,3 +80,60 @@ button {
 button:hover {
     background-color: #555;
 }
+
+nav {
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.menu-items {
+    display: flex;
+}
+
+.menu-items a {
+    margin: 0 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+.login-btn {
+    margin-left: 10px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 2px;
+}

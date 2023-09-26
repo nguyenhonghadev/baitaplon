@@ -46,3 +46,11 @@ nav {
     border: none;
     border-radius: 2px;
 }
+
+.login-btn {
+    margin-left: 10px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 2px;
+}
