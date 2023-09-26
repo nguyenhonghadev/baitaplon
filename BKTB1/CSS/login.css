@@ -7,6 +7,19 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 1px solid black;
+    background-color: aqua;
+    font-size: large;
+}
+
+.back-button a {
+    color: black;
+}
+
 .login {
     text-align: center;
     background-color: #fff;
