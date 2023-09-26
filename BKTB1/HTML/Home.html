@@ -5,27 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oder food</title>
-    <Link rel="stylesheet" href="css.css"></Link>
+    <Link rel="stylesheet" href="../CSS/home.css"></Link>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
-    <nav>
-        <div>
-            <div class="w3-bar w3-light-blue w3-border">
-                <a href="#" class=" logo w3-bar-item w3-button w3-mobile w3-hover-red" style="width: 30%;">HK restaurant</a>
-                <a href="./Product/sản phẩm.html" class="w3-bar-item w3-button w3-mobile w3-hover-red">Sản Phẩm</a>
-                <a href="./thanhtoan.html" class="w3-bar-item w3-button w3-mobile w3-hover-red">Thanh Toán</a>
-                <a href="./contact/contact1.html" class="w3-bar-item w3-button w3-mobile w3-hover-red">Liên Hệ</a>
-                <a href="./Login And Singup/login.html" class="w3-bar-item w3-button w3-mobile w3-hover-red w3-right">Đăng Nhập</a>
-                <input type="text" class="w3-bar-item w3-input w3-light-white w3-mobile" placeholder="Search..">
-                <button class="w3-bar-item w3-button w3-white w3-mobile w3-hover-red">Tìm Kiếm</button>
+    <nav style="background-color: azure;">
+        <div class="menu-container">
+            <a href="./Home.html" class="logo">HK Restaurant</a>
+            <div class="menu-items">
+                <a href="./Product/sản phẩm.html">Sản Phẩm</a>
+                <a href="./thanhtoan.html ">Thanh Toán</a>
+                <a href="./contact/contact1.html ">Liên Hệ</a>
             </div>
+            <div class="search-bar ">
+                <input type="text " placeholder="Search.. ">
+                <button>Tìm Kiếm</button>
+                <a href="./Login And Singup/login.html " class="login-btn ">Đăng Nhập</a>
+            </div>
+        </div>
     </nav>
-    <div class=" w3-section" style="width: 100%;">
-        <img class="mySlides" src="../image/home 1.jpg" style="width:100%;height: 100%;">
-        <img class="mySlides" src="../image/home2.jpg" style="width:100%">
-        <img class="mySlides" src="../image/trangchu.jpg" style="width:100%">
+
+    <div class=" w3-section " style="width: 100%; ">
+        <img class="mySlides " src="../image/home 1.jpg " style="width:100%;height: 100%; ">
+        <img class="mySlides " src="../image/home2.jpg " style="width:100% ">
+        <img class="mySlides " src="../image/trangchu.jpg " style="width:100% ">
     </div>
 
     <script>
@@ -34,15 +38,15 @@
 
         function carousel() {
             var i;
-            var x = document.getElementsByClassName("mySlides");
+            var x = document.getElementsByClassName("mySlides ");
             for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+                x[i].style.display = "none ";
             }
             myIndex++;
             if (myIndex > x.length) {
                 myIndex = 1
             }
-            x[myIndex - 1].style.display = "block";
+            x[myIndex - 1].style.display = "block ";
             setTimeout(carousel, 3000); // Change image every 2 seconds
         }
     </script>

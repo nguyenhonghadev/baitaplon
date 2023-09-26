@@ -80,17 +80,3 @@ button {
 button:hover {
     background-color: #555;
 }
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav .w3-bar {
-    justify-content: space-between;
-}
-
-nav .w3-bar {
-    align-items: center;
-}
