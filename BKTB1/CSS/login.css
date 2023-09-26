@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+
+.login {
+    text-align: center;
+    background-color: #fff;
+    padding: 1em;
+    border: 1px solid #ccc;
+    width: 500px;
+    height: 600px;
+}
+
+.login h1 {
+    margin-bottom: 1em;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+}
+
+.login button {
+    width: 100%;
+    padding: 0.5em;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
