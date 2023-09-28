@@ -19,6 +19,7 @@ nav {
 
 .menu-items {
     display: flex;
+    font-size: 17px;
 }
 
 .menu-items a {

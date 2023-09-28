@@ -23,7 +23,7 @@ h1 {
 }
 
 .product {
-    background-color: #fff;
+    background-color: #9c5454;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -78,6 +78,7 @@ nav {
 
 .menu-items {
     display: flex;
+    font-size: 16px;
 }
 
 .menu-items a {
