@@ -19,7 +19,7 @@ nav {
 
 .menu-items {
     display: flex;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .menu-items a {
@@ -77,4 +77,16 @@ nav {
         color: #111;
         text-shadow: none;
     }
+}
+
+.footer {
+    background-color: rgb(136, 200, 200);
+    padding: 10px 10px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    height: 80px;
+    margin-top: 60px;
+    text-align: center;
+    justify-content: center;
 }

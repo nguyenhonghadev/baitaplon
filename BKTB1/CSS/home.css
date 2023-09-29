@@ -77,6 +77,11 @@ nav {
     10%,
     90% {
         color: #111;
-        text-shadow: none;
+        text-shadow: red 0 0 10px #ae2626, 0 0 50px rgba(69, 7, 33, 0.133);
     }
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }
