@@ -48,41 +48,47 @@
                 <div class="product">
                     <img src="../../image/cá chép om dưa.jpg" alt="Cá chép om dưa">
                     <h3>Cá chép om dưa</h3>
-                    <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="3">4</option>
-            </select>
+                    <input style="width: 80%;" type="number" placeholder="Nhập số lượng" min="0" id="quantity-input">
                 </div>
 
                 <div class="product">
                     <img src="../../image/bún bò huế.jpg" alt="bún bò huế">
                     <h3>Bún bò huế</h3>
-                    <select>
-              <option value="1">1 </option>
-              <option value="2">2 </option>
-              <option value="3">3 </option>
-              <option value="3">4</option>
-            </select>
+                    <input style="width: 80%;" type="number" placeholder="Nhập số lượng" min="0" id="quantity-input">
                 </div>
 
                 <div class="product">
                     <img src="../../image/cá kjo.jpg" alt="cá kho tộ">
                     <h3> Cá kho tộ</h3>
-                    <select>
-              <option value="1">1 </option>
-              <option value="2">2 </option>
-              <option value="3">3 </option>
-              <option value="3">4 </option>
-            </select>
+                    <input style="width: 80%;" type="number" placeholder="Nhập số lượng" min="0" id="quantity-input">
                 </div>
             </div>
 
-            <input type="number" placeholder="Nhập số lượng" min="1">
+            <div class="total">
+                Tổng số lượng các món: <span id="total-quantity">0</span>
+            </div>
 
-            <input type="submit" value="Thanh toán">
+            <a href="../thanhtoan.html"><input type="submit" value="Thanh toán">
         </div>
+        <script>
+            var quantityInputs = document.querySelectorAll('#quantity-input');
+            var totalQuantity = document.getElementById('total-quantity');
+
+            // Lắng nghe sự kiện khi số lượng sản phẩm thay đổi
+            quantityInputs.forEach(function(input) {
+                input.addEventListener('change', function() {
+                    var sum = 0;
+
+                    // Lặp qua tất cả các input số lượng và tính tổng
+                    quantityInputs.forEach(function(input) {
+                        sum += parseInt(input.value);
+                    });
+
+                    // Cập nhật tổng số lượng
+                    totalQuantity.innerText = sum;
+                });
+            });
+        </script>
         <footer class="footer">
             <div class="footer-content">
                 <p>Nếu khách hàng có bất kì thắc mắc hay có vấn đề nào liên quan đến sản phẩm của cửa hàng, xin vui lòng liên hệ qua đường dây nóng:09678510147 hoặc Email:Manhkien203@gmail.com. Trân trọng!</p>

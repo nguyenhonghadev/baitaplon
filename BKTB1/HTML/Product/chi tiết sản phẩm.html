@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chi tiết đồ ăn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .food-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .food-image {
+            flex: 1;
+        }
+        
+        .food-image img {
+            max-width: 100%;
+            height: 150%;
+        }
+        
+        .food-info {
+            flex: 2;
+            padding-left: 20px;
+        }
+        
+        .food-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .food-description {
+            margin-bottom: 10px;
+        }
+        
+        .food-price {
+            font-weight: bold;
+        }
+        
+        .add-to-cart {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .quantity-label {
+            margin-right: 10px;
+        }
+        
+        .quantity-selector {
+            width: 50px;
+            padding: 5px;
+        }
+        
+        .add-to-cart-button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        nav {
+            background-color: #f2f2f2;
+            padding: 14px;
+        }
+        
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .menu-items {
+            display: flex;
+            font-size: 16px;
+        }
+        
+        .menu-items a {
+            margin: 0 40px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 2px;
+            margin-right: 5px;
+        }
+        
+        .search-bar button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+        }
+        
+        .login-btn {
+            margin-left: 10px;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 2px;
+            color: black;
+        }
+        
+        @import url(http://fonts.googleapis.com/css?family=Baloo+Thambi);
+        .text-container>span {
+            font-family: "Baloo Thambi", cursive;
+            font-size: 20px;
+            text-transform: uppercase;
+            animation: glow 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+        
+        @keyframes glow {
+            0%,
+            100% {
+                color: var(--color);
+                text-shadow: 0 0 10px #0652dd, 0 0 50px #0652dd, 0 0 100px #0652dd;
+            }
+            10%,
+            90% {
+                color: #111;
+                text-shadow: none;
+            }
+        }
+        
+        .footer {
+            background-color: rgb(136, 200, 200);
+            padding-top: 10px;
+            width: 100%;
+            height: 60px;
+            margin-top: 50px;
+            position: fixed;
+            bottom: 0;
+            color: black;
+        }
+        
+        .footer-content p {
+            text-align: center;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav style="background-color: rgb(136, 200, 200);">
+        <div class="menu-container">
+            <a href="../Home.html" class="logo">
+                <div class="text-container">
+                    <span style="--color:#ffffff" ;--delay:0s>H</span>
+                    <span style="--color:#ffffff" ;--delay:0.25s>K</span>
+                    <span style="--color:#ffffff" ;--delay:0.5s>R</span>
+                    <span style="--color:#ffffff" ;--delay:0.75s>E</span>
+                    <span style="--color:#ffffff" ;--delay:1s>S</span>
+                    <span style="--color:#84BCDA" ;--delay:1.25s>T</span>
+                    <span style="--color:#84BCDA" ;--delay:1.5s>A</span>
+                    <span style="--color:#84BCDA" ;--delay:1.75s>U</span>
+                    <span style="--color:#DA4167" ;--delay:2s>R</span>
+                    <span style="--color:#DA4167" ;--delay:2.25s>A</span>
+                    <span style="--color:#DA4167" ;--delay:2.5s>N</span>
+                    <span style="--color:#C589E8" ;--delay:2.75s>T</span>
+                </div>
+            </a>
+            <div class="menu-items">
+                <a href="./sản phẩm.html" class=" w3-hover-red">Sản Phẩm</a>
+                <a href="../thanhtoan.html" class=" w3-hover-red">Thanh Toán</a>
+                <a href="../contact/contact1.html" class=" w3-hover-red">Liên Hệ</a>
+                <a href="../giỏ hàng/giỏ hàng.html" class=" w3-hover-red">Giỏ hàng</a>
+            </div>
+            <div class="search-bar ">
+                <input type="text " placeholder="Search.. ">
+                <button>Tìm Kiếm</button>
+                <a href="../account/taikhoan.html" class="login-btn w3-hover-red ">Tài Khoản</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="food-details">
+            <div class="food-image">
+                <img src="../../image/cá chép om dưa.jpg" alt="Cá chép om dưa">
+            </div>
+            <div class="food-info">
+                <h1 class="food-title"><b>Cá chép om dưa</b></h1>
+                <p class="food-description">Cá chép om dưa là một món ăn truyền thống của Việt Nam. Món này kết hợp giữa cá chép tươi ngon và dưa cải muối chua ngọt, tạo nên một hương vị độc đáo và hấp dẫn. Cá chép sau khi được làm sạch sẽ được om cùng với dưa cải, gia vị và các
+                    loại thảo mộc như hành, tỏi, ớt, nấm hương và gia vị khác. Món này thường được nấu trong nồi nấu chảo để cá và dưa cải ngấm đều gia vị. Khi nấu, cá chép om dưa có màu sắc hấp dẫn và hương vị tuyệt vời. Cá chép thường mềm mịn, thịt
+                    thơm ngon và giàu chất dinh dưỡng. Dưa cải có vị chua nhẹ, giúp tạo ra sự cân bằng giữa mặn, chua, cay và ngọt. Cá chép om dưa thường được thưởng thức chung với cơm nóng, hấp dẫn với hương vị đậm đà và màu sắc rực rỡ. Đây là một món
+                    ăn phổ biến trong các bữa tiệc gia đình, lễ hội hay những dịp đặc biệt ở Việt Nam. Món cá chép om dưa không chỉ mang đến giá trị dinh dưỡng mà còn là công thức tinh tế, kết hợp giữa hương vị đặc trưng của cá và dưa cải.</p>
+                <p class="food-price">Giá:350.000 đ</p>
+            </div>
+        </div>
+
+        <div class="add-to-cart">
+            <label for="quantity" class="quantity-label">Số lượng:</label>
+            <input type="number" id="quantity" class="quantity-selector" min="1" value="1">
+            <button class="add-to-cart-button">Thêm vào giỏ hàng</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="w3-item" style="text-align: center;">
+            <p>Nếu khách hàng có bất kì thắc mắc hay có vấn đề nào liên quan đến sản phẩm của cửa hàng<br> xin vui lòng liên hệ qua đường dây nóng: 0967851014 hoặc email: manhkien203@gmail.com. Trân trọng!</p>
+        </div>
+    </footer>
+</body>
+
+</html>
