@@ -18,53 +18,32 @@
 
                     <div class="row">
                         <div class="col-50">
-                            <h3>Billing Address</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <h3>Thôn tin khách hàng</h3>
+                            <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Nguyen Hong Ha">
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York">
+                            <input type="text" id="email" name="email" placeholder="ha2k3.dev@gmail.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
+                            <input type="text" id="adr" name="address" placeholder="Ngõ 1 phố Văn Hội">
+                            <label for="city"><i class="fa fa-institution"></i> Ghi chú</label>
+                            <input type="text" id="Ghichu" name="Ghichu" placeholder="số nhà 2/32/17">
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY">
-                                </div>
-                                <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001">
-                                </div>
-                            </div>
-                        </div>
+                           
+                        </div>  
 
                         <div class="col-50">
-                            <h3>Payment</h3>
-                            <label for="fname">Accepted Cards</label>
-                            <div class="icon-container">
-                                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                <i class="fa fa-cc-discover" style="color:orange;"></i>
-                            </div>
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                            <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                            <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
-                                </div>
-                                <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
-                                </div>
-                            </div>
+                            <h3>Hình thức thanh toán</h3>
+                           <p>Vui lòng chọn một trong các hình thức thanh toán dưới đây</p>
+                    <form action="/action_page.php">
+                           <input type="radio" id="html" name="hinhthucthanhtoan" value="tienmat">
+                           <label for="tienmat">Tiền mặt</label><br>
+                         <input type="radio" id="chuyenkhoan" name="hinhthucthanhtoan" value="chuyenkhoan">
+                          <label for="css">Chuyển Khoản</label><br>
+                          <input type="radio" id="shipcod" name="hinhthucthanhtoan" value="shipcod">
+                          <label for="javascript">Ship COD</label><br><br>
+                        
+                    </form> 
+
                         </div>
 
                     </div>
@@ -77,13 +56,13 @@
         </div>
         <div class="col-25">
             <div class="container">
-                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-                <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-                <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-                <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-                <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+                <h4>Giỏ hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>3</b></span></h4>
+                <p><a href="#">Cá chép om dưa</a> <span class="price">350.000đ</span></p>
+                <p><a href="#">Cá kho Tộ</a> <span class="price">600.000đ</span></p>
+                <p><a href="#">Lợn quay Lạng Sơn</a> <span class="price">600.000đ</span></p>
+               
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                <p>Thành tiền <span class="price" style="color:black"><b>1.500.000đ</b></span></p>
             </div>
         </div>
     </div>
