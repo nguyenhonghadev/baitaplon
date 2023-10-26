@@ -40,6 +40,7 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    margin-right: 5em;
 }
 
 .step {
@@ -90,7 +91,6 @@
 .step-arrow {
     font-size: 30px;
     margin-left: 10px;
-    /* Chỉnh margin sang phải */
 }
 
 .step-text {
@@ -99,6 +99,12 @@
 
 .blinking-text {
     animation: blink 1s linear infinite;
+}
+
+.container6 {
+    justify-content: center;
+    display: flex;
+    padding-top: ;
 }
 
 @keyframes blink {
@@ -156,6 +162,7 @@
         display: grid;
         height: auto;
         overflow: hidden;
+        margin-bottom: 0;
     }
     .menu-item {
         display: grid;
@@ -201,10 +208,6 @@
     .step-description {
         font-size: 0.5em;
         margin-right: 0;
-    }
-    .menu-step {
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
     }
     .logo {
         font-family: Arial, sans-serif;

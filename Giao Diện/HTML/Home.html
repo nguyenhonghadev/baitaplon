@@ -50,9 +50,8 @@
             <img class="mySlides " src="../image/gifhome2.gif " style="width:100% ">
         </div>
     </a>
-    <div class="jumbotron text-center ">
-        <div>
-            <h1 class="text-container1 " ">
+    <div>
+        <h1 class="text-container1 " style="padding-bottom:0;">
             <span style="--color:#ffffff " ;--delay:0s>H</span>
             <span style="--color:#ffffff " ;--delay:0.25s>K</span>
             <span style="--color:#ffffff " ;--delay:0.5s>R</span>
@@ -65,79 +64,78 @@
             <span style="--color:#DA4167 " ;--delay:2.25s>A</span>
             <span style="--color:#DA4167 " ;--delay:2.5s>N</span>
             <span style="--color:#C589E8 " ;--delay:2.75s>T</span>
-            </h1>
+        </h1>
+        <div class="container6 ">
             <h5 class="w3-center w3-xlarge ">Giải pháp mới trong việc đặt đồ ăn trực tuyến giúp bạn tiếp kiệm tối đa thời gian<br> nhưng vẫn có thể thưởng thức những bữa ăn tuyệt vời với giá cả phải chăng!! </h5>
         </div>
-        <div class="menu-step ">
-            <div class="step ">
-                <div class="step-description ">
-                    <div class="step-number ">1</div>
-                    <div class="step-text ">Chọn sản phẩm</div>
-                </div>
-            </div>
-            <div class="step ">
-                <div class="step-description ">
-                    <div class="step-arrow ">&#8594;</div>
-                    <div class="step-number ">2</div>
-                    <div class="step-text ">Xác nhận đơn hàng</div>
-                </div>
-            </div>
-            <div class="step ">
-                <div class="step-description ">
-                    <div class="step-arrow ">&#8594;</div>
-                    <div class="step-number ">3</div>
-                    <div class="step-text ">Thanh toán</div>
-                </div>
-            </div>
-            <div class="step ">
-                <div class="step-description ">
-                    <div class="step-arrow ">&#8594;</div>
-                    <div class="step-number ">4</div>
-                    <div class="step-text ">Nhận hàng</div>
-                </div>
-            </div>
-                <a href="Product/sản phẩm.html ">
-                    <div class="step-text blinking-text button-st ">
-                        Đặt hàng ngay</div>
-                </a>
-               
+        <div class="step ">
+            <div class="step-description ">
+                <div class="step-number ">1</div>
+                <div class="step-text ">Chọn sản phẩm</div>
             </div>
         </div>
-    </div>
-</body>
- <script>
-        var myIndex = 0;
-        carousel();
+        <div class="step ">
+            <div class="step-description ">
+                <div class="step-arrow ">&#8594;</div>
+                <div class="step-number ">2</div>
+                <div class="step-text ">Xác nhận đơn hàng</div>
+            </div>
+        </div>
+        <div class="step ">
+            <div class="step-description ">
+                <div class="step-arrow ">&#8594;</div>
+                <div class="step-number ">3</div>
+                <div class="step-text ">Thanh toán</div>
+            </div>
+        </div>
+        <div class="step ">
+            <div class="step-description ">
+                <div class="step-arrow ">&#8594;</div>
+                <div class="step-number ">4</div>
+                <div class="step-text ">Nhận hàng</div>
+            </div>
+        </div>
 
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides ");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none ";
-            }
-            myIndex++;
-            if (myIndex > x.length) {
-                myIndex = 1
-            }
-            x[myIndex - 1].style.display = "block ";
-            setTimeout(carousel, 3000); // Change image every 2 seconds
+
+    </div>
+    <a href="Product/sản phẩm.html " style="text-decoration: none;">
+        <div class="step-text blinking-text button-st w3-right">
+            Đặt hàng ngay</div>
+    </a>
+</body>
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides ");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none ";
         }
-    </script>
-    <script>
-        function handleLogin() {
-            if (isLoggedIn()) {
-                var loginBtn = document.querySelector('.login-btn');
-                if (loginBtn) {
-                    loginBtn.textContent = 'Đã Đăng Nhập';
-                }
+        myIndex++;
+        if (myIndex > x.length) {
+            myIndex = 1
+        }
+        x[myIndex - 1].style.display = "block ";
+        setTimeout(carousel, 3000); // Change image every 2 seconds
+    }
+</script>
+<script>
+    function handleLogin() {
+        if (isLoggedIn()) {
+            var loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.textContent = 'Đã Đăng Nhập';
             }
         }
-    
-        handleLogin();
-    
-        function isLoggedIn() {
-            return false;
-        }
-    </script>
-    
+    }
+
+    handleLogin();
+
+    function isLoggedIn() {
+        return false;
+    }
+</script>
+
 </html>
