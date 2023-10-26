@@ -123,4 +123,21 @@
             setTimeout(carousel, 3000); // Change image every 2 seconds
         }
     </script>
+    <script>
+        function handleLogin() {
+            if (isLoggedIn()) {
+                var loginBtn = document.querySelector('.login-btn');
+                if (loginBtn) {
+                    loginBtn.textContent = 'Đã Đăng Nhập';
+                }
+            }
+        }
+    
+        handleLogin();
+    
+        function isLoggedIn() {
+            return false;
+        }
+    </script>
+    
 </html>

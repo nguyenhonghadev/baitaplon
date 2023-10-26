@@ -45,8 +45,8 @@ h1 {
 }
 
 .product button {
-    display: block;
-    width: 80%;
+    display: inline;
+    width: auto;
     padding: 10px;
     background-color: #333;
     color: #fff;
