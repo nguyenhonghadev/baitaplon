@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/thanhtoan.css">
+</head>
+
+<body>
+
+    <h2>Thông tin đơn hàng</h2>
+    <p>Vui lòng kiểm tra thông tin của bạn một cách chính xác trước khi thanh toán.</p>
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <form action="/action_page.php">
+
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Thôn tin khách hàng</h3>
+                            <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Nguyen Hong Ha">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input type="text" id="email" name="email" placeholder="ha2k3.dev@gmail.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
+                            <input type="text" id="adr" name="address" placeholder="Ngõ 1 phố Văn Hội">
+                            <label for="city"><i class="fa fa-institution"></i> Ghi chú</label>
+                            <input type="text" id="Ghichu" name="Ghichu" placeholder="số nhà 2/32/17">
+
+                           
+                        </div>  
+
+                        <div class="col-50">
+                            <h3>Hình thức thanh toán</h3>
+                           <p>Vui lòng chọn một trong các hình thức thanh toán dưới đây</p>
+                    <form action="/action_page.php">
+                           <input type="radio" id="html" name="hinhthucthanhtoan" value="tienmat">
+                           <label for="tienmat">Tiền mặt</label><br>
+                         <input type="radio" id="chuyenkhoan" name="hinhthucthanhtoan" value="chuyenkhoan">
+                          <label for="css">Chuyển Khoản</label><br>
+                          <input type="radio" id="shipcod" name="hinhthucthanhtoan" value="shipcod">
+                          <label for="javascript">Ship COD</label><br><br>
+                        
+                    </form> 
+
+                        </div>
+
+                    </div>
+                    <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+                    <input type="submit" value="Continue to checkout" class="btn">
+                </form>
+            </div>
+        </div>
+        <div class="col-25">
+            <div class="container">
+                <h4>Giỏ hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>3</b></span></h4>
+                <p><a href="#">Cá chép om dưa</a> <span class="price">350.000đ</span></p>
+                <p><a href="#">Cá kho Tộ</a> <span class="price">600.000đ</span></p>
+                <p><a href="#">Lợn quay Lạng Sơn</a> <span class="price">600.000đ</span></p>
+               
+                <hr>
+                <p>Thành tiền <span class="price" style="color:black"><b>1.500.000đ</b></span></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

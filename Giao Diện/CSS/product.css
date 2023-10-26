@@ -1,0 +1,337 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    padding-top: 1px;
+}
+
+.container {
+    margin: 100px 0px 50px 150px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    height: auto;
+    max-width: 80%;
+    background-color: lightgoldenrodyellow;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.product {
+    background-color: #FFC300;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 380px;
+}
+
+.product img {
+    max-width: 100%;
+    height: 70%;
+}
+
+.product h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.product p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.product button {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav {
+    background-color: #f2f2f2;
+    padding: 1%;
+    margin-bottom: 0.3px;
+    white-space: nowrap;
+    position: fixed;
+    width: 100%;
+}
+
+.logo {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-items {
+    display: flex;
+}
+
+.menu-items a {
+    color: #333;
+    text-decoration: none;
+    font-size: medium;
+    white-space: nowrap;
+    padding: 0 20px;
+    margin-right: 20px;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+.login-btn {
+    margin-left: 10px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 2px;
+    color: black;
+    font-size: 18px;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Baloo+Thambi);
+.text-container>span {
+    font-family: "Baloo Thambi", cursive;
+    font-size: 20px;
+    text-transform: uppercase;
+    animation: glow 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes glow {
+    0%,
+    100% {
+        color: var(--color);
+        text-shadow: 0 0 10px #0652dd, 0 0 50px #0652dd, 0 0 100px #0652dd;
+    }
+    10%,
+    90% {
+        color: #111;
+        text-shadow: none;
+    }
+}
+
+.footer {
+    background-color: #FFC300;
+    padding: 0px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: 0;
+    position: relative;
+}
+
+.product button:hover {
+    background-color: #a73434;
+}
+
+.product-list {
+    display: grid;
+    gap: 30px;
+    justify-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#drink-title {
+    animation: blink 1s linear infinite;
+}
+
+.stars {
+    color: #ffd700;
+}
+
+div.container:nth-child(1) a[href="#"] {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.cart-icon {
+    color: black;
+    font-size: 20px;
+}
+
+.food-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.food-image {
+    flex: 1;
+}
+
+.food-image img {
+    max-width: 100%;
+    height: 150%;
+}
+
+.food-info {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.food-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.food-description {
+    margin-bottom: 10px;
+}
+
+.food-price {
+    font-weight: bold;
+}
+
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.quantity-label {
+    margin-right: 10px;
+}
+
+.quantity-selector {
+    width: 50px;
+    padding: 5px;
+}
+
+.add-to-cart-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 599px) {
+    .container {
+        margin: 20% auto 50px;
+    }
+    nav {
+        position: static;
+    }
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-items {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .menu-items a {
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    .product-list {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+    }
+    .container h1 {
+        font-size: medium;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 899px) {
+    .container {
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    nav {
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%;
+        display: grid;
+        height: auto;
+    }
+    .menu-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .menu-items a {
+        grid-row: span 2;
+    }
+    .search-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .menu-items a {
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+    }
+    .menu-items a:hover {
+        background-color: #f2f2f2;
+    }
+    .product-list {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container h1 {
+        font-size: larger;
+    }
+    .logo {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 8px;
+        color: #333;
+        text-decoration: none;
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,68 @@
+h1 {
+    text-align: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.actions {
+    text-align: right;
+}
+
+.actions a {
+    margin-left: 10px;
+}
+
+.cart-icon {
+    color: black;
+    font-size: 20px;
+}
+
+.footer1 {
+    background-color: #FFC300;
+    padding: 0px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: 0;
+    position: relative;
+    margin-top: 17em;
+}
+
+@media screen and (max-width: 599px) {
+    .container1 {
+        margin-bottom: 200px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width:899px) {
+    .footer2 {
+        margin-top: 50px;
+    }
+}

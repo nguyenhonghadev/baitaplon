@@ -1,0 +1,226 @@
+.menu-item a {
+    color: #333;
+    text-decoration: none;
+    font-size: large;
+    white-space: nowrap;
+    padding: 0 20px;
+    margin-right: 3em;
+}
+
+.text-container1>span {
+    font-family: Arial, Helvetica, sans-serif, cursive;
+    font-size: 3.5em;
+    text-transform: uppercase;
+    animation: glow 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+    margin-bottom: 1em;
+}
+
+@keyframes glow {
+    0%,
+    100% {
+        color: var(--color);
+        text-shadow: 0 0 10px #0652dd, 0 0 50px #0652dd, 0 0 100px #0652dd;
+    }
+    10%,
+    90% {
+        color: #111;
+        text-shadow: none;
+    }
+}
+
+.button-st {
+    width: 6em;
+    height: 4em;
+    background-color: #FFC300;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.step {
+    display: inline-block;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 20p;
+    font-weight: bold;
+}
+
+.step a {
+    text-decoration: none;
+}
+
+.step-number {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3.5em;
+}
+
+.step-number1 {
+    width: 250px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #333;
+    color: black;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.step-description {
+    display: flex;
+    align-items: center;
+    min-width: 230px;
+}
+
+.step-arrow {
+    font-size: 30px;
+    margin-left: 10px;
+    /* Chỉnh margin sang phải */
+}
+
+.step-text {
+    font-weight: bold;
+}
+
+.blinking-text {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .container {
+        margin: 20% auto 50px;
+    }
+    nav {
+        position: static;
+    }
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-item {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        display: flex;
+    }
+    .menu-item a {
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    .product-list {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+    }
+    .container h1 {
+        font-size: medium;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 899px) {
+    .container {
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    nav {
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%;
+        display: grid;
+        height: auto;
+        overflow: hidden;
+    }
+    .menu-item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .menu-item a {
+        grid-row: span 2;
+    }
+    .search-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .menu-item a {
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+    }
+    .menu-items a:hover {
+        background-color: #f2f2f2;
+    }
+    .product-list {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container h1 {
+        font-size: larger;
+    }
+    .text-container1 {
+        font-size: 1em;
+    }
+    h5 {
+        font-size: 0.7em;
+        text-align: center;
+    }
+    .step {
+        font-size: 1.7em;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .step-description {
+        font-size: 0.5em;
+        margin-right: 0;
+    }
+    .menu-step {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .logo {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 8px;
+        color: #333;
+        text-decoration: none;
+        margin-left: 0;
+    }
+    .step-number {
+        margin-left: 1em;
+    }
+    .step-arrow {
+        margin-left: 1em;
+    }
+    .step-text {
+        display: grid;
+    }
+}
