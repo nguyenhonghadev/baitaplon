@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../CSS/thanhtoan.css">
-</head>
-
-<body>
-
-    <h2>Thông tin đơn hàng</h2>
-    <p>Vui lòng kiểm tra thông tin của bạn một cách chính xác trước khi thanh toán.</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sản Phẩm </title>
+        <link rel="stylesheet" href="../CSS/product.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="../CSS/home.css">
+        <link rel="stylesheet" href="../CSS/thanhtoan.css">
+    </head>
+    
+    <body>
+        <header>
+            <nav style="background-color:#FFC300">
+                <div class="menu-container">
+                    <a href="./Home.html" class="logo">
+                        <div class="text-container">
+                            <span style="--color:#ffffff" ;--delay:0s>H</span>
+                            <span style="--color:#ffffff" ;--delay:0.25s>K</span>
+                            <span style="--color:#ffffff" ;--delay:0.5s>R</span>
+                            <span style="--color:#ffffff" ;--delay:0.75s>E</span>
+                            <span style="--color:#ffffff" ;--delay:1s>S</span>
+                            <span style="--color:#84BCDA" ;--delay:1.25s>T</span>
+                            <span style="--color:#84BCDA" ;--delay:1.5s>A</span>
+                            <span style="--color:#84BCDA" ;--delay:1.75s>U</span>
+                            <span style="--color:#DA4167" ;--delay:2s>R</span>
+                            <span style="--color:#DA4167" ;--delay:2.25s>A</span>
+                            <span style="--color:#DA4167" ;--delay:2.5s>N</span>
+                            <span style="--color:#C589E8" ;--delay:2.75s>T</span>
+                        </div>
+                    </a>
+                    <div class="menu-item">
+                        <a href="./Product/sản phẩm.html" class=" w3-hover-red"><b>Sản Phẩm</b></a>
+                        <a href="./thanhtoan.html" class=" w3-hover-red"><b>Thanh Toán</b></a>
+                        <a href="./contact/contact1.html" class=" w3-hover-red"><b>Liên Hệ</b></a>
+                        <a href="./Login And Singup/login.html " class="login-btn w3-hover-red w3-right " style="text-decoration:none;"><b>Đăng Nhập</b></a>
+                    </div>
+                    <div class="search-bar ">
+                        <input type="text " placeholder="Search... ">
+                        <button>Tìm Kiếm</button>
+    
+                    </div>
+            </nav>
+        </header>
+    <body>
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="/action_page.php">
+               
 
                     <div class="row">
                         <div class="col-50">
-                            <h3>Thôn tin khách hàng</h3>
+                            <h3>Thông tin khách hàng</h3>
                             <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
                             <input type="text" id="fname" name="firstname" placeholder="Nguyen Hong Ha">
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
@@ -27,46 +61,29 @@
                             <input type="text" id="adr" name="address" placeholder="Ngõ 1 phố Văn Hội">
                             <label for="city"><i class="fa fa-institution"></i> Ghi chú</label>
                             <input type="text" id="Ghichu" name="Ghichu" placeholder="số nhà 2/32/17">
+                              <!--submit dữ liệu  -->
+                              <input type="checkbox" checked="checked" name="sameadr"> Tôi xác nhận thông tin trên hoàn toàn chính xác 
 
                            
                         </div>  
-
-                        <div class="col-50">
-                            <h3>Hình thức thanh toán</h3>
-                           <p>Vui lòng chọn một trong các hình thức thanh toán dưới đây</p>
-                    <form action="/action_page.php">
-                           <input type="radio" id="html" name="hinhthucthanhtoan" value="tienmat">
-                           <label for="tienmat">Tiền mặt</label><br>
-                         <input type="radio" id="chuyenkhoan" name="hinhthucthanhtoan" value="chuyenkhoan">
-                          <label for="css">Chuyển Khoản</label><br>
-                          <input type="radio" id="shipcod" name="hinhthucthanhtoan" value="shipcod">
-                          <label for="javascript">Ship COD</label><br><br>
+                        <div class="col-25">
+                            <head>
+                               
+                                <img src="/image/Thanhtoan.png" alt="Girl in a jacket" width="420" height="700"
                         
-                    </form> 
-
+                             <!--tiến hành thanh toán  -->
+                            <input type="submit" value="Thanh Toán" class="btn">
+                            </div>
                         </div>
 
-                    </div>
-                    <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
-                    <input type="submit" value="Continue to checkout" class="btn">
-                </form>
+            </div>
+        </div>    
+        
             </div>
         </div>
-        <div class="col-25">
-            <div class="container">
-                <h4>Giỏ hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>3</b></span></h4>
-                <p><a href="#">Cá chép om dưa</a> <span class="price">350.000đ</span></p>
-                <p><a href="#">Cá kho Tộ</a> <span class="price">600.000đ</span></p>
-                <p><a href="#">Lợn quay Lạng Sơn</a> <span class="price">600.000đ</span></p>
-               
-                <hr>
-                <p>Thành tiền <span class="price" style="color:black"><b>1.500.000đ</b></span></p>
-            </div>
-        </div>
+        
     </div>
 
-</body>
+    </body>
 
 </html>
