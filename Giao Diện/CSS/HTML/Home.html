@@ -31,18 +31,17 @@
                         <span style="--color:#C589E8" ;--delay:2.75s>T</span>
                     </div>
                 </a>
-                <div class="menu-items">
+                <div class="menu-item">
                     <a href="./Product/sản phẩm.html" class=" w3-hover-red"><b>Sản Phẩm</b></a>
-                    <a href="./gioithieu.html" class=" w3-hover-red"><b>Giới Thiệu</b></a>
+                    <a href="./thanhtoan.html" class=" w3-hover-red"><b>Thanh Toán</b></a>
                     <a href="./contact/contact1.html" class=" w3-hover-red"><b>Liên Hệ</b></a>
-                    <a href="./giỏ hàng/giỏ hàng.html" class=" w3-hover-red"><b><i class="fas fa-shopping-cart cart-icon"></i>Giỏ hàng</b></a>
+                    <a href="./Login And Singup/login.html " class="login-btn w3-hover-red w3-right " style="text-decoration:none;"><b>Đăng Nhập</b></a>
                 </div>
                 <div class="search-bar ">
-                    <input type="text " placeholder="Search.. ">
+                    <input type="text " placeholder="Search... ">
                     <button>Tìm Kiếm</button>
-                    <a href="./account/taikhoan.html" class="login-btn w3-hover-red "><b><i class="fas fa-user"></i>Mạnh Kiên</b></a>
+
                 </div>
-            </div>
         </nav>
     </header>
     <a href="./Product/sản phẩm.html">
@@ -51,9 +50,8 @@
             <img class="mySlides " src="../image/gifhome2.gif " style="width:100% ">
         </div>
     </a>
-    <div class="jumbotron text-center ">
-        <div>
-            <h1 class="text-container1 " ">
+    <div>
+        <h1 class="text-container1 " style="padding-bottom:0;">
             <span style="--color:#ffffff " ;--delay:0s>H</span>
             <span style="--color:#ffffff " ;--delay:0.25s>K</span>
             <span style="--color:#ffffff " ;--delay:0.5s>R</span>
@@ -66,7 +64,8 @@
             <span style="--color:#DA4167 " ;--delay:2.25s>A</span>
             <span style="--color:#DA4167 " ;--delay:2.5s>N</span>
             <span style="--color:#C589E8 " ;--delay:2.75s>T</span>
-            </h1>
+        </h1>
+        <div class="container6 ">
             <h5 class="w3-center w3-xlarge ">Giải pháp mới trong việc đặt đồ ăn trực tuyến giúp bạn tiếp kiệm tối đa thời gian<br> nhưng vẫn có thể thưởng thức những bữa ăn tuyệt vời với giá cả phải chăng!! </h5>
         </div>
         <div class="step ">
@@ -103,24 +102,25 @@
             </a>
             <div class="step-arrow ">&nbsp;</div>
         </div>
-     </div>
+    </div>
 </body>
 <script>
-        var myIndex = 0;
-        carousel();
+    var myIndex = 0;
+    carousel();
 
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides ");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none ";
-            }
-            myIndex++;
-            if (myIndex > x.length) {
-                myIndex = 1
-            }
-            x[myIndex - 1].style.display = "block ";
-            setTimeout(carousel, 3000); // Change image every 2 seconds
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides ");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none ";
         }
-    </script>
+        myIndex++;
+        if (myIndex > x.length) {
+            myIndex = 1
+        }
+        x[myIndex - 1].style.display = "block ";
+        setTimeout(carousel, 3000);
+    }
+</script>
+
 </html>

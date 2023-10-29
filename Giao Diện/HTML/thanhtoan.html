@@ -4,89 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sản Phẩm </title>
+    <title>Giới Thiệu </title>
     <link rel="stylesheet" href="../CSS/product.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../CSS/home.css">
     <link rel="stylesheet" href="../CSS/thanhtoan.css">
+    <link rel="stylesheet" href="../CSS/login.css">
 </head>
 
 <body>
-    <header>
-        <nav style="background-color:#FFC300">
-            <div class="menu-container">
-                <a href="./Home.html" class="logo">
-                    <div class="text-container">
-                        <span style="--color:#ffffff" ;--delay:0s>H</span>
-                        <span style="--color:#ffffff" ;--delay:0.25s>K</span>
-                        <span style="--color:#ffffff" ;--delay:0.5s>R</span>
-                        <span style="--color:#ffffff" ;--delay:0.75s>E</span>
-                        <span style="--color:#ffffff" ;--delay:1s>S</span>
-                        <span style="--color:#84BCDA" ;--delay:1.25s>T</span>
-                        <span style="--color:#84BCDA" ;--delay:1.5s>A</span>
-                        <span style="--color:#84BCDA" ;--delay:1.75s>U</span>
-                        <span style="--color:#DA4167" ;--delay:2s>R</span>
-                        <span style="--color:#DA4167" ;--delay:2.25s>A</span>
-                        <span style="--color:#DA4167" ;--delay:2.5s>N</span>
-                        <span style="--color:#C589E8" ;--delay:2.75s>T</span>
+    <div class="back-button">
+        <a href="javascript:history.go(-1)" style="text-decoration: none;padding-right:90%;color:black;">Back</a>
+    </div>
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-50">
+                        <h3>Thông tin khách hàng</h3>
+                        <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Họ và Tên">
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="email">
+                        <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
+                        <input type="text" id="adr" name="address" placeholder="Địa Chỉ nhận hàng">
+                        <label for="city"><i class="fa fa-institution"></i> Ghi chú</label>
+                        <input type="text" id="Ghichu" name="Ghichu" placeholder="Ghi chú">
+                        <!--submit dữ liệu  -->
+                        <input type="checkbox" checked="checked" name="sameadr"> Tôi xác nhận thông tin trên hoàn toàn chính xác
+
+
                     </div>
-                </a>
-                <div class="menu-item">
-                    <a href="./Product/sản phẩm.html" class=" w3-hover-red"><b>Sản Phẩm</b></a>
-                    <a href="./thanhtoan.html" class=" w3-hover-red"><b>Thanh Toán</b></a>
-                    <a href="./contact/contact1.html" class=" w3-hover-red"><b>Liên Hệ</b></a>
-                    <a href="./Login And Singup/login.html " class="login-btn w3-hover-red w3-right " style="text-decoration:none;"><b>Đăng Nhập</b></a>
-                </div>
-                <div class="search-bar ">
-                    <input type="text " placeholder="Search... ">
-                    <button>Tìm Kiếm</button>
+                    <div class="col-25">
 
-                </div>
-        </nav>
-    </header>
+                        <head>
 
-    <body>
-        <div class="row">
-            <div class="col-75">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-50">
-                            <h3>Thông tin khách hàng</h3>
-                            <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Họ và Tên">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="email" id="email" name="email" placeholder="email">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
-                            <input type="text" id="adr" name="address" placeholder="Địa Chỉ nhận hàng">
-                            <label for="city"><i class="fa fa-institution"></i> Ghi chú</label>
-                            <input type="text" id="Ghichu" name="Ghichu" placeholder="Ghi chú">
-                            <!--submit dữ liệu  -->
-                            <input type="checkbox" checked="checked" name="sameadr"> Tôi xác nhận thông tin trên hoàn toàn chính xác
+                            <img src="../image/Thanhtoan.png" alt="Girl in a jacket" width="420" height="700">
 
-
-                        </div>
-                        <div class="col-25">
-
-                            <head>
-
-                                <img src="../image/Thanhtoan.png" alt="Girl in a jacket" width="420" height="700">
-
-                                <!-- tiến hành thanh toán  -->
-                                <input type="submit" value="Thanh Toán" class="btn">
-                        </div>
+                            <!-- tiến hành thanh toán  -->
+                            <input type="submit" value="Thanh Toán" class="btn">
                     </div>
-
                 </div>
+
             </div>
-
         </div>
-        <footer class="footer ">
-            <div class="w3-item " style="text-align: center; ">
-                <p>Nếu khách hàng có bất kì thắc mắc hay có vấn đề nào liên quan đến sản phẩm của cửa hàng<br> xin vui lòng liên hệ qua đường dây nóng: 0967851014 hoặc email: manhkien203@gmail.com. Trân trọng!</p>
-            </div>
-        </footer>
 
-    </body>
+    </div>
+</body>
 
 </html>
