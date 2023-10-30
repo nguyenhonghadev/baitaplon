@@ -3,6 +3,10 @@ body {
     font-size: 17px;
 }
 
+#bybanking {
+    display: none;
+}
+
 .row {
     display: -ms-flexbox;
     /* IE10 */
