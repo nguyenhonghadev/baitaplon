@@ -34,6 +34,9 @@
 <body>
 <?php include("../config/header1.php"); ?>
     <div class="container-x1">
+    <a style="margin-left: 90%;" href="../user/logout.php">
+    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+  </a>
         <div class="info">
             <?php 
             

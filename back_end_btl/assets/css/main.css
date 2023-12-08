@@ -7,28 +7,6 @@ Author URI: https://imransdesign.com/
 Version: 1.0
 */
 
-.price {
-    color: #333;
-    font-size: 1.2em;
-    margin-bottom: 5px;
-}
-
-.original-price {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 0.9em;
-}
-
-.sale {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #e74c3c;
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.8em;
-}
-
 
 /* -----------------------------------------------------------------------------
 
