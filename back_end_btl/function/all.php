@@ -16,14 +16,13 @@ function getIPAddress() {
         }  
 ?>
 <?php
-function editProduct(productId) {
+function editProduct($productId) {
         // Gửi yêu cầu sửa điều chỉnh đến máy chủ, ví dụ sử dụng XMLHttpRequest hoặc Fetch API
         // Sử dụng productId để xác định sản phẩm cần sửa
     }
     
-    function deleteProduct(productId) {
-        // Gửi yêu cầu xóa sản phẩm đến máy chủ, ví dụ sử dụng XMLHttpRequest hoặc Fetch API
-        // Sử dụng productId để xác định sản phẩm cần xóa
+    function deleteProduct($productId) {
+       $sql = "DELETE FROM products WHERE prd_id='$productId'";
     }
     
 ?>

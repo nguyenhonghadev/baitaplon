@@ -99,6 +99,7 @@ if ($result->num_rows > 0) {
                 <th style='width: 10%'>Loại</th>
                 <th style='width: 10%'>Hành động</th>
             </tr>";
+            require("../function/all.php");
             while ($row = mysqli_fetch_assoc($result)) {
                 $img_prd = $row['prd_img'];
                 $img_path = 'image/' . $img_prd; // Thay đổi đường dẫn thư mục của bạn
@@ -112,8 +113,9 @@ if ($result->num_rows > 0) {
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
                         <td style='text-align:center'>
-                        <button onclick='editProduct(" . $row["prd_id"] . ")'><i class='fa fa-pencil'></i></button>
-                        <button onclick='deleteProduct(" . $row["prd_id"] . ")'><i class='fa fa-trash-o'></i></button>
+                        <button><i class='fa fa-pencil'></i></button>
+                        <button><i class='fa fa-trash-o'></i></button>
+                        <button>+</button>
                     </td>
                     
                       </tr>";
