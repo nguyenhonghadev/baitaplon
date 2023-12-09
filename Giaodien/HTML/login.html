@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>đăng nhập</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="img/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
+
+</head>
+
+<body>
+    <div class="back-button">
+        <a href="javascript:history.go(-1)" style="text-decoration: none;padding-right:90%;color:black;">Back</a>
+    </div>
+    <div class="logo">
+        <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>HK Restaurant</h1>
+        <p class="logo1">Nơi cung cấp một loạt sản phẩm đa dạng, từ thời trang đến đồ gia dụng,<br> <span style="margin-left: 5em;">với dịch vụ giao hàng nhanh chóng và chăm sóc khách hàng tận tình.</span></p>
+    </div>
+
+    <div class="login-box">
+        <h1> Đăng Nhập</h1>
+        <form action="" method="post" id="login-form">
+            <div class="user-box">
+                <input type="text" name="username" required="">
+                <label>Tên Đăng Nhập</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="">
+                <label>Mật Khẩu</label>
+            </div>
+            <div class="col3">
+                <input type="submit" class="login" value="Đăng nhập"><br>
+                <a href="#" class="forget" style="color:blue">Quên mật khẩu</a><br>
+                <hr>
+                <button class="register" id="register-button">Tạo Tài Khoản</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="login-box" id="register-form" style="display:none;">
+        <span id="close-button" style="cursor: pointer; position: absolute; top: 0; right: 0; font-size: 2em;">&times;</span>
+        <h1>Đăng Kí </h1>
+        <form action="" method="post">
+            <div class="user-box">
+                <input type="text" name="username" required="" id="username">
+                <label>Tên Đăng Nhập</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="" id="password" minlength="8">
+                <label>Mật Khẩu</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="numberphone" required="" id="numberphone" minlength="10">
+                <label>Số Điện Thoại</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="repassword" required="" minlength="8" id="repassword">
+                <label>Nhập Lại Mật Khẩu</label>
+                <p id="remote" style="color: red;"></p>
+            </div>
+            <div class="col3">
+                <input type="submit" class="login" style="background-color: #42b72a" value="Tạo Tài Khoản"><br>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>

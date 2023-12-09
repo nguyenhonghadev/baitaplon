@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin khách hàng</title>
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <style>
+        /* Your CSS styles here */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .container-x1 {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .customer-details {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .customer-details h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .customer-details p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .thanh-phan {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .thanh-phan div {
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #ccc;
+            transition: background-color 0.3s ease;
+        }
+        
+        .thanh-phan div:hover {
+            background-color: #ddd;
+        }
+        
+        .order section {
+            display: none;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .order section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-x1">
+        <div class="info">
+            <h1>Thông tin khách hàng</h1>
+            <div class="customer-details">
+                <h2>Xin chào, [Customer Name]</h2>
+                <p>Email: [Email]</p>
+                <p>Phone: [Phone]</p>
+                <p>Address: [Customer Address]</p>
+
+            </div>
+        </div>
+        <div class="thanh-phan">
+            <div onclick="showSection('donduyet')">Đơn kiểm duyệt</div>
+            <div onclick="showSection('don-ship')">Đơn đang giao</div>
+            <div onclick="showSection('don-thanh-cong')">Đơn hoàn thành</div>
+        </div>
+        <div class="order">
+            <section class="donduyet">
+                <!-- Pending orders -->
+                <h2>Đơn chờ duyệt</h2>
+                <ul class="pending-orders">
+                    <!-- List pending orders here -->
+                    <li>Order #1</li>
+                    <li>Order #2</li>
+                    <!-- Add more pending orders -->
+                </ul>
+            </section>
+            <section class="don-ship">
+                <!-- Orders for shipment -->
+                <h2>Đơn hàng đang giao</h2>
+                <ul class="shipping-orders">
+                    <!-- List orders for shipment here -->
+                    <li>Order #3</li>
+                    <li>Order #4</li>
+                    <!-- Add more orders being shipped -->
+                </ul>
+            </section>
+            <section class="don-thanh-cong">
+                <!-- Successfully delivered orders -->
+                <h2>Đơn hàng đã thành công</h2>
+                <ul class="success-orders">
+                    <!-- List successfully delivered orders here -->
+                    <li>Order #5</li>
+                    <li>Order #6</li>
+                    <!-- Add more successfully delivered orders -->
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.order section');
+            sections.forEach(section => {
+                if (section.classList.contains(sectionId)) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
