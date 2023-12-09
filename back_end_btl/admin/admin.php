@@ -23,11 +23,10 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     <!-- Load font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 
+
     <!-- Chart JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
-    <!-- Our files -->
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet"href="..//css//admin.css">
 
 </head>
 
@@ -44,6 +43,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
             <li class="nav-item"><a class="nav-link"><i class="fa fa-th-large"></i> Sản Phẩm</a></li>
             <li class="nav-item"><a class="nav-link"><i class="fa fa-file-text-o"></i> Đơn Hàng</a></li>
             <li class="nav-item"><a class="nav-link"><i class="fa fa-address-book-o"></i> Khách Hàng</a></li>
+            <li class="nav-item"><a class="nav-link"><i class="fa fa-star"></i>Sản Phẩm Nổi Bật</a></li>
             <li class="nav-item">
                 <hr>
             </li>
@@ -75,6 +75,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
             <div class="canvasContainer">
                 <canvas id="myChart4"></canvas>
             </div>
+            
         </div>
 
         <!-- Sản Phẩm -->
@@ -110,6 +111,9 @@ if ($result->num_rows > 0) {
                         <td class='img-prd' style='text-align: center;'><img src='" . $img_path . "' alt='Ảnh sản phẩm' style='width: 90%; height: 70%; display: inline-block;'></td>
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
+                        <td style='text-align:center'> <button style='margin-right:1em'><i class='fa fa-pencil'></i>
+                        </button>     <button><i class='fa fa-trash-o'></i>
+                        </button></td>
                       </tr>";
             }
             
