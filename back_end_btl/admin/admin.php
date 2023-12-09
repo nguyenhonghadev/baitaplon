@@ -111,9 +111,11 @@ if ($result->num_rows > 0) {
                         <td class='img-prd' style='text-align: center;'><img src='" . $img_path . "' alt='Ảnh sản phẩm' style='width: 90%; height: 70%; display: inline-block;'></td>
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
-                        <td style='text-align:center'> <button style='margin-right:1em'><i class='fa fa-pencil'></i>
-                        </button>     <button><i class='fa fa-trash-o'></i>
-                        </button></td>
+                        <td style='text-align:center'>
+                        <button onclick='editProduct(" . $row["prd_id"] . ")'><i class='fa fa-pencil'></i></button>
+                        <button onclick='deleteProduct(" . $row["prd_id"] . ")'><i class='fa fa-trash-o'></i></button>
+                    </td>
+                    
                       </tr>";
             }
             
@@ -327,14 +329,10 @@ if ($result->num_rows > 0) {
         </div>
 
         <div id="khungThemKhachHang" style="display: none;" class="adduser">
-
+<form method="post" action="admin.php">
             <table class="overlayTable table-outline table-content table-header">
                 <tr>
                     <th colspan="2">Thêm Người Dùng</th>
-                </tr>
-                <tr>
-                    <td>UID:</td>
-                    <td><input type="text" id="UID" required></td>
                 </tr>
                 <tr>
                     <td>Tên Đăng Nhập:</td>
@@ -360,6 +358,7 @@ if ($result->num_rows > 0) {
                             value="Thêm Người Dùng"> </td>
                 </tr>
             </table>
+            </form>
         </div>
 
 

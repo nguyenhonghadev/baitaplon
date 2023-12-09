@@ -333,6 +333,7 @@ td {
     width: 20em;
     transform: translate(-50%, -50%);
     height: 40em;
+    display: none;
 }
 
 .overlayTable {

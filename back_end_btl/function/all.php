@@ -15,3 +15,15 @@ function getIPAddress() {
              return $ip;  
         }  
 ?>
+<?php
+function editProduct(productId) {
+        // Gửi yêu cầu sửa điều chỉnh đến máy chủ, ví dụ sử dụng XMLHttpRequest hoặc Fetch API
+        // Sử dụng productId để xác định sản phẩm cần sửa
+    }
+    
+    function deleteProduct(productId) {
+        // Gửi yêu cầu xóa sản phẩm đến máy chủ, ví dụ sử dụng XMLHttpRequest hoặc Fetch API
+        // Sử dụng productId để xác định sản phẩm cần xóa
+    }
+    
+?>
