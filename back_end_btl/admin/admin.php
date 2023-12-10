@@ -99,7 +99,7 @@ if ($result->num_rows > 0) {
                 <th style='width: 10%'>Loại</th>
                 <th style='width: 10%'>Hành động</th>
             </tr>";
-            require("../function/all.php");
+
            
             while ($row = mysqli_fetch_assoc($result)) {
                 $img_prd = $row['prd_img'];
@@ -114,9 +114,9 @@ if ($result->num_rows > 0) {
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
                         <td style='text-align:center'>
-                        <button><a href='mode.php?update=" . $row['prd_id'] . "'><i class='fa fa-pencil'></i></a></button>
-                        <button><a href='mode.php?delete=" . $row['prd_id'] . "'><i class='fa fa-trash-o'></i></a></button>
-                        <button><a href='mode.php?add=" . $row['prd_id'] . "'>+</a></button>
+                        <button><a  href='mode.php?update=" . $row['prd_id'] . "'><i style='color:blue;font-size:1.7em' class='fa fa-pencil'></i></a></button>
+                        <button><a href='mode.php?delete=" . $row['prd_id'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
+                        <button><a style='color:green;font-size:1.6em' href='mode.php?add=" . $row['prd_id'] . "'>+</a></button>
                     </td>
                     
                       </tr>";
@@ -303,17 +303,39 @@ if ($result->num_rows > 0) {
 
         <!-- Khách hàng -->
         <div class="khachhang">
-            <table class="table-header">
+            <?php
+          require('../config/connect.php');
+          mysqli_set_charset($conn, 'utf8');
+          $sql = 'SELECT * FROM users';
+          $result = mysqli_query($conn, $sql);
+          
+          if ($result->num_rows > 0) { 
+            echo"<table class='table-header'>
                 <tr>
                     <!-- Theo độ rộng của table content -->
-                    <th style="width: 5%">Stt </th>
-                    <th style="width: 15%">Tên đăng nhập </th>
-                    <th style="width: 20%">Số điện thoại </th>
-                    <th style="width: 20%">mật khẩu </th>
-                    <th style="width: 10%">Hành động</th>
-                </tr>
-            </table>
-
+                    <th style='width: 15%'>Tên đăng nhập </th>
+                    <th style='width: 20%'>Số điện thoại </th>
+                    <th style='width: 20%'>Mật khẩu </th>
+                    <th style='width: 20%'>Địa chỉ</th>
+                    <th style='width: 10%'>Hành động</th>
+                </tr>";
+                while ($row = mysqli_fetch_assoc($result)) {// Thay đổi đường dẫn thư mục của bạn
+                  
+                    echo "<tr>
+                            <td style='text-align:center'>" . $row["username"] . "</td>
+                            <td style='text-align:center'>" . $row["password"] . "</td>
+                            <td style='text-align:center'>" . $row["numberphone"] . "</td>
+                            <td style='text-align:center'>" . $row["address"] . "</td>
+                            <td style='text-align:center'>
+                            <button><a href='mode.php?update=" . $row['username'] . "'><i class='fa fa-pencil'></i></a></button>
+                            <button><a href='mode.php?delete=" . $row['username'] . "'><i class='fa fa-trash-o'></i></a></button>
+                        </td>
+                        
+                          </tr>";
+                }
+                echo "</table>";
+            }
+            ?>
             <div class="table-content">
             </div>
 
