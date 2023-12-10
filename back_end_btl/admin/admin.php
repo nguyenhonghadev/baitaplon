@@ -100,10 +100,11 @@ if ($result->num_rows > 0) {
                 <th style='width: 10%'>Hành động</th>
             </tr>";
             require("../function/all.php");
+           
             while ($row = mysqli_fetch_assoc($result)) {
                 $img_prd = $row['prd_img'];
                 $img_path = 'image/' . $img_prd; // Thay đổi đường dẫn thư mục của bạn
-            
+              
                 echo "<tr>
                         <td style='text-align:center'>" . $row["prd_id"] . "</td>
                         <td style='text-align:center'>" . $row["prd_name"] . "</td>
@@ -113,9 +114,9 @@ if ($result->num_rows > 0) {
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
                         <td style='text-align:center'>
-                        <button><i class='fa fa-pencil'></i></button>
-                        <button><i class='fa fa-trash-o'></i></button>
-                        <button>+</button>
+                        <button><a href='mode.php?update=" . $row['prd_id'] . "'><i class='fa fa-pencil'></i></a></button>
+                        <button><a href='mode.php?delete=" . $row['prd_id'] . "'><i class='fa fa-trash-o'></i></a></button>
+                        <button><a href='mode.php?add=" . $row['prd_id'] . "'>+</a></button>
                     </td>
                     
                       </tr>";
@@ -126,7 +127,7 @@ if ($result->num_rows > 0) {
 } 
 ?>
 
-
+<a href='mode.php?delete=$row['prd_id']'></a>
             <div class="table-content">
             </div>
 
@@ -240,10 +241,10 @@ if ($result->num_rows > 0) {
                                 $result = $stmt->execute();
 
                                 if ($result) {
-                                    // Chuyển hướng người dùng đến trang thành công sau khi thêm sản phẩm
-                                    header("Location:admin.php"); // Thay đổi success.php thành trang bạn muốn hiển thị sau khi thêm thành công
-                                    exit(); // Đảm bảo không có mã HTML hoặc mã PHP nào chạy sau khi chuyển hướng
-                                } else {
+                                    echo "<script>alert('Thêm sản phẩm thành công')</script>";
+                                    echo "<script>window.location = 'admin.php'</script>"; // Tải lại trang admin.php sau khi thêm thành công
+                                }
+                                else {
                                     echo "<script>alert('Thêm sản phẩm không thành công')</script>";
                                 }
                             }
