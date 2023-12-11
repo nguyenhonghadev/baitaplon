@@ -59,7 +59,7 @@
     </div>
     <?php
     require('../config/connect.php');
-  
+    session_start();
     if(isset($_POST["username"]) && isset($_POST["password"])){
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -67,7 +67,6 @@
         $result = $conn->query($sql);
         if($result->num_rows > 0){
             $_SESSION['username'] = $username;
-            session_start();
             echo "<script>window.location.href = 'admin.php';</script>";
             exit();
         } else {
