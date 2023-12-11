@@ -12,8 +12,12 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])) {
     if(mysqli_stmt_execute($stmt)){
         if(mysqli_affected_rows($conn) > 0) {
             echo "<script>alert('Xóa thành công')</script>";
-            header("Location: admin.php?quanly=product");
-            exit(); // Kết thúc kịch bản sau khi chuyển hướng
+            echo "<script>
+                    setTimeout(function() {
+                        window.location.href = 'admin.php?quanly=product';
+                    },500); 
+                  </script>";
+            exit();
         } else {
             echo "<script>alert('Không tìm thấy sản phẩm có ID này')</script>";
         }
@@ -28,10 +32,10 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])) {
 <?php
 if(isset($_GET['update']) && !empty($_GET['update'])) {
     require('../config/connect.php');
-    $oldid = $_GET['update'];
+    $username = $_GET['update'];
     // Sử dụng prepared statement để tránh SQL Injection
     $stmt = $conn->prepare("SELECT * FROM products WHERE prd_id = ?");
-    $stmt->bind_param('s', $oldid);
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -98,7 +102,7 @@ if(isset($_GET['update']) && !empty($_GET['update'])) {
         
         
         $sql = rtrim($sql, ',');
-        $sql .= " WHERE prd_id='$oldid'";
+        $sql .= " WHERE prd_id='$username'";
 
         // Thực hiện câu lệnh UPDATE
         if ($conn->query($sql) === TRUE) {
@@ -133,7 +137,7 @@ if (isset($_GET['update']) && !empty($_GET['update'])) {
     <form action="mode.php?update=<?php echo $_GET['update']; ?>" method="post" enctype="multipart/form-data">
         <table class="overlayTable table-outline table-content table-header">
             <tr>
-                <th colspan="2">Thêm Sản Phẩm</th>
+                <th colspan="2">Sửa Sản Phẩm</th>
             </tr>
             <!-- Các trường input -->
             <tr>
@@ -278,4 +282,148 @@ if (isset($_GET['deletenb']) && !empty($_GET['deletenb'])) {
     mysqli_close($conn); // Đóng kết nối
 }
 
+?><?php
+if (isset($_GET['deleteuser']) && !empty($_GET['deleteuser'])) {
+    $prd_id = $_GET['deleteuser'];
+    require('../config/connect.php');
+    mysqli_set_charset($conn, 'UTF8');
+
+    // Sử dụng prepared statement để xóa sản phẩm có ID cụ thể
+    $sql = "DELETE FROM users WHERE username=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $prd_id); // 's' đại diện cho kiểu string
+
+    if (mysqli_stmt_execute($stmt)) {
+        if (mysqli_affected_rows($conn) > 0) {
+            echo "<script>alert('Xóa thành công')</script>";
+            echo "<script>
+                    setTimeout(function() {
+                        window.location.href = 'admin.php?quanly=user';
+                    },500); 
+                  </script>";
+            exit(); // Kết thúc kịch bản sau khi chuyển hướng
+        } else {
+            echo "<script>alert('Không tìm thấy sản phẩm có ID này')</script>";
+        }
+    } else {
+        echo "<script>alert('Xóa thất bại')</script>";
+    }
+
+    mysqli_stmt_close($stmt); // Đóng statement
+    mysqli_close($conn); // Đóng kết nối
+}
+
 ?>
+<?php
+if (isset($_GET['updateuser']) && !empty($_GET['updateuser'])) {
+    require('../config/connect.php');
+    $username = $_GET['updateuser'];
+    // Sử dụng prepared statement để tránh SQL Injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Lấy dữ liệu từ form
+        $newpassword = $_POST['newpassword'];
+        $newaddress=$_POST['newaddress'];
+        $newnumberphone=$_POST['newnumberphone'];
+
+        // Kiểm tra mật khẩu mới có ít nhất 8 ký tự và chứa ít nhất một ký tự viết hoa
+       
+            // Mật khẩu hợp lệ, tiến hành cập nhật
+            $sql = "UPDATE users SET";
+
+            if (!empty($_POST["newpassword"])) {
+                if(strlen($newpassword) >= 8 && preg_match('/[A-Z]/', $newpassword)) {
+                    // Mật khẩu mới hợp lệ, tiến hành cập nhật
+                    $sql .= " password='$newpassword',";
+                } else {
+                    // Mật khẩu không đáp ứng yêu cầu, thông báo lỗi và chuyển hướng
+                    echo "<script>
+                        alert('Mật khẩu mới yêu cầu ít nhất 8 ký tự và chứa ít nhất một ký tự viết hoa');
+                        window.location.href = 'admin.php?quanly=user'; // Chuyển hướng người dùng sau khi thông báo xuất hiện
+                    </script>";
+                    exit(); // Dừng việc thực thi ngay sau khi thông báo xuất hiện
+                }
+            }
+            
+            
+            if (!empty($_POST["newnumberphone"])) {
+               
+                $sql .= " numberphone='$newnumberphone',";
+            }
+            if (!empty($_POST["newaddress"])) {
+              
+                $sql .= " address='$newaddress',";
+            }
+            $sql = rtrim($sql, ',');
+            $sql .= " WHERE username='$username'";
+
+            // Thực hiện câu lệnh UPDATE
+            if ($conn->query($sql) === TRUE) {
+                echo "<script>
+                        alert('Cập nhật thành công');
+                        window.location.href = 'admin.php?quanly=user'; // Chuyển hướng người dùng sau khi thông báo xuất hiện
+                      </script>";
+                exit(); // Dừng việc thực thi ngay sau khi chuyển hướng
+            } else {
+                echo "<script>alert('Không có gì để cập nhật')</script>";
+                header("Location: admin.php?quanly=user");
+                exit(); // Dừng việc thực thi nếu không có gì để cập nhật
+            }
+        // } else {
+        //     // Mật khẩu không đáp ứng yêu cầu, thông báo lỗi
+            
+        //     echo "<script>
+        //     alert('Mật khẩu mới yêu cầu ít nhất 8 ký tự và chứa ít nhất một ký tự viết hoa');
+        //     window.location.href = 'admin.php?quanly=user'; // Chuyển hướng người dùng sau khi thông báo xuất hiện
+        //   </script>";
+        // }
+    }
+    $conn->close();
+}
+?>
+
+<!-- Form -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..//css//admin.css">
+</head>
+<body>
+    <?php
+    if (isset($_GET['updateuser']) && !empty($_GET['updateuser'])) {
+    ?>
+    <form action="mode.php?updateuser=<?php echo $_GET['updateuser']; ?>" method="post" enctype="multipart/form-data">
+        <table class="overlayTable table-outline table-content table-header">
+            <tr>
+                <th colspan="2">Sửa Tài Khoản</th>
+            </tr>
+            <!-- Các trường input -->
+            <tr>
+                <td>Mật Khẩu:</td>
+                <td><input type="password" name="newpassword"></td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+                <td><input type="tel" name="newnumberphone"></td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td><input type="text" name="newaddress"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="table-footer"><input type="submit" style="width: 10em;height: 3em;background-color: #F28123;color: white;" value="Cập Nhật"></td>
+            </tr>
+        </table>
+    </form>
+    <?php
+    }
+    ?>
+</body>
+</html>

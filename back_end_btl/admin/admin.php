@@ -91,6 +91,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                 </script>";
                 include('donhang.php');
             }
+               
             else{
                 echo"<script>
                 $(document).ready(function(){
@@ -99,6 +100,14 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                 </script>";
                 include('main.php');
             }
+        }
+        else{
+            echo"<script>
+            $(document).ready(function(){
+                $('#tp1').addClass('active');
+            });
+            </script>";
+            include('main.php');
         }
 ?>
 </div>

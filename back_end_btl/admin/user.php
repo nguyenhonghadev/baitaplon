@@ -23,8 +23,8 @@
                             <td style='text-align:center'>" . $row["numberphone"] . "</td>
                             <td style='text-align:center'>" . $row["address"] . "</td>
                             <td style='text-align:center'>
-                            <button><a  href='mode.php?update=" . $row['username'] . "'><i style='color:blue;font-size:1.7em' class='fa fa-pencil'></i></a></button>
-                        <button><a href='mode.php?delete=" . $row['username'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
+                            <button><a  href='mode.php?updateuser=" . $row['username'] . "'><i style='color:blue;font-size:1.7em' class='fa fa-pencil'></i></a></button>
+                        <button><a href='mode.php?deleteuser=" . $row['username'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
                         </td>
                         
                           </tr>";
