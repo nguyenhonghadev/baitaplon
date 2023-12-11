@@ -12,7 +12,7 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])) {
     if(mysqli_stmt_execute($stmt)){
         if(mysqli_affected_rows($conn) > 0) {
             echo "<script>alert('Xóa thành công')</script>";
-            header("Location: admin.php");
+            header("Location: admin.php?quanly=product");
             exit(); // Kết thúc kịch bản sau khi chuyển hướng
         } else {
             echo "<script>alert('Không tìm thấy sản phẩm có ID này')</script>";
@@ -104,7 +104,7 @@ if(isset($_GET['update']) && !empty($_GET['update'])) {
         if ($conn->query($sql) === TRUE) {
             echo "<script>
                     alert('Cập nhật thành công');
-                    window.location.href = 'admin.php'; // Chuyển hướng người dùng sau khi thông báo xuất hiện
+                    window.location.href = 'admin.php?quanly=product'; // Chuyển hướng người dùng sau khi thông báo xuất hiện
                   </script>";
             exit(); // Dừng việc thực thi ngay sau khi chuyển hướng
         } else {
@@ -127,6 +127,9 @@ if(isset($_GET['update']) && !empty($_GET['update'])) {
     <link rel="stylesheet" href="..//css//admin.css">
 </head>
 <body>
+<?php
+if (isset($_GET['update']) && !empty($_GET['update'])) {
+    ?>
     <form action="mode.php?update=<?php echo $_GET['update']; ?>" method="post" enctype="multipart/form-data">
         <table class="overlayTable table-outline table-content table-header">
             <tr>
@@ -170,9 +173,109 @@ if(isset($_GET['update']) && !empty($_GET['update'])) {
             </tr>
         </table>
     </form>
-</body>
-</html>
+    <?php
+}
+?>
 
 </body>
 </html>
+<?php
+if (isset($_GET['add']) && !empty($_GET['add'])) {
+    require('../config/connect.php');
+    mysqli_set_charset($conn, 'utf8');
+    $prd_id = $_GET['add'];
 
+    // Kiểm tra xem sản phẩm có tồn tại trong bảng sp_noibat chưa
+    $sql_check_existing = "SELECT * FROM sp_noibat WHERE sp_id = ?";
+    $stmt_check_existing = $conn->prepare($sql_check_existing);
+
+    if (!$stmt_check_existing) {
+        die("Lỗi trong quá trình chuẩn bị truy vấn: " . $conn->error);
+    }
+
+    $stmt_check_existing->bind_param("i", $prd_id);
+    $stmt_check_existing->execute();
+    $result_check_existing = $stmt_check_existing->get_result();
+
+    if ($result_check_existing->num_rows > 0) {
+        echo "<script>alert('Sản phẩm đã tồn tại')</script>";
+        echo "<script>window.location = 'admin.php?quanly=product'</script>";
+    } else {
+        // Lấy thông tin sản phẩm từ bảng products
+        $sql_select_product = "SELECT prd_id, prd_name, prd_img, prd_price FROM products WHERE prd_id = ?";
+        $stmt_select_product = $conn->prepare($sql_select_product);
+
+        if (!$stmt_select_product) {
+            die("Lỗi trong quá trình chuẩn bị truy vấn: " . $conn->error);
+        }
+
+        $stmt_select_product->bind_param("i", $prd_id);
+        $stmt_select_product->execute();
+        $result_select_product = $stmt_select_product->get_result();
+
+        if ($result_select_product->num_rows > 0) {
+            $row = $result_select_product->fetch_assoc();
+            $sp_id = $row['prd_id'];
+            $sp_name = $row['prd_name'];
+            $sp_img = $row['prd_img'];
+            $sp_price = $row['prd_price'];
+
+            // Thêm sản phẩm vào bảng sp_noibat
+            $sql_insert = "INSERT INTO sp_noibat (sp_id, sp_name, sp_image, sp_price) VALUES ('$sp_id','$sp_name','$sp_img','$sp_price')";
+            $stmt_insert = $conn->prepare($sql_insert);
+
+            if ($stmt_insert->execute()) {
+                echo "<script>alert('Đã Thêm vào sản phẩm nổi bật thành công')</script>";
+                echo "<script>window.location = 'admin.php?quanly=product'</script>";
+            } else {
+                echo "<script>alert('Không thành công sản phẩm đã tồn tại')</script>";
+                echo "<script>window.location = 'admin.php?quanly=product'</script>";
+            }
+
+            $stmt_insert->close();
+        } else {
+            echo "<script>alert('Sản phẩm không tồn tại')</script>";
+            echo "<script>window.location = 'admin.php?quanly=product'</script>";
+        }
+
+        $stmt_select_product->close();
+    }
+
+    $stmt_check_existing->close();
+    mysqli_close($conn);
+}
+
+
+?>
+<?php
+if (isset($_GET['deletenb']) && !empty($_GET['deletenb'])) {
+    $prd_id = $_GET['deletenb'];
+    require('../config/connect.php');
+    mysqli_set_charset($conn, 'UTF8');
+
+    // Sử dụng prepared statement để xóa sản phẩm có ID cụ thể
+    $sql = "DELETE FROM sp_noibat WHERE sp_id=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $prd_id); // 's' đại diện cho kiểu string
+
+    if (mysqli_stmt_execute($stmt)) {
+        if (mysqli_affected_rows($conn) > 0) {
+            echo "<script>alert('Xóa thành công')</script>";
+            echo "<script>
+                    setTimeout(function() {
+                        window.location.href = 'admin.php?quanly=spnb';
+                    },500); 
+                  </script>";
+            exit(); // Kết thúc kịch bản sau khi chuyển hướng
+        } else {
+            echo "<script>alert('Không tìm thấy sản phẩm có ID này')</script>";
+        }
+    } else {
+        echo "<script>alert('Xóa thất bại')</script>";
+    }
+
+    mysqli_stmt_close($stmt); // Đóng statement
+    mysqli_close($conn); // Đóng kết nối
+}
+
+?>
