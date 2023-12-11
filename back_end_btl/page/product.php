@@ -128,7 +128,7 @@ if ($ketqua->num_rows > 0) {
    ?>
 
 
-    <a href="menu.html " class="btn btn-lg btn-primary btn-lg-square back-to-top " aria-label="quay lai"><i class="bi bi-arrow-up "></i></a>
+    <a href="product.php" class="btn btn-lg btn-primary btn-lg-square back-to-top " aria-label="quay lai"><i class="bi bi-arrow-up "></i></a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
