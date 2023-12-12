@@ -99,7 +99,10 @@ require('..//config//footer.php');
 ?>
 
     <!-- Back to Top -->
-    <a href="product_detail.php" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="BACK"><i class="bi bi-arrow-up"></i></a>
+    <?php
+    echo '<a href="product_detail.php?prd_id=' . $_GET['prd_id'] . '" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="BACK"><i class="bi bi-arrow-up"></i></a>';
+?>
+
     </div>
 
     <!-- JavaScript Libraries -->

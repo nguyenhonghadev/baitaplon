@@ -54,6 +54,10 @@
                     echo "<p>Address:</p>";
                     echo '</div>';
                 }
+                else{
+                    echo '<div class="customer-details">';
+                    echo "<h2>Bạn đang là :".$username."</h2>";
+                }
             }
             ?>
         <div class="thanh-phan">
