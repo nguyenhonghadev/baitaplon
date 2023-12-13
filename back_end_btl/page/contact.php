@@ -112,7 +112,7 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                    <form action="baitaplon/back_end_btl/page/contact.php" method="post" id="fruitkha-contact" > <p>
+                    <form action="contact.php" method="post" id="fruitkha-contact" > <p>
                                 <input type="text" placeholder="Họ và Tên" required name="name" id="name">
                                 <input type="email" placeholder="Email" required name="email" id="email">
                             </p>
