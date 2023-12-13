@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -64,57 +66,57 @@ $sql = "SELECT * FROM products";
 $ketqua = $conn->query($sql);
 
 if ($ketqua->num_rows > 0) {
-    while ($row = $ketqua->fetch_assoc()) {
-        echo '<div class="col-lg-4 col-md-6 text-center">'; // Bỏ id và class không cần thiết ở đây
-        if ($row['prd_category'] === 'Tráng Miệng') {
+    if ($ketqua->num_rows > 0) {
+        $rows = $ketqua->fetch_all(MYSQLI_ASSOC);
+    
+        foreach ($rows as $row) {
+            echo '<div class="col-lg-4 col-md-6 text-center ';
+            if ($row['prd_category'] === 'Tráng miệng') {
+                echo 'desert';
+            } elseif ($row['prd_category'] === 'Đồ uống') {
+                echo 'drinking';
+            } elseif ($row['prd_category'] === 'Đồ ăn') {
+                echo 'food';
+            }
+            echo '">';
+    
+            echo '<div class="single-product-item">';
+            echo '<span class="sale" id="saleSpan">NEW!</span>';
             echo '<script>
-                $(document).ready(function(){
-                    $(".col-lg-4").addClass("desert");
-                });
-                </script>';
-        } elseif ($row['prd_category'] === 'Đồ uống') {
-            echo '<script>
-                $(document).ready(function(){
-                    $(".col-lg-4").addClass("drinking");
-                });
-                </script>';
-        } elseif($row['prd_category'] === 'Đồ ăn') {
-            echo '<script>
-                $(document).ready(function(){
-                    $(".col-lg-4").addClass("food");
-                });
-                </script>';
+                setTimeout(function() {
+                    document.getElementById("saleSpan").style.display = "none";
+                }, 3000000); 
+            </script>';
+    
+            echo '<div class="product-image">';
+            $path = '../admin/image/';
+            $img = $row['prd_img'];
+            $link = $path . '/' . $img;
+            echo '<a href="product_detail.php?prd_id=' . $row['prd_id'] . '"><img src="' . $link . '" alt="' . $row["prd_name"] . '"></a>';
+            echo '</div>';
+    
+            echo '<h3>' . $row["prd_name"] . '</h3>';
+            echo '<div style="text-align: center; margin-bottom: 10px;">';
+            echo '<div class="product-price name-product" style="display: inline-block; margin-right: 10px; font-family: \'Poppins\', sans-serif;font-size: 30px;font-weight: 700;">' . $row["prd_price"] . 'đ</div>';
+            echo '</div>';
+    
+            echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
+            echo '<form method="POST" action="cart.php">';
+            echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
+            echo '<button type="submit" name="add_to_cart" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
+            echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
+            echo '</button>';
+            echo '</form>';
+    
+            echo '</div>';
+            echo '</div>';
         }
-
-        echo '<div class="single-product-item">';
-        echo '<span class="sale" id="saleSpan">NEW!</span>';
-        echo '<script>
-            setTimeout(function() {
-                document.getElementById("saleSpan").style.display = "none";
-            }, 3000000); 
-        </script>';
-        
-        echo '<div class="product-image">';
-        
-        $path = '../admin/image/';
-        $img = $row['prd_img'];
-        $link = $path . '/' . $img;
-        
-        echo '<a href="product_detail.php?prd_id=' . $row['prd_id'] . '"><img src="' . $link . '" alt="' . $row["prd_name"] . '"></a>';
-        echo '</div>';
-        echo '<h3>' . $row["prd_name"] . '</h3>';
-        echo '<div style="text-align: center; margin-bottom: 10px;">';
-        echo '<div class="product-price name-product" style="display: inline-block; margin-right: 10px; font-family: \'Poppins\', sans-serif;font-size: 30px;font-weight: 700;">' . $row["prd_price"] . 'đ</div>';
-        echo '</div>';
-        echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
-        echo '<button style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ Hàng</button>';
-        echo '</div>';
-        echo '</div>';
+    } else {
+        echo "Không có sản phẩm nào.";
     }
-} else {
-    echo "Không có sản phẩm nào.";
-}
-?>
+}    
+    ?>
+
 
                
             </div>
@@ -131,6 +133,64 @@ if ($ketqua->num_rows > 0) {
     <a href="product.php" class="btn btn-lg btn-primary btn-lg-square back-to-top " aria-label="quay lai"><i class="bi bi-arrow-up "></i></a>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="lib/wow/wow.min.js "></script>
+    <script src="lib/easing/easing.min.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script src="lib/counterup/counterup.min.js "></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js "></script>
+    <script src="lib/tempusdominus/js/moment.min.js "></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js "></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js "></script>
+    <!-- product -->
+    <script src="assets/js/jquery-1.11.3.min.js "></script>
+    <!-- bootstrap -->
+    <script src="assets/bootstrap/js/bootstrap.min.js "></script>
+    <!-- count down -->
+    <script src="assets/js/jquery.countdown.js "></script>
+    <!-- isotope -->
+    <script src="assets/js/jquery.isotope-3.0.6.min.js "></script>
+    <!-- waypoints -->
+    <script src="assets/js/waypoints.js "></script>
+    <!-- owl carousel -->
+    <script src="assets/js/owl.carousel.min.js "></script>
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js "></script>
+    <!-- mean menu -->
+    <script src="assets/js/jquery.meanmenu.min.js "></script>
+    <!-- sticker js -->
+    <script src="assets/js/sticker.js "></script>
+    <!-- main js -->
+    <script src="assets/js/main.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script>
+        $(document).ready(function() {
+            $('.search-bar-icon').click(function() {
+                $('.search-area').toggleClass('search-active');
+            });
+
+            $('.close-btn').click(function() {
+                $('.search-area').removeClass('search-active');
+            });
+        });
+    </script>
+    
+    <script>
+    function addToCartMessage() {
+        alert("Sản phẩm đã được thêm vào giỏ hàng!");
+        return true; // Trả về true để tiếp tục submit form
+    }
+</script>
+
+
+</body>
+
+
+</html>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
     <script src="lib/wow/wow.min.js "></script>
@@ -165,7 +225,7 @@ if ($ketqua->num_rows > 0) {
     <!-- main js -->
     <script src="..//assets//js//main.js "></script>
     <script src="..//lib//waypoints//waypoints.min.js "></script>
-    <script src="..//js//menu.js "></script>
+
     <script>
         $(document).ready(function() {
             $('.search-bar-icon').click(function() {

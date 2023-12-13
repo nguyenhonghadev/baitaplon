@@ -1,19 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
 <?php
-// Bắt đầu phiên làm việc
 session_start();
-
-// Xóa tất cả các biến phiên
-$_SESSION = array();
-
-// Nếu có cookie phiên, hủy bỏ cookie
-if (isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), '', time() - 86400, '/');
-}
-
-// Hủy bỏ phiên
-session_destroy();
-
-// Chuyển hướng về trang chủ hoặc trang đăng nhập
-header("Location:../page/index.php"); // Điều hướng về trang chủ sau khi đăng xuất
+if(isset($_SESSION['username'])){
+    unset($_SESSION['username']);
+    header("Location:../page/index.php"); // Điều hướng về trang chủ sau khi đăng xuất
 exit;
+}
 ?>
+</body>
+</html>
+

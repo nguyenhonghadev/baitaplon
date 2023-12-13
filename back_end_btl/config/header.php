@@ -25,9 +25,10 @@
                         <a href="../page/cart.php" class="nav-item nav-link">
     <i class="fa-solid fa-cart-shopping">
         <?php
-        if(isset($_SESSION['username'])) {
-            // Kiểm tra nếu đã đăng nhập, lấy số lượng sản phẩm từ giỏ hàng nếu có
-            $cartItemCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+
+        if (isset($_SESSION['username'])) {
+            // Kiểm tra nếu đã đăng nhập, lấy số lượng sản phẩm từ giỏ hàng của người dùng
+            $cartItemCount = isset($_SESSION['user_cart'][$_SESSION['username']]) ? count($_SESSION['user_cart'][$_SESSION['username']]) : 0;
             echo "<span class='headerCartListCount'>$cartItemCount</span>";
         } else {
             // Xử lý khi không có phiên đăng nhập, hiển thị số lượng sản phẩm từ giỏ hàng (nếu có)
@@ -37,6 +38,7 @@
         ?>
     </i>
 </a>
+
 
 
 <?php
@@ -74,6 +76,23 @@ mysqli_close($conn); // Đóng kết nối
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden ">
                             <img class="img-fluid " src="../image/hero.png" alt="avatar ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                        <div class="search-bar">
+                            <div class="search-bar-tablecell">
+                                <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
+                                <input type="text" placeholder="Từ Khóa">
+                                <button type="submit" class="search-button"><h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

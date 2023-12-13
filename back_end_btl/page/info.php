@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -38,28 +40,30 @@
     <i class="fas fa-sign-out-alt"></i> Đăng xuất
   </a>
         <div class="info">
-            <?php 
-            
-            if(isset($_SESSION['username']) ){
-                require("../config/connect.php");
-                $username= $_SESSION['username'];
-    
-                $sql = "SELECT username, numberphone FROM users WHERE username='$username'";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    echo '<div class="customer-details">';
-                    echo "<h2>Khách hàng:".$row['username']."</h2>";
-                    echo "<p>Phone:".$row['numberphone']."</p>";
-                    echo "<p>Address:</p>";
-                    echo '</div>';
-                }
-                else{
-                    echo '<div class="customer-details">';
-                    echo "<h2>Bạn đang là :".$username."</h2>";
-                }
-            }
-            ?>
+           <?php
+           if(isset($_SESSION['username']) ){
+               require("../config/connect.php");
+               $username = $_SESSION['username'];
+       
+               // Sử dụng prepared statement để tránh SQL Injection
+               $sql = "SELECT username, numberphone FROM users WHERE username=?";
+               $statement = $conn->prepare($sql);
+               $statement->bind_param("s", $username);
+               $statement->execute();
+               $result = $statement->get_result();
+                   $row = $result->fetch_assoc();
+                   echo '<div class="customer-details">';
+                   echo "<h2>Khách hàng:" . $row['username'] . "</h2>";
+                   echo "<p>Phone:" . $row['numberphone'] . "</p>";
+                   echo "<p>Address:</p>";
+                   echo '</div>';
+               } if ($username === 'admin') {
+                   echo '<div class="customer-details">';
+                   echo "<h2>Bạn đang là :" . $username . "</h2>";
+                   echo '</div>';
+               }
+       ?>
+       
         <div class="thanh-phan">
             <div onclick="showSection('donduyet')">Đơn kiểm duyệt</div>
             <div onclick="showSection('don-ship')">Đơn đang giao</div>

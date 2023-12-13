@@ -1,13 +1,3 @@
-var removeProductLinks = document.querySelectorAll('.product-remove a');
-for (var i = 0; i < removeProductLinks.length; i++) {
-    removeProductLinks[i].addEventListener('click', function(e) {
-        e.preventDefault();
-        var productRow = this.parentElement.parentElement;
-        productRow.parentElement.removeChild(productRow);
-        calculateTotals();
-    });
-}
-
 function calculateTotals() {
     var tableBodyRows = document.querySelectorAll('.table-body-row');
     var subTotal = 0;

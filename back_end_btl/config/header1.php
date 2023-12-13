@@ -1,6 +1,4 @@
-<?php
-    session_start();
-  ?>  
+
      <form action="header.php" method="post">
      <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -29,9 +27,11 @@
                         <a href="../page/cart.php" class="nav-item nav-link">
     <i class="fa-solid fa-cart-shopping">
         <?php
-        if(isset($_SESSION['username'])) {
-            // Kiểm tra nếu đã đăng nhập, lấy số lượng sản phẩm từ giỏ hàng nếu có
-            $cartItemCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+
+
+        if (isset($_SESSION['username'])) {
+            // Kiểm tra nếu đã đăng nhập, lấy số lượng sản phẩm từ giỏ hàng của người dùng
+            $cartItemCount = isset($_SESSION['user_cart'][$_SESSION['username']]) ? count($_SESSION['user_cart'][$_SESSION['username']]) : 0;
             echo "<span class='headerCartListCount'>$cartItemCount</span>";
         } else {
             // Xử lý khi không có phiên đăng nhập, hiển thị số lượng sản phẩm từ giỏ hàng (nếu có)
