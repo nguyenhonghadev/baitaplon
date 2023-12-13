@@ -28,16 +28,16 @@ if(!isset($_SESSION['username'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="..//lib//animate//animate.min.css" rel="stylesheet">
+    <link href="..//lib//owlcarousel//assets//owl.carousel.min.css" rel="stylesheet">
+    <link href="..//lib//tempusdominus//css//tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="..//css//bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="..//css//style.css" rel="stylesheet">
-    <link rel="stylesheet" href="..//assets//css//main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="..//assets//css//responsive.css">
 </head>
 
@@ -65,70 +65,7 @@ if(!isset($_SESSION['username'])){
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                        function addProductToCart($product) {
-                            if (!isset($_SESSION['user_cart'][$_SESSION['username']])) {
-                                $_SESSION['user_cart'][$_SESSION['username']] = array();
-                            }
-
-                            $found = false;
-                            foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
-                                if ($prd['name'] === $product['name']) {
-                                    // Tăng số lượng sản phẩm nếu đã tồn tại
-                                    $_SESSION['user_cart'][$_SESSION['username']][$key]['quantity'] += $product['quantity'];
-                                    $found = true;
-                                    break;
-                                }
-                            }
-
-                            if (!$found && $product['name'] !== 'Dưa leo') {
-                                $_SESSION['user_cart'][$_SESSION['username']][] = $product;
-                            }
-                        }
-
-                        if (isset($_POST['product_id'])) {
-                            // Lấy ID sản phẩm từ form
-                            $prd_id = $_POST['product_id'];
-
-                            // Kết nối CSDL
-                            require('../config/connect.php');
-                            mysqli_set_charset($conn, 'utf8');
-
-                            $sql = "SELECT prd_img, prd_name, prd_price FROM products WHERE prd_id='$prd_id'";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    // Lấy thông tin sản phẩm từ CSDL
-                                    $prd_img = $row['prd_img'];
-                                    $prd_name = $row['prd_name'];
-                                    $prd_price = $row['prd_price'];
-
-                                    // Định dạng lại đường dẫn ảnh
-                                    $path = '../admin/image/';
-                                    $prd_img_path = $path . $row['prd_img'];
-
-                                    // Tạo một mảng chứa thông tin sản phẩm từ CSDL
-                                    $product = array(
-                                        'name' => $prd_name,
-                                        'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
-                                        'quantity' => 1,
-                                        'image' => $prd_img_path,
-                                    );
-
-                                    // Thêm sản phẩm vào giỏ hàng của người dùng
-                                    addProductToCart($product);
-                                }
-                            }
-                            $conn->close();
-                        }
-                        $product = array(
-                            'name' => 'Dưa leo',
-                            'price' => '25000đ',
-                            'quantity' => 1,
-                            'image' => '../image/tráng miệng/dưa leo.jpg',
-                        );
-                        addProductToCart($product);
+                        <?php
                                     foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
                                         echo '<tr class="table-body-row">';
                                         echo '<td class="product-rm"><a href="remove_product.php?key=' . $key . '"><i class="far fa-window-close"></i></a></td>';

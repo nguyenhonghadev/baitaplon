@@ -13,19 +13,120 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <link rel="stylesheet" href="..//css//admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .restaurant-title {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .icon-container {
+            position: relative;
+        }
+        
+        button {
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            /* Sử dụng flexbox để căn chỉnh icon và chỉ số */
+            align-items: center;
+            /* Căn chỉnh theo chiều dọc */
+            gap: 5px;
+            margin-right: 1em;
+        }
+        
+        .headerCartListCount {
+            position: relative;
+            top: -8px;
+            right: 1em;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 4px;
+            font-size: 0.8em;
+        }
+        /* Đoạn CSS để ẩn danh sách thông báo ban đầu */
+        
+        .notificationList {
+            display: none;
+            position: absolute;
+            top: 1.3em;
+            /* Có thể điều chỉnh vị trí của danh sách thông báo tùy thuộc vào cấu trúc của trang */
+            right: 3.2em;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+            width: 20em;
+            height: auto;
+        }
+        /* Hiển thị danh sách thông báo khi button được nhấn */
+        
+        .notificationList.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border: none
+        }
+        
+        .notificationList table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        
+        .notificationList th,
+        .notificationList td {
+            padding: 8px;
+            cursor: pointer;
+        }
+        
+        .unread-notification {
+            background-color: #8dbfd6;
+            /* Màu nền cho tin nhắn chưa đọc */
+        }
     </style>
 
 </head>
 
 <body>
     <header>
-        <h1>HK Restaurant</h1>
+        <div class="header-container">
+            <h1 class="restaurant-title">HK Restaurant</h1>
+            <div class="icon-container">
+                <button id="notificationButton" style="background-color: #F28123; border: none;">
+                    <i style="color: blue; font-size: 2em;" class="material-icons">notifications</i>
+                    <span class="headerCartListCount">3</span>
+                </button>
+                <div class="notificationList">
+                    <table id="notificationTable">
+                        <tr>
+                            <th style="height: 3em;">Thông báo</th>
+                        </tr>
+                        <tr>
+                            <td style="height: 2em;">You have an order</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 2em;">Your reservation is confirmed</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Menu -->
+
     <aside class="sidebar">
         <ul class="nav">
             <li class="nav-title">MENU</li>
@@ -51,7 +152,7 @@
                 <canvas id="myChart1"></canvas>
             </div>
 
-            <h1 style="text-align: center;"> Chúc Bạn Một Ngày Tốt Lành!!!!</h1>
+            <h1 style="text-align: center;"> Chúc Bạn Một Ngày Tốt Lành!!!! </h1>
             <div class="canvasContainer">
                 <canvas id="myChart2"></canvas>
             </div>
@@ -288,6 +389,29 @@
         // Hiển thị trang chủ mặc định khi tải trang
         sections[0].style.display = 'block';
         navLinks[0].classList.add('active');
+    });
+    // Lắng nghe sự kiện click trên button
+    document.getElementById('notificationButton').addEventListener('click', function() {
+        // Toggle class 'active' để hiển thị hoặc ẩn danh sách thông báo
+        document.querySelector('.notificationList').classList.toggle('active');
+    });
+    // Lắng nghe sự kiện click trên mỗi hàng trong bảng thông báo
+    document.querySelectorAll('.notificationList table tr').forEach(function(row, index) {
+        // Bỏ qua dòng tiêu đề
+        if (index !== 0) {
+            row.addEventListener('click', function(event) {
+                // Ngăn chặn sự kiện click từ lan truyền đến checkbox
+                event.stopPropagation();
+                // Lấy checkbox trong hàng thông báo
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                // Toggle trạng thái checked của checkbox khi nhấn vào hàng thông báo
+                checkbox.checked = !checkbox.checked;
+                // Lấy nội dung thông báo từ cell thứ 2 (index 1)
+                const message = row.children[1].textContent;
+                // Hiển thị thông báo chi tiết
+                alert(message);
+            });
+        }
     });
 </script>
 

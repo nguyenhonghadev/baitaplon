@@ -101,13 +101,12 @@ if ($ketqua->num_rows > 0) {
             echo '</div>';
     
             echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
-            echo '<form method="POST" action="cart.php">';
+            echo '<form method="POST" action="product.php">';
             echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
-            echo '<button type="submit" name="add_to_cart" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
+            echo '<button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
             echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
-            echo '</button>';
+            echo '</button>';            
             echo '</form>';
-    
             echo '</div>';
             echo '</div>';
         }
@@ -123,6 +122,67 @@ if ($ketqua->num_rows > 0) {
 
         </div>
     </div>
+        <?php
+        function addProductToCart($product) {
+            if (!isset($_SESSION['user_cart'][$_SESSION['username']])) {
+                $_SESSION['user_cart'][$_SESSION['username']] = array();
+            }
+
+            $found = false;
+            foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                if ($prd['name'] === $product['name']) {
+                    // Tăng số lượng sản phẩm nếu đã tồn tại
+                    $_SESSION['user_cart'][$_SESSION['username']][$key]['quantity'] += $product['quantity'];
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found && $product['name'] !== 'Dưa leo') {
+                $_SESSION['user_cart'][$_SESSION['username']][] = $product;
+            }
+        }
+
+        if (isset($_POST['product_id'])) {
+            // Lấy ID sản phẩm từ form
+            $prd_id = $_POST['product_id'];
+
+            // Kết nối CSDL
+            require('../config/connect.php');
+            mysqli_set_charset($conn, 'utf8');
+
+            $sql = "SELECT prd_img, prd_name, prd_price FROM products WHERE prd_id='$prd_id'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Lấy thông tin sản phẩm từ CSDL
+                    $prd_img = $row['prd_img'];
+                    $prd_name = $row['prd_name'];
+                    $prd_price = $row['prd_price'];
+
+                    // Định dạng lại đường dẫn ảnh
+                    $path = '../admin/image/';
+                    $prd_img_path = $path . $row['prd_img'];
+
+                    // Tạo một mảng chứa thông tin sản phẩm từ CSDL
+                    $product = array(
+                        'name' => $prd_name,
+                        'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
+                        'quantity' => 0.5,
+                        'image' => $prd_img_path,
+                    );
+
+                    // Thêm sản phẩm vào giỏ hàng của người dùng
+                    addProductToCart($product);
+                   
+                }
+            }
+            $conn->close();
+           
+        } 
+       
+    ?>
 
 
    <?php
@@ -180,11 +240,47 @@ if ($ketqua->num_rows > 0) {
     </script>
     
     <script>
-    function addToCartMessage() {
-        alert("Sản phẩm đã được thêm vào giỏ hàng!");
-        return true; // Trả về true để tiếp tục submit form
-    }
+ 
+    $(document).ready(function() {
+    $('.add-to-cart-btn').click(function(e) {
+        e.preventDefault();
+        var productID = $(this).data('product-id');
+        
+        $.ajax({
+            type: 'POST',
+            url: 'product.php', // Đường dẫn đến trang xử lý thêm vào giỏ hàng
+            data: { product_id: productID },
+            success: function(response) {
+                // Xử lý phản hồi từ máy chủ nếu cần
+                console.log(response);
+            }
+        });
+    });
+});
+$(document).ready(function() {
+    $('.add-to-cart-btn').click(function(e) {
+        e.preventDefault();
+        var productID = $(this).data('product-id');
+        
+        $.ajax({
+            type: 'POST',
+            url: 'product.php', // Đường dẫn đến trang xử lý thêm vào giỏ hàng
+            data: { product_id: productID },
+            success: function(response) {
+                // Hiển thị thông báo khi thêm vào giỏ hàng thành công
+                if (response === 'success') {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng.');
+                } else {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng');
+                }
+            }
+        });
+    });
+});
+
+
 </script>
+
 
 
 </body>
@@ -225,6 +321,7 @@ if ($ketqua->num_rows > 0) {
     <!-- main js -->
     <script src="..//assets//js//main.js "></script>
     <script src="..//lib//waypoints//waypoints.min.js "></script>
+    <script
 
     <script>
         $(document).ready(function() {

@@ -88,11 +88,11 @@ $conn->close();
     </div>
     <div class="logo">
         <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>HK Restaurant</h1>
-        <p class="logo1">Nơi cung cấp một loạt sản phẩm đa dạng, từ thời trang đến đồ gia dụng,<br> <span style="margin-left: 5em;">với dịch vụ giao hàng nhanh chóng và chăm sóc khách hàng tận tình.</span></p>
+        <p class="logo1">Nơi cung cấp một loạt sản phẩm đa dạng,các món ăn từ bình dân đến hảo hạn,<br> <span style="margin-left: 5em;">với dịch vụ giao hàng nhanh chóng và chăm sóc khách hàng tận tình.</span></p>
     </div>
 
     <div class="login-box">
-        <h1> Đăng Nhập</h1>
+        <h1 style="color: blue;"> Đăng Nhập</h1>
         <form action="login.php" method="post" id="login-form">
             <div class="user-box">
                 <input type="text" name="username" required>
