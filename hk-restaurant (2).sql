@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 08, 2023 lúc 04:44 PM
+-- Thời gian đã tạo: Th12 13, 2023 lúc 04:37 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -61,9 +61,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prd_id`, `prd_name`, `prd_detail`, `prd_price`, `prd_quantity`, `prd_img`, `prd_category`) VALUES
-('DA01', 'Cá chép om dưa', 'Cá chép om dưa là một món ăn truyền thống của nền ẩm thực Việt Nam, thể hiện sự tinh tế trong cách kết hợp giữa cá chép tươi ngon và hương vị đặc trưng của rau củ và dưa tươi. Món ăn này đem đến hương vị đậm đà, ngọt ngon và độc đáo. Cá chép được nấu chín mềm, hòa quyện với nước dùng ngọt ngon, cùng với các loại rau sống tươi ngon và dưa tươi tạo nên một sự pha trộn hài hòa về vị ngon và hương thơm. Mỗi nguyệt cầm khi nhấm nháp, bạn sẽ cảm nhận được sự hài hòa, cân đối và đậm đà trong mỗi miếng ăn. Cá chép om dưa không chỉ là một món ăn ngon miệng mà còn là biểu tượng của sự hòa quyện, gắn kết trong bữa ăn gia đình và là điểm nhấn đặc biệt trong bất kỳ dịp lễ, hội tụ gia đình.', '400000.00', 10, 'cá chép om dưa.webp', 'Đồ ăn'),
-('DA02', 'Bò Bít Tết', 'Bò bít tết rất ngon', '300000.00', 10, 'bò bit tết.jpg', 'Đồ ăn'),
-('DA03', 'Bò hầm rau củ', 'Bò hầm rau của rất bổ dưỡng', '200000.00', 10, 'bò hầm rau củ.jpg', 'Đồ ăn');
+('DA02', 'Bò Bít Tết', 'Bò Bít Tết', '300000.00', 10, 'bò bit tết.jpg', 'Đồ ăn'),
+('DA03', 'Bò hầm rau củ', 'Bò hầm rau củ', '200000.00', 10, 'bò hầm rau củ.jpg', 'Đồ ăn'),
+('DU01', '7 Up', '7up', '15000.00', 10, '7 up.jpg', 'Đồ uống'),
+('TM01', 'Cam siêu ngọt', 'Cam siêu ngọt', '150000.00', 20, 'cam.jpg', 'Tráng miệng');
 
 -- --------------------------------------------------------
 
@@ -77,6 +78,13 @@ CREATE TABLE `sp_noibat` (
   `sp_image` varchar(200) NOT NULL,
   `sp_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `sp_noibat`
+--
+
+INSERT INTO `sp_noibat` (`sp_id`, `sp_name`, `sp_image`, `sp_price`) VALUES
+('DA01', 'Cá chép om dưa', 'cá chép om dưa.webp', '400000.00');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `numberphone`, `address`) VALUES
-('manhkien', '2042003K', '0967851017', NULL),
+('manhkien', '2042003Kien', '0967851017', 'Bắc Giang'),
 ('manhkien1', '2042003K', '0967851017', NULL);
 
 --
