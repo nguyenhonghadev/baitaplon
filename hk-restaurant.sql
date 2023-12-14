@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 13, 2023 lúc 04:37 AM
+-- Thời gian đã tạo: Th12 14, 2023 lúc 07:05 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -43,6 +43,22 @@ INSERT INTO `admin` (`username`, `password`, `numberphone`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `ct_id` int(11) NOT NULL,
+  `ct_name` varchar(50) NOT NULL,
+  `ct_email` varchar(100) NOT NULL,
+  `ct_numberphone` varchar(15) NOT NULL,
+  `ct_problem` varchar(150) NOT NULL,
+  `ct_detail` text NOT NULL,
+  `ct_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `products`
 --
 
@@ -61,10 +77,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prd_id`, `prd_name`, `prd_detail`, `prd_price`, `prd_quantity`, `prd_img`, `prd_category`) VALUES
+('DA01', 'Cá chép om dưa', 'Cá chép om dưa là một món ăn truyền thống của nền ẩm thực Việt Nam, thể hiện sự tinh tế trong cách kết hợp giữa cá chép tươi ngon và hương vị đặc trưng của rau củ và dưa tươi. Món ăn này đem đến hương vị đậm đà, ngọt ngon và độc đáo. Cá chép được nấu chín mềm, hòa quyện với nước dùng ngọt ngon, cùng với các loại rau sống tươi ngon và dưa tươi tạo nên một sự pha trộn hài hòa về vị ngon và hương thơm. Mỗi nguyệt cầm khi nhấm nháp, bạn sẽ cảm nhận được sự hài hòa, cân đối và đậm đà trong mỗi miếng ăn. Cá chép om dưa không chỉ là một món ăn ngon miệng mà còn là biểu tượng của sự hòa quyện, gắn kết trong bữa ăn gia đình và là điểm nhấn đặc biệt trong bất kỳ dịp lễ, hội tụ gia đình.', '400000.00', 10, 'cá chép om dưa.webp', 'Đồ ăn'),
 ('DA02', 'Bò Bít Tết', 'Bò Bít Tết', '300000.00', 10, 'bò bit tết.jpg', 'Đồ ăn'),
 ('DA03', 'Bò hầm rau củ', 'Bò hầm rau củ', '200000.00', 10, 'bò hầm rau củ.jpg', 'Đồ ăn'),
 ('DU01', '7 Up', '7up', '15000.00', 10, '7 up.jpg', 'Đồ uống'),
-('TM01', 'Cam siêu ngọt', 'Cam siêu ngọt', '150000.00', 20, 'cam.jpg', 'Tráng miệng');
+('DU02', 'Coca', 'Coca-Cola (hay còn gọi là Coca, Coke) là một thương hiệu nước ngọt có ga chứa nước cacbon dioxide bão hòa được sản xuất bởi Công ty Coca-Cola. Coca-Cola được điều chế bởi dược sĩ John Pemberton vào cuối thế kỷ XIX với mục đích ban đầu là trở thành một loại biệt dược.', '15000.00', 10, 'cacacola.png', 'Đồ uống'),
+('DU03', 'Rượu Nếp', 'Rượu nếp quê là rượu được ủ từ gạo nếp và được chưng cất theo phương pháp gia truyền. Không chỉ là đồ uống, rượu nếp cũng được dùng rất nhiều trong nấu ăn. Đây cũng là loại gia vị có chức năng khử mùi hiệu quả.', '50000.00', 20, 'rượu nếp.png', 'Đồ uống'),
+('TM01', 'Cam siêu ngọt', 'Cam siêu ngọt', '150000.00', 20, 'cam.jpg', 'Tráng miệng'),
+('TM02', 'Dâu Tây', 'quả đỏ, mọng nước, hương thơm mùi kẹo ngọt và có vị ngọt thanh đậm đà, khác với tất cả các loại dâu khác đang được trồng tại Đà Lạt và vùng lân cận hiện nay: Dâu tây nhật Đà Lạt – mê hoặc từ vị ngon! Dâu tây Nhật được xem là giống dâu cao cấp hiện nay được trồng tại Đà Lạt.', '50000.00', 20, 'dâu tây.jpg', 'Tráng miệng'),
+('TM03', 'Dưa Hấu', 'đa dạng về hình dạng và màu sắc, thường có màu xanh nhạt và có những đường kẻ từ trên xuống dưới. Hình dạng được xem xét với mặt phẳng cắt ngang từ cuống trái đến đuôi trái dưa. Có các dạng chính sau: dạng thuôn dài, dạng trái oval, dạng trái tròn. Hạt dưa cũng rất đa dạng về kích cỡ (lớn, trung bình, nhỏ).', '45000.00', 10, 'dưa hấu.jpg', 'Tráng miệng');
 
 -- --------------------------------------------------------
 
@@ -116,6 +137,12 @@ INSERT INTO `users` (`username`, `password`, `numberphone`, `address`) VALUES
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Chỉ mục cho bảng `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`ct_id`);
 
 --
 -- Chỉ mục cho bảng `products`
