@@ -25,6 +25,7 @@ session_start();
     <link href="..//lib//animate//animate.min.css" rel="stylesheet">
     <link href="..//lib/owlcarousel//assets//owl.carousel.min.css" rel="stylesheet">
     <link href="..//lib/tempusdominus//css//tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="..//css//bootstrap.min.css" rel="stylesheet">
@@ -34,7 +35,12 @@ session_start();
 </head>
 
 <body>
-<?php include("../config/header1.php"); ?>
+<?php include("../config/header1.php"); 
+echo"<script>
+$(document).ready(function(){
+    $('#user').addClass('active');
+});
+</script>";?>
     <div class="container-x1">
     <a style="margin-left: 90%;" href="../user/logout.php">
     <i class="fas fa-sign-out-alt"></i> Đăng xuất

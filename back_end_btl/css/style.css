@@ -97,11 +97,13 @@ a.mobile-show {
     cursor: pointer;
     border-radius: 50px;
     font-weight: 700;
-    display: inline-block;
     align-items: center;
     justify-content: center;
     position: relative;
     text-align: center;
+    margin-left: 40%;
+    width: 5em;
+    height: 3em;
 }
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="utf-8">
     <title>HK Restaurant</title>
@@ -23,84 +24,25 @@
     <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="..//css//bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="..//css//style.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="..//assets//css//responsive.css">
 </head>
 
 <body>
     <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-
-        <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><a href="../index.html"><i class="fa fa-utensils me-3"></i>HK Restaurant</a></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="../index.html " class="nav-item nav-link">Trang Chủ</a>
-                        <a href="../about.html" class="nav-item nav-link ">Giới Thiệu </a>
-                        <a href="contact.html" class="nav-item nav-link active">Liên Hệ</a>
-                        <a href="../menu.html" class="nav-item nav-link">sản Phẩm</a>
-                        <a href="Giohang.html" class="nav-item nav-link">
-                            <i class="fa-solid fa-cart-shopping"> <span class="headerCartListCount">0</span></i>
-
-                        </a>
-
-                        <a href="login.html" class="nav-item nav-link" aria-label="login"><i class="fa-regular fa-user"></i></a>
-
-                        <a class="mobile-hide search-bar-icon nav-item nav-link"><i class="fas fa-search"></i></a>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Liên Hệ CHúng Tôi</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
-                            <li class="breadcrumb-item"><a href="../about.html">Liên Hệ</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Sản Phẩm</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="search-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                            <div class="search-bar">
-                                <div class="search-bar-tablecell">
-                                    <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
-                                    <input type="text" placeholder="Từ Khóa">
-                                    <button type="submit" class="search-button"><h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        require('../config/header1.php');
+        echo"<script>
+        $(document).ready(function(){
+            $('#contact').addClass('active');
+        });
+        </script>";
+        ?>
     <!-- contact start -->
     <div class="contact-from-section mt-150 mb-150">
         <div class="container">
@@ -112,17 +54,17 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                    <form action="contact.php" method="post" id="fruitkha-contact" > <p>
-                                <input type="text" placeholder="Họ và Tên" required name="name" id="name">
-                                <input type="email" placeholder="Email" required name="email" id="email">
+                        <form method="POST" action="contact.php">
+                            <p>
+                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="text" placeholder="Họ và Tên" required name="name" id="name">
+                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="email" placeholder="Email" required name="email" id="email">
                             </p>
                             <p>
-                                <input type="tel" placeholder="Số điện thoại" required name="phone" id="phone">
-                                <input type="text" placeholder="Vấn đề của bạn" name="subject" id="subject">
+                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="tel" placeholder="Số điện thoại" required name="numberphone" id="phone">
+                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;"  type="text" placeholder="Vấn đề của bạn" maxlength="150" minlength="25" name="problem" id="subject">
                             </p>
-                            <p><textarea name="message" id="message" cols="30" rows="10" required placeholder="Chi tiết vấn đề của bạn" minlength="100"></textarea></p>
-                            <input type="hidden" name="token" value="FsWga4&@f6aw" />
-                            <p><input type="submit" value="Gửi"></p>
+                            <p><textarea style="border: 1px solid #ddd;padding: 15px;height: 200px;border-radius: 3px;width: 100%;resize: none;" name="message" id="detail" cols="30" rows="10" required placeholder="Chi tiết vấn đề của bạn" minlength="100"></textarea></p>
+                            <p><input type="submit" id="contact_form" value="Gửi"></p>
                         </form>
                     </div>
                 </div>
@@ -146,73 +88,86 @@
         </div>
     </div>
 
-    <!-- Contact End -->
+    <?php
+    if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone']) && isset($_POST['problem']) && isset($_POST['detail'])){
+        $id = substr(uniqid(), 0, 5);
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $numberphone = $_POST['numberphone'];
+        $problem = $_POST['problem'];
+        $detail = $_POST['detail'];
+        
+        require('../config/connect.php');
+        mysqli_set_charset($conn, 'utf8');
+        
+        // Sử dụng Prepared Statements để tránh SQL Injection
+        $stmt = $conn->prepare("SELECT * FROM contacts WHERE ct_id = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0){
+            echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.');</script>";
+        } else {
+            $stmt = $conn->prepare("INSERT INTO contacts(ct_id, ct_name, ct_email, ct_numberphone, ct_problem, ct_detail) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $id, $name, $email, $numberphone, $problem, $detail);
+            
+            if($stmt->execute()){
+                echo "<script>alert('Đã gửi phản hồi thành công.');</script>";
+            } else {
+                echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.');</script>";
+            }
+        }
+        $stmt->close();
+        $conn->close();
+    }
+?>
+
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Nhà hàng</h4>
-                    <a class="btn btn-link" href="../about.html">Về chúng tôi</a>
-                    <a class="btn btn-link" href="contact.html">Liên Hệ</a>
-                    <a class="btn btn-link" href="../menu.html">Mua hàng ngay</a>
-                    <a class="btn btn-link" href="#">Chính sách bảo mật</a>
-                    <a class="btn btn-link" href="#">Điều khoản & Điều kiện</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Liên Hệ</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Phố Trần Duy Hưng,Hà Nội,Việt Nam</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 967851017</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Manhkien203@gmail.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="#"> <i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Hoạt Động</h4>
-                    <h5 class="text-light fw-normal">Thứ hai-Thứ Bảy</h5>
-                    <p>07AM - 11PM</p>
-                    <h5 class="text-light fw-normal">Chủ Nhật</h5>
-                    <p>9AM - 11.30PM</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Gửi phản hồi tới chúng tôi</h4>
-                    <p>Hãy gửi chúng tôi lời phản hồi của bạn</p>
-                    <form action="">
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Phản hồi của bạn">
-                            <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Gửi</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+   <?php
+   require('../config/footer.php')
+   ?>
     <!-- Back to Top -->
     <a href="contact.html" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="back"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/counterup/counterup.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="..//lib//wow//wow.min.js"></script>
+    <script src="..//lib//easing//easing.min.js"></script>
+    <script src="..//lib//waypoints//waypoints.min.js"></script>
+    <script src="..//lib/counterup//counterup.min.js"></script>
+    <script src="..//lib//owlcarousel//owl.carousel.min.js"></script>
+    <script src="..//lib/tempusdominus//js/moment.min.js"></script>
+    <script src="..//lib//tempusdominus//js//moment-timezone.min.js"></script>
+    <script src="..//lib//tempusdominus//js//tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- jquery -->
+    <script src="..//assets//js//jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="..//assets//bootstrap//js//bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="..//assets//js//jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="..//assets//js//jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="..//assets//js//waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="..//assets//js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="..//assets//js//jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="..//assets//js//jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="..//assets//js//sticker.js"></script>
+    <!-- main js -->
+    <script src="..//assets//js//main.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="..//js//main.js"></script>
+    <script src="..//js//giohang.js"></script>
     <script>
         document.querySelector('.search-bar-icon').addEventListener('click', function() {
             document.querySelector('.search-area').style.display = 'block';
@@ -221,37 +176,13 @@
         document.querySelector('.close-btn').addEventListener('click', function() {
             document.querySelector('.search-area').style.display = 'none';
         });
+        $('#contact_form').submit(function(e){
+    e.preventDefault(); 
+    
+    
+});
+
     </script>
-<?php
-
-// Kết nối cơ sở dữ liệu
-require('../config/connect.php');
-
-
-// Lấy dữ liệu từ form
-$name = $_POST['name'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$loinhan = $_POST['subject'];                                
-$chitietloinhan = $_POST['message'];
-
-// Thêm dữ liệu vào cơ sở dữ liệu
-$sql = "INSERT INTO contact_info (name, email, phone, loinhan, chitietloinhan) VALUES ('$name', '$email', '$phone', '$loinhan', '$chitietloinhan')";
-
-if (mysqli_query($conn, $sql)) {
-  // Thành công
-  echo "Gửi liên hệ thành công.";
-} else {
-  // Thất bại
-  echo "Gửi liên hệ thất bại: " . mysqli_error($conn);
-}
-
-// Đóng kết nối
-mysqli_close($conn);
-
-?>
-
-
 </body>
 
 </html>

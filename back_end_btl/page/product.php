@@ -32,6 +32,8 @@ session_start();
     <link href="..//css//style.css" rel="stylesheet">
     <link rel="stylesheet" href="..//assets//css//main.css">
     <link rel="stylesheet" href="..//assets//css//responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -39,6 +41,11 @@ session_start();
         <!-- Spinner Start -->
         <?php
         include('../config/header1.php');
+        echo"<script>
+        $(document).ready(function(){
+            $('#product').addClass('active');
+        });
+        </script>";
         ?>
     <!-- Navbar & Hero End -->
 
@@ -51,7 +58,7 @@ session_start();
                         <ul>
                             <li class="active" data-filter="*">Tất Cả</li>
                             <li data-filter=".food">Đồ Ăn </li>
-                            <li data-filter=".drinking">Dồ Uống</li>
+                            <li data-filter=".drinking">Đồ Uống</li>
                             <li data-filter=".desert">Tráng Miệng</li>
                         </ul>
                     </div>
@@ -101,7 +108,7 @@ if ($ketqua->num_rows > 0) {
             echo '</div>';
     
             echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
-            echo '<form method="POST" action="product.php">';
+            echo '<form method="POST" >';
             echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
             echo '<button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
             echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
@@ -142,6 +149,13 @@ if ($ketqua->num_rows > 0) {
                 $_SESSION['user_cart'][$_SESSION['username']][] = $product;
             }
         }
+        $product=array(
+            'name'=>'Dưa leo',
+            'price'=>'25000đ',
+            'quantity'=>1,
+            'image'=>'../image/tráng miệng/dưa leo.jpg',
+        );
+
 
         if (isset($_POST['product_id'])) {
             // Lấy ID sản phẩm từ form
@@ -237,9 +251,6 @@ if ($ketqua->num_rows > 0) {
                 $('.search-area').removeClass('search-active');
             });
         });
-    </script>
-    
-    <script>
  
     $(document).ready(function() {
     $('.add-to-cart-btn').click(function(e) {
@@ -281,12 +292,6 @@ $(document).ready(function() {
 
 </script>
 
-
-
-</body>
-
-
-</html>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
     <script src="lib/wow/wow.min.js "></script>

@@ -34,6 +34,7 @@ if(!isset($_SESSION['username'])){
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="..//css//bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="..//css//style.css" rel="stylesheet">
@@ -45,6 +46,11 @@ if(!isset($_SESSION['username'])){
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
        <?php 
+        echo"<script>
+        $(document).ready(function(){
+            $('#cart').addClass('active');
+        });
+        </script>";
        include('../config/header1.php');
        ?>
     <!-- giỏ hàng -->
@@ -66,6 +72,7 @@ if(!isset($_SESSION['username'])){
                             </thead>
                             <tbody>
                         <?php
+                                if (isset($_SESSION['user_cart'][$_SESSION['username']])) {
                                     foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
                                         echo '<tr class="table-body-row">';
                                         echo '<td class="product-rm"><a href="remove_product.php?key=' . $key . '"><i class="far fa-window-close"></i></a></td>';
@@ -76,6 +83,7 @@ if(!isset($_SESSION['username'])){
                                         echo '<td class="product-total">' . $prd['quantity'] . '</td>';
                                         echo '</tr>';
                                     }
+                                }
                                     ?>
 
 

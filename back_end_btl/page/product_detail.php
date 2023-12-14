@@ -77,10 +77,12 @@ session_start();
                 </div>
                 <?php } ?>
                 <div class="single-product-form">
-                    <form action="../menu.html">
+                    <form action="product_detail.php">
                         <input type="number" placeholder="0">
-                    </form>
-                    <a href="Giohang.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                        <input type="hidden" name="product_id" value="<?php $_GET['prd_id'] ?>" />
+                        <button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">
+            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                 </form>
                 </div>
                 <h4>Share:</h4>
                 <ul class="product-share">

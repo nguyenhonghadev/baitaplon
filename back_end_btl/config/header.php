@@ -90,8 +90,7 @@ mysqli_close($conn); // Đóng kết nối
                             <div class="search-bar-tablecell">
                                 <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
                                 <input type="text" placeholder="Từ Khóa">
-                                <button type="submit" class="search-button"><h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button>
-                                </button>
+                                <button style="display: flex;margin:0 auto;" type="submit" class="search-button"><h4 style="padding-bottom: 1.5em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button> </button>
                             </div>
                         </div>
                     </div>

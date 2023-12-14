@@ -50,27 +50,24 @@
         </div>
 
         <div id="khungThemKhachHang" style="display: none;" class="adduser">
-            <form method="post" action="admin.php">
+            <form method="post" action="admin.php?quanly=user">
             <table class="overlayTable table-outline table-content table-header">
                 <tr>
                     <th colspan="2">Thêm Người Dùng</th>
                 </tr>
                 <tr>
                     <td>Tên Đăng Nhập:</td>
-                    <td><input type="text" required></td>
+                    <td><input name="newuser" type="text" required></td>
                 </tr>
                 <tr>
                     <td>Mật Khẩu:</td>
-                    <td><input type="text" style="height: 5em;" required></input>
+                    <td><input name="newpw" type="password" style="height: 5em;" required></input>
                     </td>
                 </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="email" required></td>
-                </tr>
+                
                 <tr>
                     <td>Số Điện Thoại:</td>
-                    <td><input type="text" required></td>
+                    <td><input name="newsdt" type="tel" required></td>
                 </tr>
 
 
@@ -80,4 +77,37 @@
                 </tr>
             </table>
             </form>
+        </div>
+        <?php
+                if (
+                    isset($_POST['newuser']) &&
+                    isset($_POST['newpw']) &&
+                    isset($_POST['newsdt'])
+                    
+                ) {
+                    require('../config/connect.php'); 
+                    $username=$_POST['newuser'];
+                    $password=$_POST['newpw'];
+                    $sdt=$_POST['newsdt'];
+                   
+                            $sql = "SELECT * FROM users WHERE username = $username";
+                            $result=$conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo "<script>alert('Tài Khoản đã tồn tại')</script>";
+                            } else {
+                                $query = "INSERT INTO users (username,password,numberphone) VALUES ('$username', '$password', '$sdt')";
+                                $result1=$conn->query($query);
+                                if ($result) {
+                                    echo "<script>alert('Thêm tài khoản thành công')</script>";
+                                    echo "<script>window.location = 'admin.php?quanly=user'</script>"; // Tải lại trang admin.php sau khi thêm thành công
+                                }
+                                else {
+                                    echo "<script>alert('Thêm tài khoản không thành công')</script>";
+                                }
+                            }
+                        } 
+                  
+                ?>
+                
+            <div id="khungSuaSanPham" class="overlay"></div>
         </div>

@@ -20,11 +20,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="../page/index.php " class="nav-item nav-link">Trang Chủ</a>
-                        <a href="../page/about.php" class="nav-item nav-link ">Giới Thiệu </a>
-                        <a href="../page/contact.php" class="nav-item nav-link active">Liên Hệ</a>
-                        <a href="../page/product.php" class="nav-item nav-link">sản Phẩm</a>
-                        <a href="../page/cart.php" class="nav-item nav-link">
+                        <a href="../page/index.php "  class="nav-item nav-link">Trang Chủ</a>
+                        <a href="../page/about.php" id="about" class="nav-item nav-link ">Giới Thiệu </a>
+                        <a href="../page/contact.php" id="contact" class="nav-item nav-link">Liên Hệ</a>
+                        <a href="../page/product.php" id="product" class="nav-item nav-link">sản Phẩm</a>
+                        <a href="../page/cart.php" id="cart" class="nav-item nav-link">
     <i class="fa-solid fa-cart-shopping">
         <?php
 
@@ -53,7 +53,7 @@ if (isset($_SESSION["username"]) ) {
     echo "<a href='info.php' class='nav-item nav-link'><i class='fa-regular fa-user'></i></a>";
 }
 } else {
-    echo "<a href='../user/login.php' class='nav-item nav-link' aria-label='Đăng nhập'><i class='fa-regular fa-user'></i></a>";
+    echo "<a href='../user/login.php' id='user' class='nav-item nav-link' aria-label='Đăng nhập'><i class='fa-regular fa-user'></i></a>";
 }
 mysqli_close($conn); // Đóng kết nối
 
@@ -86,8 +86,8 @@ mysqli_close($conn); // Đóng kết nối
                                 <div class="search-bar-tablecell">
                                     <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
                                     <input type="text" placeholder="Từ Khóa">
-                                    <button type="submit" class="search-button"><h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button>
-                                    </button>
+                                    <button style="display: flex;margin:0 auto;" type="submit" class="search-button"><h4 style="padding-bottom: 1.5em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button> </button>
+
                                 </div>
                             </div>
                         </div>
