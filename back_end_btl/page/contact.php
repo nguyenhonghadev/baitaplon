@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -54,18 +57,18 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form method="POST" action="contact.php">
-                            <p>
-                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="text" placeholder="Họ và Tên" required name="name" id="name">
-                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="email" placeholder="Email" required name="email" id="email">
-                            </p>
-                            <p>
-                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="tel" placeholder="Số điện thoại" required name="numberphone" id="phone">
-                                <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;"  type="text" placeholder="Vấn đề của bạn" maxlength="150" minlength="25" name="problem" id="subject">
-                            </p>
-                            <p><textarea style="border: 1px solid #ddd;padding: 15px;height: 200px;border-radius: 3px;width: 100%;resize: none;" name="message" id="detail" cols="30" rows="10" required placeholder="Chi tiết vấn đề của bạn" minlength="100"></textarea></p>
-                            <p><input type="submit" id="contact_form" value="Gửi"></p>
-                        </form>
+                    <form method="post" action="contact.php">
+                        <p>
+                            <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="text" placeholder="Họ và Tên" required name="name" id="name">
+                            <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="email" placeholder="Email" required name="email" id="email">
+                        </p>
+                        <p>
+                            <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;" type="tel" placeholder="Số điện thoại" required name="numberphone" id="phone">
+                            <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;"  type="text" placeholder="Vấn đề của bạn" maxlength="150" minlength="25" name="problem" id="subject">
+                        </p>
+                        <p><textarea style="border: 1px solid #ddd;padding: 15px;height: 200px;border-radius: 3px;width: 100%;resize: none;" name="message" id="detail" cols="30" rows="10" required placeholder="Chi tiết vấn đề của bạn" minlength="100"></textarea></p>
+                        <p><input type="submit" value="Gửi"></p>
+                    </form>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -87,44 +90,39 @@
             </div>
         </div>
     </div>
-
     <?php
-    if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone']) && isset($_POST['problem']) && isset($_POST['detail'])){
-        $id = substr(uniqid(), 0, 5);
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $numberphone = $_POST['numberphone'];
-        $problem = $_POST['problem'];
-        $detail = $_POST['detail'];
+if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone']) && isset($_POST['problem']) && isset($_POST['message'])){
+    $id = substr(uniqid(), 0, 5);
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $numberphone = $_POST['numberphone'];
+    $problem = $_POST['problem'];
+    $detail = $_POST['message'];
+
+    require('../config/connect.php');
+    mysqli_set_charset($conn, 'utf8');
+
+    $stmt = $conn->prepare("SELECT * FROM contacts WHERE ct_id = ?");
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0){
+        echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.')</script>";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO contacts(ct_id, ct_name, ct_email, ct_numberphone, ct_problem, ct_detail) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $id, $name, $email, $numberphone, $problem, $detail);
         
-        require('../config/connect.php');
-        mysqli_set_charset($conn, 'utf8');
-        
-        // Sử dụng Prepared Statements để tránh SQL Injection
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE ct_id = ?");
-        $stmt->bind_param("s", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0){
-            echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.');</script>";
+        if($stmt->execute()){
+            echo "<script>alert('Đã gửi phản hồi thành công.')</script>"; 
         } else {
-            $stmt = $conn->prepare("INSERT INTO contacts(ct_id, ct_name, ct_email, ct_numberphone, ct_problem, ct_detail) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $id, $name, $email, $numberphone, $problem, $detail);
-            
-            if($stmt->execute()){
-                echo "<script>alert('Đã gửi phản hồi thành công.');</script>";
-            } else {
-                echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.');</script>";
-            }
+            echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.')</script>";
         }
-        $stmt->close();
-        $conn->close();
     }
+    $stmt->close();
+    $conn->close();
+}
 ?>
-
-
-
     <!-- Footer Start -->
    <?php
    require('../config/footer.php')
@@ -167,22 +165,23 @@
 
     <!-- Template Javascript -->
     <script src="..//js//main.js"></script>
-    <script src="..//js//giohang.js"></script>
-    <script>
-        document.querySelector('.search-bar-icon').addEventListener('click', function() {
-            document.querySelector('.search-area').style.display = 'block';
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.querySelector('.search-area').style.display = 'none';
-        });
-        $('#contact_form').submit(function(e){
-    e.preventDefault(); 
     
-    
-});
-
-    </script>
 </body>
-
+<script>
+        $(document).ready(function(){
+            $('#contactForm').submit(function(e){
+                e.preventDefault(); 
+                var formData = $(this).serialize();
+        
+                $.ajax({
+                    type: 'POST',
+                    url: 'baitaplon/back_end_btl/page/contact.php', 
+                    data: formData,
+                    success: function(response){
+                        alert(response); 
+                    }
+                });
+            });
+        });
+    </script>
 </html>
