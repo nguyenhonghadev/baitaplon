@@ -33,9 +33,12 @@
                         <td style='text-align:center'>" . $row["prd_price"] . "</td>
                         <td style='text-align:center'>" . $row["prd_category"] . "</td>
                         <td style='text-align:center'>
-                        <button><a  href='mode.php?update=" . $row['prd_id'] . "'><i style='color:blue;font-size:1.7em' class='fa fa-pencil'></i></a></button>
+                        <div style='display:flex;justify-content:space between;margin:2em'>
+                         <button><a  href='mode.php?update=" . $row['prd_id'] . "'><i style='color:blue;font-size:1.7em' class='fa fa-pencil'></i></a></button>
                         <button><a href='mode.php?delete=" . $row['prd_id'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
                         <button><a style='color:green;font-size:1.6em' href='mode.php?add=" . $row['prd_id'] . "'>+</a></button>
+                        </div>
+                       
                     </td>
                     
                       </tr>";

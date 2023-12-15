@@ -251,8 +251,7 @@ if ($ketqua->num_rows > 0) {
                 $('.search-area').removeClass('search-active');
             });
         });
- 
-    $(document).ready(function() {
+        $(document).ready(function() {
     $('.add-to-cart-btn').click(function(e) {
         e.preventDefault();
         var productID = $(this).data('product-id');
@@ -262,28 +261,18 @@ if ($ketqua->num_rows > 0) {
             url: 'product.php', // Đường dẫn đến trang xử lý thêm vào giỏ hàng
             data: { product_id: productID },
             success: function(response) {
-                // Xử lý phản hồi từ máy chủ nếu cần
-                console.log(response);
-            }
-        });
-    });
-});
-$(document).ready(function() {
-    $('.add-to-cart-btn').click(function(e) {
-        e.preventDefault();
-        var productID = $(this).data('product-id');
-        
-        $.ajax({
-            type: 'POST',
-            url: 'product.php', // Đường dẫn đến trang xử lý thêm vào giỏ hàng
-            data: { product_id: productID },
-            success: function(response) {
-                // Hiển thị thông báo khi thêm vào giỏ hàng thành công
-                if (response === 'success') {
-                    alert('Sản phẩm đã được thêm vào giỏ hàng.');
+                // Kiểm tra phản hồi từ server
+                if (response && response.success) {
+                    // Hiển thị thông báo khi thêm vào giỏ hàng thành công
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
                 } else {
-                    alert('Sản phẩm đã được thêm vào giỏ hàng');
+                    // Hiển thị thông báo khi thêm vào giỏ hàng gặp lỗi
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!!!!!');
                 }
+            },
+            error: function() {
+                // Hiển thị thông báo khi có lỗi trong quá trình gửi yêu cầu
+                alert('Đã có lỗi xảy ra khi gửi yêu cầu.');
             }
         });
     });

@@ -67,7 +67,15 @@ session_start();
                             <input style="width: 49%;padding: 15px;border: 1px solid #ddd;border-radius: 3px;"  type="text" placeholder="Vấn đề của bạn" maxlength="150" minlength="25" name="problem" id="subject">
                         </p>
                         <p><textarea style="border: 1px solid #ddd;padding: 15px;height: 200px;border-radius: 3px;width: 100%;resize: none;" name="message" id="detail" cols="30" rows="10" required placeholder="Chi tiết vấn đề của bạn" minlength="100"></textarea></p>
-                        <p><input type="submit" value="Gửi"></p>
+                        <?php
+                        if(isset($_SESSION['username'])){
+                          echo'  <p><input type="submit" value="Gửi"></p>';
+                        }
+                        else
+                        {
+                            echo"Bạn chưa đăng nhập";
+                        }
+                        ?>
                     </form>
                     </div>
                 </div>
@@ -91,8 +99,17 @@ session_start();
         </div>
     </div>
     <?php
+function generateRandomString($length = 5) {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
 if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone']) && isset($_POST['problem']) && isset($_POST['message'])){
-    $id = substr(uniqid(), 0, 5);
+    $id = generateRandomString();
     $name = $_POST['name'];
     $email = $_POST['email'];
     $numberphone = $_POST['numberphone'];
@@ -115,6 +132,8 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone'
         
         if($stmt->execute()){
             echo "<script>alert('Đã gửi phản hồi thành công.')</script>"; 
+            echo "<script>window.location.href = 'contact.php';</script>";
+             exit();
         } else {
             echo "<script>alert('Đã xảy ra lỗi, vui lòng thử lại.')</script>";
         }
@@ -167,21 +186,5 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone'
     <script src="..//js//main.js"></script>
     
 </body>
-<script>
-        $(document).ready(function(){
-            $('#contactForm').submit(function(e){
-                e.preventDefault(); 
-                var formData = $(this).serialize();
-        
-                $.ajax({
-                    type: 'POST',
-                    url: 'baitaplon/back_end_btl/page/contact.php', 
-                    data: formData,
-                    success: function(response){
-                        alert(response); 
-                    }
-                });
-            });
-        });
-    </script>
+
 </html>

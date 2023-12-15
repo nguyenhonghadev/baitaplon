@@ -6,6 +6,119 @@
     color: black;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.message {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    margin-bottom: -2em;
+    padding: 10px;
+}
+
+.sender {
+    font-weight: bold;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.content {
+    margin-top: 5px;
+}
+
+.restaurant-title {
+    flex: 1;
+    text-align: center;
+}
+
+.icon-container {
+    position: relative;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 1em;
+}
+
+.headerCartListCount {
+    position: relative;
+    top: -8px;
+    right: 1em;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px;
+    font-size: 0.8em;
+}
+
+
+/* Đoạn CSS để ẩn danh sách thông báo ban đầu */
+
+.notificationList {
+    display: none;
+    position: absolute;
+    top: 1.3em;
+    /* Có thể điều chỉnh vị trí của danh sách thông báo tùy thuộc vào cấu trúc của trang */
+    right: 3.2em;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    width: 20em;
+    height: auto;
+    border-radius: 25% 10%;
+    padding-bottom: 2em;
+    overflow: auto;
+}
+
+
+/* Hiển thị danh sách thông báo khi button được nhấn */
+
+.notificationList.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border: none
+}
+
+.notificationList table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.notificationList th,
+.notificationList td {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.unread-notification {
+    background-color: #8dbfd6;
+    /* Màu nền cho tin nhắn chưa đọc */
+}
+
 body,
 html {
     min-width: 1024px;

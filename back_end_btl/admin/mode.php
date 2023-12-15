@@ -427,3 +427,39 @@ if (isset($_GET['updateuser']) && !empty($_GET['updateuser'])) {
     ?>
 </body>
 </html>
+<?php
+if (isset($_GET['contact'])|| (!empty($_GET['contact'])) ){
+    $ct_id = $_GET['contact'];
+    require('../config/connect.php');
+
+    if ($conn) {
+        // Prepare the DELETE statement
+        $sql = "DELETE FROM contacts WHERE ct_id=?";
+        $stmt = mysqli_prepare($conn, $sql);
+        
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $ct_id);
+            if (mysqli_stmt_execute($stmt)) {
+                if (mysqli_affected_rows($conn) > 0) {
+                    echo "<script>alert('Xóa thành công')</script>";
+                } else {
+                    echo "<script>alert('Không tìm thấy thông tin liên hệ này')</script>";
+                }
+                echo "<script>window.location.href = 'admin.php';</script>";
+                exit(); // Terminate the script after redirection
+            } else {
+                echo "<script>alert('Xóa thất bại')</script>";
+            }
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "<script>alert('Lỗi trong quá trình chuẩn bị truy vấn')</script>";
+        }
+        mysqli_close($conn); // Close the connection
+    } else {
+        echo "<script>alert('Lỗi kết nối đến cơ sở dữ liệu')</script>";
+    }
+} else {
+    echo "<script>alert('Thiếu thông tin liên hệ để xóa')</script>";
+}
+echo "<script>window.location.href = 'admin.php';</script>";
+?>

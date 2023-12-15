@@ -19,6 +19,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
     <title>Admin -HK restaurant</title>
     <link rel="shortcut icon" href="img/favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Load font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
@@ -32,7 +33,53 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
 <body>
     <header>
-    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>HK Restaurant</h1>
+        <div class="header-container">
+            <h1 class="restaurant-title">HK Restaurant</h1>
+            <?php
+    require('../config/connect.php');
+
+    // Get the count of emails
+    $sqlCount = "SELECT COUNT(*) AS total FROM contacts";
+    $resultCount = $conn->query($sqlCount);
+    $rowCount = $resultCount->fetch_assoc()['total'];
+
+    echo '<div class="icon-container">';
+    echo '<button id="notificationButton" style="background-color: #F28123; border: none;">';
+    echo '<i style="color: blue; font-size: 2em;" class="material-icons">notifications</i>';
+    echo '<span class="headerCartListCount">' . $rowCount . '</span>';
+    echo '</button>';
+
+    echo '<div class="notificationList">';
+    
+    $sql = "SELECT * FROM contacts ORDER BY ct_time DESC";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="message-container">
+            <div class="message">
+                <a style="color:red; font-size:1em; margin-left:90%" href="mode.php?contact='.$row['ct_id'].'"><i style="color:red" class="fa fa-trash-o"></i></a>
+                <a href="contact.php?id='.$row['ct_id'].'">
+                    <div class="sender">'.$row['ct_name'].'</div>
+                    <div class="timestamp">'.$row['ct_time'].'</div>
+                    <div class="content">
+                        Tôi có điều muốn phản hồi với bạn!!!!
+                    </div>
+                </a>
+            </div>
+        </div>';
+
+        }
+    } else {
+        echo '<div class="notification"><p>Không có thông báo mới!!!</p></div>';
+        $conn->close();
+    }
+    
+
+
+?>
+
+        </div>
     </header>
 
     <!-- Menu -->
@@ -152,7 +199,31 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     });
     function showForm() {
   document.getElementById('update_prd').style.display='block';
+  
 }
+document.getElementById('notificationButton').addEventListener('click', function() {
+        // Toggle class 'active' để hiển thị hoặc ẩn danh sách thông báo
+        document.querySelector('.notificationList').classList.toggle('active');
+    });
+    // Lắng nghe sự kiện click trên mỗi hàng trong bảng thông báo
+    document.querySelectorAll('.notificationList table tr').forEach(function(row, index) {
+    // Bỏ qua hàng đầu tiên là tiêu đề
+    if (index !== 0) {
+        row.addEventListener('click', function(event) {
+            // Ngăn chặn sự kiện click từ lan truyền đến checkbox
+            event.stopPropagation();
+            // Lấy checkbox trong hàng thông báo
+            const checkbox = row.querySelector('input[type="checkbox"]');
+            // Toggle trạng thái checked của checkbox khi nhấn vào hàng thông báo
+            checkbox.checked = !checkbox.checked;
+            // Lấy nội dung thông báo từ cell thứ 2 (index 1)
+            const message = row.children[0].textContent; // Lấy nội dung từ cell đầu tiên (index 0) của hàng
+            // Hiển thị thông báo chi tiết
+            alert(message);
+        });
+    }
+});
+
 </script>
 
 
