@@ -9,11 +9,11 @@
             echo"<table class='table-header'>
                 <tr>
                     <!-- Theo độ rộng của table content -->
-                    <th style='width: 15%'>Tên đăng nhập </th>
-                    <th style='width: 20%'>Số điện thoại </th>
-                    <th style='width: 20%'>Mật khẩu </th>
-                    <th style='width: 20%'>Địa chỉ</th>
-                    <th style='width: 10%'>Hành động</th>
+                    <th style='width: 15%;background-color: yellow;'>Tên đăng nhập </th>
+                    <th style='width: 20%;background-color: yellow;'>Số điện thoại </th>
+                    <th style='width: 20%;background-color: yellow;'>Mật khẩu </th>
+                    <th style='width: 20%;background-color: yellow;'>Địa chỉ</th>
+                    <th style='width: 10%;background-color: yellow;'>Hành động</th>
                 </tr>";
                 while ($row = mysqli_fetch_assoc($result)) {// Thay đổi đường dẫn thư mục của bạn
                   

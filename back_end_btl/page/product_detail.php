@@ -77,12 +77,15 @@ session_start();
                 </div>
                 <?php } ?>
                 <div class="single-product-form">
-                    <form action="product_detail.php">
-                        <input type="number" placeholder="0">
-                        <input type="hidden" name="product_id" value="<?php $_GET['prd_id'] ?>" />
-                        <button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">
-            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                 </form>
+                    <form >
+                    <form action="product_detail.php" method="POST">
+                    <input type="number" name="quantity" min="1" value="1" >
+                        <input type="hidden" name="product_id" value="<?php echo $_GET['prd_id']; ?>" /> <!-- Thêm echo để hiển thị giá trị -->
+                        <button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="<?php echo $row['prd_id']; ?>" style="font-family: 'Poppins', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">
+                            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+                        </button>
+                    </form>
+
                 </div>
                 <h4>Share:</h4>
                 <ul class="product-share">
@@ -97,7 +100,50 @@ session_start();
     </div>
 </div>
 
-    <!-- footer -->
+<?php
+        require('function.php');
+
+        if (isset($_POST['product_id'])&&isset($_POST['quantity'])) {
+            // Lấy ID sản phẩm từ form
+            $prd_id = $_POST['product_id'];
+            $quantity=$_POST['quantity'];
+            // Kết nối CSDL
+            require('../config/connect.php');
+            mysqli_set_charset($conn, 'utf8');
+
+            $sql = "SELECT prd_img, prd_name, prd_price FROM products WHERE prd_id='$prd_id'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Lấy thông tin sản phẩm từ CSDL
+                    $prd_img = $row['prd_img'];
+                    $prd_name = $row['prd_name'];
+                    $prd_price = $row['prd_price'];
+
+
+                    // Định dạng lại đường dẫn ảnh
+                    $path = '../admin/image/';
+                    $prd_img_path = $path . $row['prd_img'];
+
+                    // Tạo một mảng chứa thông tin sản phẩm từ CSDL
+                    $product = array(
+                        'name' => $prd_name,
+                        'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
+                        'quantity' => $quantity,
+                        'image' => $prd_img_path,
+                    );
+
+                    // Thêm sản phẩm vào giỏ hàng của người dùng
+                    addProductToCart($product);
+                   
+                }
+            }
+            $conn->close();
+           
+        } 
+       
+    ?>
     
 <?php
 require('..//config//footer.php');
@@ -156,6 +202,33 @@ require('..//config//footer.php');
                 $('.search-area').removeClass('search-active');
             });
         });
+    var prdQuantity = <?php echo $row['prd_quantity']; ?>; // Lấy giá trị prd_quantity từ PHP
+    $(document).ready(function() {
+    $('.add-to-cart-btn').click(function(e) {
+        e.preventDefault();
+
+        var productID = $(this).data('product-id');
+        var quantity = $('input[name="quantity"]').val(); // Lấy giá trị số lượng từ input
+
+        $.ajax({
+            type: 'POST',
+            url: 'product_detail.php',
+            data: { product_id: productID, quantity: quantity },
+            success: function(response) {
+                if (response && response.success) {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
+                } else {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!!!');
+                }
+            },
+            error: function() {
+                alert('Đã có lỗi xảy ra khi gửi yêu cầu.');
+            }
+        });
+    });
+});
+
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>

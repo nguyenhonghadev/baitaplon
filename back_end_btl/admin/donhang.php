@@ -1,32 +1,36 @@
 <div class="donhang">
             <table class="table-header">
                 <tr>
-                    <!-- Theo độ rộng của table content -->
-                    <th style="width: 5%">Stt </th>
-                    <th style="width: 13%">Mã đơn </th>
-                    <th style="width: 7%">Khách </th>
-                    <th style="width: 20%">Sản phẩm </th>
-                    <th style="width: 15%">Tổng tiền </th>
-                    <th style="width: 10%">Ngày giờ </th>
-                    <th style="width: 10%">Trạng thái </th>
+                    <th style="width: 5%;background-color: yellow;">Mã đơn </th>
+                    <th style="width: 7%;background-color: yellow;">Khách </th>
+                    <th style="width: 20%;background-color: yellow;">Sản phẩm </th>
+                    <th style="width: 10%;background-color: yellow;">Tổng tiền </th>
+                    <th style="width: 25%;background-color: yellow;">Địa chỉ </th>
+                    <th style="width: 10%;background-color: yellow;">Ngày giờ </th>
+                    <th style="width: 10%;background-color: yellow;">Trạng thái </th>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">7abcaos</td>
+                    <td style="text-align: center;">manhkien</td>
+                    <td style="text-align: center;">cá chép om dưa</td>
+                    <td style="text-align: center;">425000đ</td>
+                    <td style="text-align: center;">hà nội</td>
+                    <td style="text-align: center;">20:40</td>
+                    <td style="text-align: center;">
+                        <form action="admin.php?quanly=donhang">
+                            <select>
+                                <option value="Đã duyệt">Đã duyệt</option>
+                                <option value="Đang vận chuyển">Đang vận chuyển</option>
+                                <option value="Đã giao">Giao hàng thành công</option>
+                            </select>
+                            <input type="submit" id="methodd" value="Lưu">
+                        </form>
+                    </td>
                 </tr>
             </table>
 
             <div class="table-content">
             </div>
 
-            <div class="table-footer">
-                <div class="timTheoNgay">
-                    Từ ngày: <input type="date"> Đến ngày: <input type="date">
-
-                    <button><i class="fa fa-search"></i> Tìm</button>
-                </div>
-
-                <select name="kieuTimDonHang">
-                    <option value="ma">Tìm theo mã đơn</option>
-                    <option value="khachhang">Tìm theo tên khách hàng</option>
-                    <option value="trangThai">Tìm theo trạng thái</option>
-                </select>
-                <input type="text" placeholder="Tìm kiếm...">
-            </div>
+           
         </div>

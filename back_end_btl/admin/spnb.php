@@ -8,11 +8,11 @@ if ($result->num_rows > 0) {
     echo "<table class='table-header'>
             <tr>
                 <!-- Theo độ rộng của table content -->
-                <th style='width: 20%'>Mã Sản Phẩm </th>
-                <th style='width: 25%'>Tên sản Phẩm </th>
-                <th style='width: 20%'>Hình ảnh</th>
-                <th style='width: 15%'>Giá</th>
-                <th style='width: 20%'>Hành động</th>
+                <th style='width: 20%;background-color: yellow;'>Mã Sản Phẩm </th>
+                <th style='width: 25%;background-color: yellow;'>Tên sản Phẩm </th>
+                <th style='width: 20%;background-color: yellow;'>Hình ảnh</th>
+                <th style='width: 15%;background-color: yellow;'>Giá</th>
+                <th style='width: 20%;background-color: yellow;'>Hành động</th>
             </tr>";
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
                 <td class='img-sp' style='text-align: center;'><img src='" . $img_path . "' alt='Ảnh sản phẩm' style='width: 90%; height: 70%; display: inline-block;'></td>
                 <td style='text-align:center'>" . $row["sp_price"] . "</td>
                 <td style='text-align:center'>
-                    <button><a href='mode.php?deletenb=" . $row['sp_id'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
+                    <button style='margin:0 auto'><a href='mode.php?deletenb=" . $row['sp_id'] . "'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></button>
                 </td>
               </tr>";
     }

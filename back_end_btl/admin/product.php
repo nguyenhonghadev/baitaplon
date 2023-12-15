@@ -9,14 +9,14 @@
                 echo "<table class='table-header'>
             <tr>
                 <!-- Theo độ rộng của table content -->
-                <th style='width: 10%'>Mã Sản Phẩm </th>
-                <th style='width: 10%'>Tên sản Phẩm </th>
-                <th style='width: 25%'>Mô tả</th>
-                <th style='width: 10%'>số lượng</th>
-                <th style='width: 15%'>Hình ảnh</th>
-                <th style='width: 10%'>Giá</th>
-                <th style='width: 10%'>Loại</th>
-                <th style='width: 10%'>Hành động</th>
+                <th style='width: 10%;background-color: yellow;'>Mã Sản Phẩm </th>
+                <th style='width: 10%;background-color: yellow;'>Tên sản Phẩm </th>
+                <th style='width: 25%;background-color: yellow;'>Mô tả</th>
+                <th style='width: 10%;background-color: yellow;'>số lượng</th>
+                <th style='width: 15%;background-color: yellow;'>Hình ảnh</th>
+                <th style='width: 10%;background-color: yellow;'>Giá</th>
+                <th style='width: 10%;background-color: yellow;'>Loại</th>
+                <th style='width: 10%;background-color: yellow;'>Hành động</th>
             </tr>";
 
            
@@ -54,11 +54,6 @@
             </div>
 
             <div class="table-footer">
-                <select name="kieuTimSanPham">
-                    <option value="ma">Tìm theo mã</option>
-                    <option value="ten">Tìm theo tên</option>
-                </select>
-                <input type="text" placeholder="Tìm kiếm...">
                 <button onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
                     <i class="fa fa-plus-square"></i>
                     Thêm sản phẩm

@@ -130,32 +130,7 @@ if ($ketqua->num_rows > 0) {
         </div>
     </div>
         <?php
-        function addProductToCart($product) {
-            if (!isset($_SESSION['user_cart'][$_SESSION['username']])) {
-                $_SESSION['user_cart'][$_SESSION['username']] = array();
-            }
-
-            $found = false;
-            foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
-                if ($prd['name'] === $product['name']) {
-                    // Tăng số lượng sản phẩm nếu đã tồn tại
-                    $_SESSION['user_cart'][$_SESSION['username']][$key]['quantity'] += $product['quantity'];
-                    $found = true;
-                    break;
-                }
-            }
-
-            if (!$found && $product['name'] !== 'Dưa leo') {
-                $_SESSION['user_cart'][$_SESSION['username']][] = $product;
-            }
-        }
-        $product=array(
-            'name'=>'Dưa leo',
-            'price'=>'25000đ',
-            'quantity'=>1,
-            'image'=>'../image/tráng miệng/dưa leo.jpg',
-        );
-
+        require('function.php');
 
         if (isset($_POST['product_id'])) {
             // Lấy ID sản phẩm từ form
@@ -183,7 +158,7 @@ if ($ketqua->num_rows > 0) {
                     $product = array(
                         'name' => $prd_name,
                         'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
-                        'quantity' => 0.5,
+                        'quantity' => 1,
                         'image' => $prd_img_path,
                     );
 
