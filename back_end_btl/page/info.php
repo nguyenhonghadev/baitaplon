@@ -29,9 +29,10 @@ session_start();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="..//css//bootstrap.min.css" rel="stylesheet">
-<link href="..//css//info.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="..//css//style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/info.css"/>
+    
 </head>
 
 <body>
@@ -42,6 +43,18 @@ $(document).ready(function(){
 });
 </script>";?>
     <div class="container-x1">
+        <div class="editer">
+            <div class="dropdown">
+                <button style="border: none;background-color: #fff;width:3em;height:3em;" onclick="toggleDropdown()">
+                    <i class='far fa-edit' style='font-size:1em'></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="../user/changepw.php" >Đổi mật khẩu</a>
+                    <a href="../user/updateaddr.php">Cập nhật địa chỉ</a>
+                </div>
+            </div>
+          
+        </div>
     <a style="margin-left: 90%;" href="../user/logout.php">
     <i class="fas fa-sign-out-alt"></i> Đăng xuất
   </a>
@@ -52,14 +65,14 @@ $(document).ready(function(){
                 require("../config/connect.php");
                 $username= $_SESSION['username'];
     
-                $sql = "SELECT username, numberphone FROM users WHERE username='$username'";
+                $sql = "SELECT username, numberphone,address FROM users WHERE username='$username'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     echo '<div class="customer-details">';
                     echo "<h2>Khách hàng:".$row['username']."</h2>";
                     echo "<p>Phone:".$row['numberphone']."</p>";
-                    echo "<p>Address:</p>";
+                    echo "<p>Address:".$row['address']."</p>";
                     echo '</div>';
                 }
                 elseif($username==='admin'){
@@ -124,6 +137,26 @@ $(document).ready(function(){
                     section.classList.remove('active');
                 }
             });
+        }
+    </script>
+     <script>
+        // JavaScript
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Đóng danh sách khi bấm ra ngoài
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown button')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
         }
     </script>
      <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>

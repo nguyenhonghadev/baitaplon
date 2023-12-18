@@ -1,5 +1,5 @@
 <?php
- function addProductToCart($product) {
+function addProductToCart($product) {
     if (!isset($_SESSION['user_cart'][$_SESSION['username']])) {
         $_SESSION['user_cart'][$_SESSION['username']] = array();
     }
@@ -15,14 +15,38 @@
     }
 
     if (!$found && $product['name'] !== 'Dưa leo') {
-        $_SESSION['user_cart'][$_SESSION['username']][] = $product;
+        // Thêm sản phẩm vào giỏ hàng với max_quantity
+        $_SESSION['user_cart'][$_SESSION['username']][] = array(
+            'name' => $product['name'],
+            'price' => $product['price'],
+            'quantity' => $product['quantity'],
+            'image' => $product['image'],
+            'max_quantity' => $product['max_quantity'] 
+        );
     }
 }
-$product=array(
-    'name'=>'Dưa leo',
-    'price'=>'25000đ',
-    'quantity'=>1,
-    'image'=>'../image/tráng miệng/dưa leo.jpg',
-);
+function generateRandomString($length = 5) {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+function kiemtraHoa($str) {
+    for ($i = 0; $i < strlen($str); $i++) {
+        if (ctype_upper($str[$i])) {
+            return true;
+        }
+    }
+    return false;
+}
 
 ?>
+
+
+
+
+
+
+

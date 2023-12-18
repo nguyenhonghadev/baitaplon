@@ -74,14 +74,26 @@ if(!isset($_SESSION['username'])){
                         <?php
                                 if (isset($_SESSION['user_cart'][$_SESSION['username']])) {
                                     foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                                        $name = $prd['name'];
+                                        require('../config/connect.php');
+                                        $sql = "SELECT * FROM products WHERE prd_name = '$name'";
+                                        $kq=$conn->query($sql);
+                                        $row = $kq->fetch_assoc();
                                         echo '<tr class="table-body-row">';
                                         echo '<td class="product-rm"><a href="remove_product.php?key=' . $key . '"><i class="far fa-window-close"></i></a></td>';
                                         echo '<td class="product-image"><img src="' . $prd['image'] . '" alt="' . $prd['name'] . '"></td>';
                                         echo '<td class="product-name">' . $prd['name'] . '</td>';
                                         echo '<td class="product-price">' . $prd['price'] . '</td>';
-                                        echo '<td class="product-quantity"><input type="number" placeholder="0" value="' . $prd['quantity'] . '"></td>';
-                                        echo '<td class="product-total">' . $prd['quantity'] . '</td>';
+                                        echo '<td class="product-quantity">
+                                        <input type="number" placeholder="0" value="' . $prd["quantity"] . '" data-key="' . $key . '" data-product="' . $prd["name"] . '" max="' . $row['prd_quantity'] . '" min="0" class="quantity-input">
+                                        </td>';
+                                
+                                        $total_price =(float) $prd['quantity'] * (float)$prd['price'];
+                                        $formatted_total_price = number_format($total_price, 2, '.', ',');
+                                        echo '<td class="product-total">' . $formatted_total_price . '</td>';
+                                        
                                         echo '</tr>';
+                                        $conn->close();
                                     }
                                 }
                                     ?>
@@ -97,28 +109,51 @@ if(!isset($_SESSION['username'])){
                                     <table class="total-table">
                                         <thead class="total-table-head">
                                             <tr class="table-total-row">
-                                                <th>Tổng Cộng</th>
+                                                <th>Thành Phần</th>
+                                                <th>Số lượng</th>
                                                 <th>Giá</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="total-data">
-                                                <td><strong>Tổng tiền sản phẩm </strong></td>
-                                                <td id="tong-gia"></td>
-                                            </tr>
-                                            <tr class="total-data">
-                                                <td><strong>Vận chuyển </strong></td>
-                                                <td>25000đ</td>
-                                            </tr>
-                                            <tr class="total-data">
-                                                <td><strong>Tổng  </strong></td>
-                                                <td id="Tong"></td>
-                                            </tr>
+                                        <?php
+                                                $total_amount = 0;
+                                                if (isset($_SESSION['user_cart'][$_SESSION['username']])) {
+                                                    foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                                                        $total_price = (float)$prd['quantity'] * (float)$prd['price'];
+                                                        $total_amount += $total_price;
+                                                        $formatted_total_price = number_format($total_price, 2, ".", ",");
+                                                        echo '<tr class="total-data">
+                                                                <td><strong>' . $prd['name'] . '</strong></td>
+                                                                <td>' . $prd['quantity'] . '</td>
+                                                                <td>' . $formatted_total_price . '</td>
+                                                            </tr>';
+                                                    }
+                                                }
+
+                                                // Thêm chi phí vận chuyển
+                                                $shipping_cost = 25000;
+                                                $total_amount += $shipping_cost;
+
+                                                // Hiển thị dòng và giá trị của vận chuyển trong bảng
+                                                echo '<tr class="total-data">
+                                                        <td><strong>Vận chuyển </strong></td>
+                                                        <td></td>
+                                                        <td>' . number_format($shipping_cost, 2, ".", ",") . 'đ</td>
+                                                    </tr>';
+
+                                                // Hiển thị tổng số tiền
+                                                echo '<tr class="total-data">
+                                                        <td><strong>Tổng  </strong></td>
+                                                        <td></td>
+                                                        <td>' . number_format($total_amount, 2, ".", ",") . 'đ</td>
+                                                    </tr>';
+                                                ?>
+
                                         </tbody>
                                     </table>
                                     <div class="cart-buttons">
                                         <a href="cart.php" class="boxed-btn">Làm Mới</a>
-                                        <a href="ThanhToan.html" class="boxed-btn black">Thanh Toán</a>
+                                        <a href="thanhtoan.php" class="boxed-btn black">Thanh Toán</a>
                                     </div>
                                 </div>
 
@@ -129,13 +164,28 @@ if(!isset($_SESSION['username'])){
                                             <p><input type="text" placeholder="Coupon"></p>
                                             <p><input type="submit" value="Xác Nhận"></p>
                                         </form>
+                                      
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    <!-- kểt thúc giỏ hàng -->
+                <?php
+
+
+if(isset($_POST['key']) && isset($_POST['quantity']) && isset($_POST['product'])) {
+    $key = $_POST['key'];
+    $quantity = $_POST['quantity'];
+    $product = $_POST['product'];
+
+    // Xử lý cập nhật số lượng trong giỏ hàng
+    if (isset($_SESSION['user_cart'][$_SESSION['username']][$key]) && $_SESSION['user_cart'][$_SESSION['username']][$key]['name'] === $product) {
+        $_SESSION['user_cart'][$_SESSION['username']][$key]['quantity'] = $quantity;
+        echo 'Cập nhật số lượng thành công!';
+    } 
+    }
+?>
    <?php
    include('../config/footer.php')
    ?>
@@ -188,7 +238,34 @@ if(!isset($_SESSION['username'])){
         document.querySelector('.close-btn').addEventListener('click', function() {
             document.querySelector('.search-area').style.display = 'none';
         });
+        
     </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.quantity-input').on('change', function(){
+        var key = $(this).data('key');
+        var quantity = $(this).val();
+        var product = $(this).data('product');
+        
+        // Gửi thông tin cập nhật số lượng lên máy chủ
+        $.ajax({
+            url: 'cart.php', // Đường dẫn đến file xử lý cập nhật số lượng
+            method: 'POST',
+            data: {
+                key: key,
+                quantity: quantity,
+                product: product
+            },
+            success: function(response){
+                // Xử lý kết quả trả về từ máy chủ nếu cần
+            }
+        });
+    });
+});
+</script>
+
+
 </body>
 
 </html>

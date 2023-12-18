@@ -106,14 +106,24 @@ if ($ketqua->num_rows > 0) {
             echo '<div style="text-align: center; margin-bottom: 10px;">';
             echo '<div class="product-price name-product" style="display: inline-block; margin-right: 10px; font-family: \'Poppins\', sans-serif;font-size: 30px;font-weight: 700;">' . $row["prd_price"] . 'đ</div>';
             echo '</div>';
-    
-            echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
-            echo '<form method="POST" >';
-            echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
-            echo '<button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
-            echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
-            echo '</button>';            
-            echo '</form>';
+                if($row["prd_quantity"]>0){
+                    echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
+                    echo '<form method="POST" >';
+                    echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
+                    echo '<button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
+                    echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
+                    echo '</button>';            
+                    echo '</form>';
+                }
+                else{
+                    echo '<p>HẾT HÀNG</p>';
+                      echo '<form method="POST" >';
+                    echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
+                    echo '<button type="button"  data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
+                    echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
+                    echo '</button>';            
+                    echo '</form>';
+                }
             echo '</div>';
             echo '</div>';
         }
@@ -149,20 +159,17 @@ if ($ketqua->num_rows > 0) {
                     $prd_img = $row['prd_img'];
                     $prd_name = $row['prd_name'];
                     $prd_price = $row['prd_price'];
-
-                    // Định dạng lại đường dẫn ảnh
+                    $max_quantity=$row['prd_quantity'];
                     $path = '../admin/image/';
                     $prd_img_path = $path . $row['prd_img'];
 
-                    // Tạo một mảng chứa thông tin sản phẩm từ CSDL
                     $product = array(
                         'name' => $prd_name,
-                        'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
+                        'price' => $prd_price . 'đ', 
                         'quantity' => 1,
                         'image' => $prd_img_path,
+                        'max_quantity'=>$max_quantity,
                     );
-
-                    // Thêm sản phẩm vào giỏ hàng của người dùng
                     addProductToCart($product);
                    
                 }

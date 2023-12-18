@@ -99,14 +99,7 @@ session_start();
         </div>
     </div>
     <?php
-function generateRandomString($length = 5) {
-    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, strlen($characters) - 1)];
-    }
-    return $randomString;
-}
+    require('function.php');
 
 if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['numberphone']) && isset($_POST['problem']) && isset($_POST['message'])){
     $id = generateRandomString();

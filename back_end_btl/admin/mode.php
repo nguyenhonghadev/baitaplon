@@ -188,43 +188,21 @@ if (isset($_GET['add']) && !empty($_GET['add'])) {
     require('../config/connect.php');
     mysqli_set_charset($conn, 'utf8');
     $prd_id = $_GET['add'];
-
-    // Kiểm tra xem sản phẩm có tồn tại trong bảng sp_noibat chưa
-    $sql_check_existing = "SELECT * FROM sp_noibat WHERE sp_id = ?";
-    $stmt_check_existing = $conn->prepare($sql_check_existing);
-
-    if (!$stmt_check_existing) {
-        die("Lỗi trong quá trình chuẩn bị truy vấn: " . $conn->error);
-    }
-
-    $stmt_check_existing->bind_param("i", $prd_id);
-    $stmt_check_existing->execute();
-    $result_check_existing = $stmt_check_existing->get_result();
-
-    if ($result_check_existing->num_rows > 0) {
+    $sql = "SELECT * FROM sp_noibat WHERE sp_id = '$prd_id'";
+    $result=$conn->query($sql);
+if ($result->num_rows > 0) {
         echo "<script>alert('Sản phẩm đã tồn tại')</script>";
         echo "<script>window.location = 'admin.php?quanly=product'</script>";
     } else {
-        // Lấy thông tin sản phẩm từ bảng products
-        $sql_select_product = "SELECT prd_id, prd_name, prd_img, prd_price FROM products WHERE prd_id = ?";
-        $stmt_select_product = $conn->prepare($sql_select_product);
-
-        if (!$stmt_select_product) {
-            die("Lỗi trong quá trình chuẩn bị truy vấn: " . $conn->error);
-        }
-
-        $stmt_select_product->bind_param("i", $prd_id);
-        $stmt_select_product->execute();
-        $result_select_product = $stmt_select_product->get_result();
-
-        if ($result_select_product->num_rows > 0) {
-            $row = $result_select_product->fetch_assoc();
+        $sql_select_product = "SELECT prd_id, prd_name, prd_img, prd_price FROM products WHERE prd_id = '$prd_id'";
+        $kq=$conn->query($sql_select_product);
+        if ($kq->num_rows > 0) {
+            $row = $kq->fetch_assoc();
             $sp_id = $row['prd_id'];
             $sp_name = $row['prd_name'];
             $sp_img = $row['prd_img'];
             $sp_price = $row['prd_price'];
 
-            // Thêm sản phẩm vào bảng sp_noibat
             $sql_insert = "INSERT INTO sp_noibat (sp_id, sp_name, sp_image, sp_price) VALUES ('$sp_id','$sp_name','$sp_img','$sp_price')";
             $stmt_insert = $conn->prepare($sql_insert);
 
@@ -458,8 +436,6 @@ if (isset($_GET['contact'])|| (!empty($_GET['contact'])) ){
     } else {
         echo "<script>alert('Lỗi kết nối đến cơ sở dữ liệu')</script>";
     }
-} else {
-    echo "<script>alert('Thiếu thông tin liên hệ để xóa')</script>";
-}
-echo "<script>window.location.href = 'admin.php';</script>";
+} 
+
 ?>

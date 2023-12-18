@@ -1,0 +1,287 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>HK Restaurant</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <?php
+        include('../config/header1.php');
+        ?>
+    <!-- nav -->
+    <!-- thanh toan -->
+    <form method="post" action="thanhtoan.php">
+            <div class="checkout-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-accordion-wrap">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						          Địa Chỉ Giao Hàng:
+						        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shipping-address-form">
+                                            <div class="shipping-address-form">
+                                                <?php
+                                                require('../config/connect.php');
+                                                if (isset($_SESSION['username'])) { 
+                                                    $usernameid = $_SESSION['username'];
+                                                    mysqli_set_charset($conn, 'utf8');
+                                                    $sql = "SELECT * FROM users WHERE username='$usernameid'";
+                                                    $result = $conn->query($sql);
+                                                    if ($result->num_rows > 0) {
+                                                        $row = mysqli_fetch_assoc($result);
+                                                        echo "<p>" . $row['address'] . "</p>";
+                                                        $_SESSION['address']=$row['address'];
+                                                    } else {
+                                                        echo "Chưa cập nhật địa chỉ";
+                                                    }
+                                                    mysqli_close($conn);
+                                                } else {
+                                                    echo "Tên người dùng không tồn tại.";
+                                                }
+                                                ?>
+                                                <button style="border: none;"><a href="../user/updateaddr.php">Sửa</a></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						          Phương thức Giao Hàng:
+						        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="card-details">
+                                            <h5> Quý khách muốn thanh toán theo:</h5>
+                                            <input type="radio" id="nhanhang" name="option" value="option1">Thanh toán sau khi nhận hàng.<br>
+                                            <input type="radio" id="banking" name="option" value="option2">Thanh toán trực tiếp qua banking.<br>
+                                            <div id="bybanking" style="display: none;">
+                                                <img src="../image/mã qr.jpg" alt="mã qr" style="width: 10em;height: 10em;margin-left: 5em;"><br>
+                                            </div>
+                                            <p>Lời Nhắn</p>
+                                            <input name="loinhan" type="text" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 ">
+                    <div class="order-details-wrap ">
+                        <table class="order-details ">
+                            <thead>
+                                <tr>
+                                    <th>Đơn hàng của bạn</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody class="order-details-body ">
+                            <?php
+                                                $total_amount = 0;
+                                                if (isset($_SESSION['user_cart'][$_SESSION['username']])) {
+                                                    foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                                                        $total_price = (float)$prd['quantity'] * (float)$prd['price'];
+                                                        $total_amount += $total_price;
+                                                        $formatted_total_price = number_format($total_price, 2, ".", ",");
+                                                        echo '<tr class="total-data">
+                                                                <td><strong>' . $prd['name'] . '</strong></td>
+                                                                <td>' . $prd['quantity'] . '</td>
+                                                                <td>' . $formatted_total_price . '</td>
+                                                            </tr>';
+                                                    }
+                                                }
+
+                                                // Thêm chi phí vận chuyển
+                                                $shipping_cost = 25000;
+                                                $total_amount += $shipping_cost;
+
+                                                // Hiển thị dòng và giá trị của vận chuyển trong bảng
+                                                echo '<tr class="total-data">
+                                                        <td><strong>Vận chuyển </strong></td>
+                                                        <td></td>
+                                                        <td>' . number_format($shipping_cost, 2, ".", ",") . 'đ</td>
+                                                    </tr>';
+
+                                                // Hiển thị tổng số tiền
+                                                echo '<tr class="total-data">
+                                                        <td><strong>Tổng  </strong></td>
+                                                        <td></td>
+                                                        <td>' . number_format($total_amount, 2, ".", ",") . 'đ</td>
+                                                    </tr>';
+                                                ?>
+                            </tbody>
+                        </table>
+                        <button type="submit" name="pay_now" style=" border: none;font-family: 'Poppins', sans-serif; display: inline-block; background-color: #F28123; color: #fff; padding: 10px 20px; border-radius: 2em;">Thanh Toán</button>
+            </div>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+   <?php
+   include('../config/footer.php');
+   ?>
+
+    <!-- Back to Top -->
+    <a href="contact.html " class="btn btn-lg btn-primary btn-lg-square back-to-top " aria-label="back"><i class="bi bi-arrow-up "></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="../lib/wow/wow.min.js "></script>
+    <script src="../lib/easing/easing.min.js "></script>
+    <script src="../lib/waypoints/waypoints.min.js "></script>
+    <script src="../lib/counterup/counterup.min.js "></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js "></script>
+    <script src="../lib/tempusdominus/js/moment.min.js "></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js "></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- jquery -->
+    <script src="../assets/js/jquery-1.11.3.min.js "></script>
+    <!-- bootstrap -->
+    <script src="../assets/bootstrap/js/bootstrap.min.js "></script>
+    <!-- count down -->
+    <script src="../assets/js/jquery.countdown.js "></script>
+    <!-- isotope -->
+    <script src="../assets/js/jquery.isotope-3.0.6.min.js "></script>
+    <!-- waypoints -->
+    <script src="../assets/js/waypoints.js "></script>
+    <!-- owl carousel -->
+    <script src="../assets/js/owl.carousel.min.js "></script>
+    <!-- magnific popup -->
+    <script src="../assets/js/jquery.magnific-popup.min.js "></script>
+    <!-- mean menu -->
+    <script src="../assets/js/jquery.meanmenu.min.js "></script>
+    <!-- sticker js -->
+    <script src="../assets/js/sticker.js "></script>
+    <!-- main js -->
+    <script src="../assets/js/main.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="../js/main.js "></script>
+    <script>
+        document.querySelector('.search-bar-icon').addEventListener('click', function() {
+            document.querySelector('.search-area').style.display = 'block';
+        });
+
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.querySelector('.search-area').style.display = 'none';
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('banking').onclick = function() {
+        document.getElementById('bybanking').style.display = 'block';
+    }
+    document.getElementById('nhanhang').onclick = function() {
+        document.getElementById('bybanking').style.display = 'none';
+    }
+});
+    </script>
+    <script src="../js/thanhtoan.js "></script>
+
+</body>
+  
+</html>
+
+
+
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['option']) && isset($_SESSION['user_cart'][$_SESSION['username']]) && (isset($_POST['loinhan']))) {
+        require('../config/connect.php');
+        require('function.php');
+        $user4 = $_SESSION['username'];
+        if (count($_SESSION['user_cart'][$_SESSION['username']]) > 0) {
+            foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                $nameprd = $prd['name'];
+                $quantityprd = $prd['quantity'];
+                $priceprd = $prd['price'];
+                $status = $_POST['loinhan'];
+                $total_price = (float)$quantityprd * (float)$priceprd;
+                $total_price_ok = number_format($total_price, 2, '.', ',');
+                $address_oder = $_SESSION['address'];
+
+                // Update product quantity
+                $sql = "SELECT * FROM products WHERE prd_name ='$nameprd'";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $soluong = $row['prd_quantity'];
+                    $newquantity = (int)$soluong - (int)$quantityprd;
+                    $sql1 = "UPDATE products SET prd_quantity ='$newquantity' WHERE prd_name ='$nameprd'";
+                    $conn->query($sql1);
+                }
+
+                $idoder = generateRandomString();
+                $sql_pay = "INSERT INTO orders (order_id,oder_username,oder_prd,oder_quantity,order_status,order_total,order_address) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd', '$status','$total_price_ok', '$address_oder')";
+                $conn->query($sql_pay); // Thực hiện thêm đơn hàng vào cơ sở dữ liệu
+                unset($_SESSION['user_cart'][$_SESSION['username']][$key]); // Xóa sản phẩm khỏi giỏ hàng
+               
+            }
+            echo "<script>alert('Thanh toán thành công');</script>";
+            echo "<script>window.location.href = 'info.php';</script>";
+            exit();
+        } else {
+            echo "<script>alert('Không có sản phẩm để thanh toán');</script>";
+        }
+    } else {
+        echo "<script>alert('Vui lòng chọn phương thức thanh toán');</script>";
+    }
+}
+?>

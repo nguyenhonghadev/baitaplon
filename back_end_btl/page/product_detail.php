@@ -120,6 +120,7 @@ session_start();
                     $prd_img = $row['prd_img'];
                     $prd_name = $row['prd_name'];
                     $prd_price = $row['prd_price'];
+                    $max_quantity=$row['prd_quantity'];
 
 
                     // Định dạng lại đường dẫn ảnh
@@ -132,6 +133,7 @@ session_start();
                         'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
                         'quantity' => $quantity,
                         'image' => $prd_img_path,
+                        'max_quantity'=>$max_quantity,
                     );
 
                     // Thêm sản phẩm vào giỏ hàng của người dùng

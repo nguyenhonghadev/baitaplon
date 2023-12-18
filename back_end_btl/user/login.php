@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($sql1) {
             echo "<script>alert('Tạo tài khoản thành công')</script>";
-            echo "<script>setTimeout(function() { window.location.href = 'login.php'; }, 1000);</script>"; // Chuyển hướng sau 2 giây (2000 milliseconds)
+            echo "<script>setTimeout(function() { window.location.href = 'login.php'; }, 200);</script>"; // Chuyển hướng sau 2 giây (2000 milliseconds)
             exit();
         } else {
             // Xử lý lỗi khi thêm người dùng vào CSDL
