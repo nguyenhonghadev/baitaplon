@@ -100,8 +100,8 @@ session_start();
                                     <div class="card-body">
                                         <div class="card-details">
                                             <h5> Quý khách muốn thanh toán theo:</h5>
-                                            <input type="radio" id="nhanhang" name="option" value="option1">Thanh toán sau khi nhận hàng.<br>
-                                            <input type="radio" id="banking" name="option" value="option2">Thanh toán trực tiếp qua banking.<br>
+                                            <input type="radio" id="nhanhang" name="option" value="Thanh toán khi nhận hàng">Thanh toán sau khi nhận hàng.<br>
+                                            <input type="radio" id="banking" name="option" value="Đã thanh toán">Thanh toán trực tiếp qua banking.<br>
                                             <div id="bybanking" style="display: none;">
                                                 <img src="../image/mã qr.jpg" alt="mã qr" style="width: 10em;height: 10em;margin-left: 5em;"><br>
                                             </div>
@@ -246,12 +246,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require('../config/connect.php');
         require('function.php');
         $user4 = $_SESSION['username'];
+         $type_pay= $_POST['option'];
         if (count($_SESSION['user_cart'][$_SESSION['username']]) > 0) {
             foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
                 $nameprd = $prd['name'];
                 $quantityprd = $prd['quantity'];
                 $priceprd = $prd['price'];
                 $status = $_POST['loinhan'];
+               
                 $total_price = (float)$quantityprd * (float)$priceprd;
                 $total_price_ok = number_format($total_price, 2, '.', ',');
                 $address_oder = $_SESSION['address'];
@@ -269,9 +271,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 $idoder = generateRandomString();
-                $sql_pay = "INSERT INTO orders (order_id,oder_username,oder_prd,oder_quantity,order_status,order_total,order_address) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd', '$status','$total_price_ok', '$address_oder')";
-                $conn->query($sql_pay); // Thực hiện thêm đơn hàng vào cơ sở dữ liệu
-                unset($_SESSION['user_cart'][$_SESSION['username']][$key]); // Xóa sản phẩm khỏi giỏ hàng
+                $sql_pay = "INSERT INTO orders (order_id,oder_username,oder_prd,oder_quantity,type_pay,order_status,order_total,order_address) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd','$type_pay' ,'$status','$total_price_ok', '$address_oder')";
+                $conn->query($sql_pay); 
+                unset($_SESSION['user_cart'][$_SESSION['username']][$key]); 
                
             }
             echo "<script>alert('Thanh toán thành công');</script>";

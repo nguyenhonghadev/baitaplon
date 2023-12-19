@@ -3,7 +3,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="utf-8">
     <title>HK restaurant</title>
@@ -11,8 +10,6 @@ session_start();
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
@@ -26,13 +23,11 @@ session_start();
     <link href="..//lib/owlcarousel//assets//owl.carousel.min.css" rel="stylesheet">
     <link href="..//lib/tempusdominus//css//tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="..//css//bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="..//css//style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/info.css"/>
-    
+    <link href="../css/info.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -83,39 +78,203 @@ $(document).ready(function(){
                 }
             ?>
         <div class="thanh-phan">
-            <div onclick="showSection('donduyet')">Đơn kiểm duyệt</div>
-            <div onclick="showSection('don-ship')">Đơn đang giao</div>
+             <div onclick="showSection('donmoi')">Chờ xác nhận</div> 
+            <div onclick="showSection('donduyet')">Chờ lấy hàng</div>
+            <div onclick="showSection('don-ship')">Chờ giao hàng</div>
             <div onclick="showSection('don-thanh-cong')">Đơn hoàn thành</div>
         </div>
         <div class="order">
+        <section class="donmoi">
+                <h2>Chờ xác nhận</h2>
+                <ul class="accept_order">
+                    <li>
+                    <?php
+                        $userorder = $_SESSION['username'];
+                        require('../config/connect.php');
+                        mysqli_set_charset($conn, 'utf8');
+                        $user_curtainly=$_SESSION['username'];
+                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đơn mới'";
+                        $result_temp = $conn->query($sql_temp);
+                        if ($result_temp->num_rows > 0) {
+                            while ($row = $result_temp->fetch_assoc()) {
+                                $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price
+                                FROM orders
+                                JOIN products ON orders.oder_prd = products.prd_name
+                                WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
+                                ORDER BY orders.order_date DESC";      
+                      $resultnew = $conn->query($sqlnew);
+                      if ($resultnew->num_rows > 0) {
+                          while($row_new = $resultnew->fetch_assoc()) {
+                              echo "<div class='don-ok'>";
+                              $path_img = '../admin/image';
+                              $prd_img_new=$path_img .'/' . $row_new['prd_img'];
+                              echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
+                             echo'<div class="order_details">
+                             <div class="order_details">
+                                 <h6 class="product">'.$row_new["oder_prd"].'</h6>';
+                                 echo '<div class="details">
+                                 <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
+                                 echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
+                                 echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
+                                 echo' </div>
+                                 <p class="time">'.$row_new["order_date"].'</p>
+                             </div>
+                         </div>
+                     </div>';
+                          }
+                      }             
+                            }
+                        } 
+                        else{
+                            echo"<h3>Không có đơn hàng nào!!!<a href='product.php'>Mua ngay</a></h3>";
+                        }   
+                        $conn->close();      
+                        ?>
+                </li>
+            </ul>
+            </section>
             <section class="donduyet">
-                <!-- Pending orders -->
-                <h2>Đơn chờ duyệt</h2>
+                <h2>Chờ lấy hàng</h2>
                 <ul class="pending-orders">
-                    <!-- List pending orders here -->
-                    <li>Order #1</li>
-                    <li>Order #2</li>
-                    <!-- Add more pending orders -->
+                <div class="form_order" ></div>
+                    <li><?php
+                        $userorder = $_SESSION['username'];
+                        require('../config/connect.php');
+                        mysqli_set_charset($conn, 'utf8');
+                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đã duyệt'";
+                        $result_temp = $conn->query($sql_temp);
+                        if ($result_temp->num_rows > 0) {
+                            while ($row = $result_temp->fetch_assoc()) {
+                                $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price
+                                FROM orders
+                                JOIN products ON orders.oder_prd = products.prd_name
+                                WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
+                                ORDER BY orders.order_date DESC";      
+                      $resultnew = $conn->query($sqlnew);
+                      if ($resultnew->num_rows > 0) {
+                          while($row_new = $resultnew->fetch_assoc()) {
+                              echo "<div class='don-ok'>";
+                              $path_img = '../admin/image';
+                              $prd_img_new=$path_img .'/' . $row_new['prd_img'];
+                              echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
+                             echo'<div class="order_details">
+                             <div class="order_details">
+                                 <h6 class="product">'.$row_new["oder_prd"].'</h6>';
+                                 echo '<div class="details">
+                                 <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
+                                 echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
+                                 echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
+                                 echo' </div>
+                                 <p class="time">'.$row_new["order_date"].'</p><button style="border: none;width: 3em;margin-left: 80%;"><a href="#">Hủy</a></button>
+                             </div>
+                         </div>
+                     </div>';
+                          }
+                      }             
+                            }
+                        }  
+                        else{
+                            echo"<h3>Không có đơn hàng nào!!!<a href='product.php'>Mua ngay</a></h3>";
+                        } 
+                        $conn->close();          
+                        ?>
+                        </li>
                 </ul>
             </section>
             <section class="don-ship">
-                <!-- Orders for shipment -->
-                <h2>Đơn hàng đang giao</h2>
+                <h2>Chờ giao hàng</h2>
                 <ul class="shipping-orders">
-                    <!-- List orders for shipment here -->
-                    <li>Order #3</li>
-                    <li>Order #4</li>
-                    <!-- Add more orders being shipped -->
+                <div class="form_order" ></div>
+                    <li>
+                        <?php
+                        $userorder = $_SESSION['username'];
+                        require('../config/connect.php');
+                        mysqli_set_charset($conn, 'utf8');
+                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đang vận chuyển'";
+                        $result_temp = $conn->query($sql_temp);
+                        if ($result_temp->num_rows > 0) {
+                            while ($row = $result_temp->fetch_assoc()) {
+                                $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price
+                                FROM orders
+                                JOIN products ON orders.oder_prd = products.prd_name
+                                WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
+                                ORDER BY orders.order_date DESC";      
+                      $resultnew = $conn->query($sqlnew);
+                      if ($resultnew->num_rows > 0) {
+                          while($row_new = $resultnew->fetch_assoc()) {
+                              echo "<div class='don-ok'>";
+                              $path_img = '../admin/image';
+                              $prd_img_new=$path_img .'/' . $row_new['prd_img'];
+                              echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
+                             echo'<div class="order_details">
+                             <div class="order_details">
+                                 <h6 class="product">'.$row_new["oder_prd"].'</h6>';
+                                 echo '<div class="details">
+                                 <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
+                                 echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
+                                 echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
+                                 echo' </div>
+                                 <p class="time">'.$row_new["order_date"].'</p>
+                             </div>
+                         </div>
+                     </div>';
+                          }
+                      }             
+                            }
+                        }
+                        else{
+                            echo"<h3>Không có đơn hàng nào!!!<a href='product.php'>Mua ngay</a></h3>";
+                        } 
+                        $conn->close();             
+                        ?>
+                        </li>
                 </ul>
             </section>
             <section class="don-thanh-cong">
-                <!-- Successfully delivered orders -->
-                <h2>Đơn hàng đã thành công</h2>
+                <h2>Đơn hoàn thành</h2>
                 <ul class="success-orders">
-                    <!-- List successfully delivered orders here -->
-                    <li>Order #5</li>
-                    <li>Order #6</li>
-                    <!-- Add more successfully delivered orders -->
+                <div class="form_order" ></div>
+                    <li><?php
+                        $userorder = $_SESSION['username'];
+                        require('../config/connect.php');
+                        mysqli_set_charset($conn, 'utf8');
+                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Giao hàng thành công'";
+                        $result_temp = $conn->query($sql_temp);
+                        if ($result_temp->num_rows > 0) {
+                            while ($row = $result_temp->fetch_assoc()) {
+                                $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price
+                                FROM orders
+                                JOIN products ON orders.oder_prd = products.prd_name
+                                WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
+                                ORDER BY orders.order_date DESC";      
+                      $resultnew = $conn->query($sqlnew);
+                      if ($resultnew->num_rows > 0) {
+                          while($row_new = $resultnew->fetch_assoc()) {
+                              echo "<div class='don-ok'>";
+                              $path_img = '../admin/image';
+                              $prd_img_new=$path_img .'/' . $row_new['prd_img'];
+                              echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
+                             echo'<div class="order_details">
+                             <div class="order_details">
+                                 <h6 class="product">'.$row_new["oder_prd"].'</h6>';
+                                 echo '<div class="details">
+                                 <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
+                                 echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
+                                 echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
+                                 echo' </div>
+                                 <p class="time">'.$row_new["order_date"].'</p>
+                             </div>
+                         </div>
+                     </div>';
+                          }
+                      }             
+                            }
+                        } 
+                        else{
+                            echo"<h3>Không có đơn hàng nào!!!<a href='product.php'>Mua ngay</a></h3>";
+                        }   
+                        $conn->close();      
+                        ?></li>
                 </ul>
             </section>
         </div>
@@ -173,4 +332,69 @@ $(document).ready(function(){
     <!-- Template Javascript -->
     <script src="../js/main.js "></script>
 
+</html>      
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="..//lib/wow//wow.min.js "></script>
+    <script src="..//lib/easing//easing.min.js "></script>
+    <script src="..//lib/waypoints//waypoints.min.js "></script>
+    <script src="..//lib/counterup/counterup.min.js "></script>
+    <script src="..//lib/owlcarousel//owl.carousel.min.js "></script>
+    <script src="..//lib/tempusdominus/js//moment.min.js "></script>
+    <script src="..//lib/tempusdominus//js//moment-timezone.min.js "></script>
+    <script src="..//lib/tempusdominus/js//tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="..//js//main.js "></script>
+</body>
+
 </html>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="lib/wow/wow.min.js "></script>
+    <script src="lib/easing/easing.min.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script src="lib/counterup/counterup.min.js "></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js "></script>
+    <script src="lib/tempusdominus/js/moment.min.js "></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js "></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js "></script>
+    <!-- product -->
+    <script src="assets/js/jquery-1.11.3.min.js "></script>
+    <!-- bootstrap -->
+    <script src="assets/bootstrap/js/bootstrap.min.js "></script>
+    <!-- count down -->
+    <script src="assets/js/jquery.countdown.js "></script>
+    <!-- isotope -->
+    <script src="assets/js/jquery.isotope-3.0.6.min.js "></script>
+    <!-- waypoints -->
+    <script src="assets/js/waypoints.js "></script>
+    <!-- owl carousel -->
+    <script src="assets/js/owl.carousel.min.js "></script>
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js "></script>
+    <!-- mean menu -->
+    <script src="assets/js/jquery.meanmenu.min.js "></script>
+    <!-- sticker js -->
+    <script src="assets/js/sticker.js "></script>
+    <!-- main js -->
+    <script src="assets/js/main.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script src="./js/menu.js "></script>
+    <script>
+        $(document).ready(function() {
+            $('.search-bar-icon').click(function() {
+                $('.search-area').toggleClass('search-active');
+            });
+
+            $('.close-btn').click(function() {
+                $('.search-area').removeClass('search-active');
+            });
+        });
+    </script>
+
+</body>
+

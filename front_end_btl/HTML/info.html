@@ -162,6 +162,101 @@
             position: absolute;
             display: none;
         }
+        
+        .accept_order {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .don-ok {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            height: 8em;
+        }
+        
+        .don-ok img {
+            max-width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .order_details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* Tránh tràn chữ ra ngoài */
+        }
+        
+        .order_details h6 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-align: left;
+            white-space: nowrap;
+            /* Ngăn chữ bị tràn ra khỏi khung */
+            overflow: hidden;
+            /* Ẩn phần chữ tràn */
+            text-overflow: ellipsis;
+            /* Hiển thị dấu ... nếu chữ tràn */
+        }
+        
+        .order_details p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            white-space: nowrap;
+            /* Ngăn chữ bị tràn ra khỏi khung */
+            overflow: hidden;
+            /* Ẩn phần chữ tràn */
+            text-overflow: ellipsis;
+            /* Hiển thị dấu ... nếu chữ tràn */
+        }
+        
+        .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .order_details .details p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .order_details .time {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .order_details .details .price {
+            flex: 0 0 30%;
+        }
+        
+        .order_details .details .quantity {
+            flex: 0 0 20%;
+        }
+        
+        .order_details .details .total {
+            flex: 0 0 40%;
+        }
+        
+        .order_details .time {
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -214,42 +309,57 @@
             </div>
         </div>
         <div class="thanh-phan">
-            <div onclick="showSection('donduyet')">Đơn kiểm duyệt</div>
-            <div onclick="showSection('don-ship')">Đơn đang giao</div>
+            <div onclick="showSection('donmoi')">Chờ xác nhận</div>
+            <div onclick="showSection('donduyet')">Chờ lấy hàng</div>
+            <div onclick="showSection('don-ship')">Chờ giao hàng</div>
             <div onclick="showSection('don-thanh-cong')">Đơn hoàn thành</div>
         </div>
         <div class="order">
+            <section class="donmoi">
+                <h2>Chờ xác nhận</h2>
+                <ul class="accept_order">
+                    <li>
+                        <div class="don-ok">
+                            <img src="../image/tráng miệng/cam.jpg" alt="Tên sản phẩm">
+                            <div class="order_details">
+                                <div class="order_details">
+                                    <h6 class="product">Tên sản phẩm</h6>
+                                    <div class="details">
+                                        <p class="price">Giá: 200000đ</p>
+                                        <p class="quantity">x1</p>
+                                        <p class="total">Thành tiền:200000đ</p>
+                                    </div>
+                                    <p class="time">Thời gian</p><button style="border: none;width: 3em;margin-left: 80%;"><a href="#">Hủy</a></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </section>
             <section class="donduyet">
-                <!-- Pending orders -->
-                <h2>Đơn chờ duyệt</h2>
+                <h2>Chờ lấy hàng</h2>
                 <ul class="pending-orders">
-                    <!-- List pending orders here -->
-                    <li>Order #1</li>
+                    <div class="form_order"></div>
                     <li>Order #2</li>
-                    <!-- Add more pending orders -->
                 </ul>
             </section>
             <section class="don-ship">
-                <!-- Orders for shipment -->
-                <h2>Đơn hàng đang giao</h2>
+                <h2>Chờ giao hàng</h2>
                 <ul class="shipping-orders">
-                    <!-- List orders for shipment here -->
-                    <li>Order #3</li>
+                    <div class="form_order"></div>
                     <li>Order #4</li>
-                    <!-- Add more orders being shipped -->
                 </ul>
             </section>
             <section class="don-thanh-cong">
-                <!-- Successfully delivered orders -->
-                <h2>Đơn hàng đã thành công</h2>
+                <h2>Đơn hoàn thành</h2>
                 <ul class="success-orders">
-                    <!-- List successfully delivered orders here -->
-                    <li>Order #5</li>
+                    <div class="form_order"></div>
                     <li>Order #6</li>
-                    <!-- Add more successfully delivered orders -->
                 </ul>
             </section>
         </div>
+    </div>
     </div>
 
     <script>

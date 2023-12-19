@@ -1,4 +1,102 @@
-foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) { $nameprd=$prd['name']; $quantityprd=$prd['quantity']; $priceprd=$prd['price']; $sql="SELECT * FROM products where prd_name ='$nameprd'"; echo "
-<script>
-    alert('".$nameprd."')
-</script>"; }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách đơn hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        
+        .donmo {
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .accept_order {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .accept_order li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding: 20px;
+        }
+        
+        .accept_order li:last-child {
+            border-bottom: none;
+        }
+        
+        .accept_order li img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .order_details {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .order_details h3,
+        .order_details p,
+        .order_details h5 {
+            margin: 5px 0;
+            color: #333;
+        }
+        
+        .order_details p {
+            text-align: right;
+            margin-left: auto;
+            float: right;
+        }
+        
+        li {
+            width: 30em;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="donmo">
+        <h2>Chờ xác nhận</h2>
+        <ul class="accept_order">
+            <li>
+                <img src="../image/tráng miệng/cam.jpg" alt="Tên sản phẩm">
+                <div class="order_details">
+                    <h3>Tên sản phẩm</h3>
+                    <p>x1</p>
+                    <p>200000đ</p>
+                    <h5>Thời gian đặt</h5>
+                    <p>Thành tiền</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>

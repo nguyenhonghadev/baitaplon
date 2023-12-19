@@ -194,3 +194,70 @@ session_start();
 </body>
 
 </html>
+      
+<script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="..//lib/wow//wow.min.js "></script>
+    <script src="..//lib/easing//easing.min.js "></script>
+    <script src="..//lib/waypoints//waypoints.min.js "></script>
+    <script src="..//lib/counterup/counterup.min.js "></script>
+    <script src="..//lib/owlcarousel//owl.carousel.min.js "></script>
+    <script src="..//lib/tempusdominus/js//moment.min.js "></script>
+    <script src="..//lib/tempusdominus//js//moment-timezone.min.js "></script>
+    <script src="..//lib/tempusdominus/js//tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="..//js//main.js "></script>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="lib/wow/wow.min.js "></script>
+    <script src="lib/easing/easing.min.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script src="lib/counterup/counterup.min.js "></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js "></script>
+    <script src="lib/tempusdominus/js/moment.min.js "></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js "></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js "></script>
+    <!-- product -->
+    <script src="assets/js/jquery-1.11.3.min.js "></script>
+    <!-- bootstrap -->
+    <script src="assets/bootstrap/js/bootstrap.min.js "></script>
+    <!-- count down -->
+    <script src="assets/js/jquery.countdown.js "></script>
+    <!-- isotope -->
+    <script src="assets/js/jquery.isotope-3.0.6.min.js "></script>
+    <!-- waypoints -->
+    <script src="assets/js/waypoints.js "></script>
+    <!-- owl carousel -->
+    <script src="assets/js/owl.carousel.min.js "></script>
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js "></script>
+    <!-- mean menu -->
+    <script src="assets/js/jquery.meanmenu.min.js "></script>
+    <!-- sticker js -->
+    <script src="assets/js/sticker.js "></script>
+    <!-- main js -->
+    <script src="assets/js/main.js "></script>
+    <script src="lib/waypoints/waypoints.min.js "></script>
+    <script src="./js/menu.js "></script>
+    <script>
+        $(document).ready(function() {
+            $('.search-bar-icon').click(function() {
+                $('.search-area').toggleClass('search-active');
+            });
+
+            $('.close-btn').click(function() {
+                $('.search-area').removeClass('search-active');
+            });
+        });
+    </script>
+
+</body>
+
+

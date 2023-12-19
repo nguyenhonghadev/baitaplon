@@ -33,8 +33,11 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container"> 
+        <h3><a href="../page/index.php"><i class="fa fa-place-of-worship"></i><<<<<<< Home</a></h3>
+
             <h1 class="restaurant-title">HK Restaurant</h1>
+        
             <?php
     require('../config/connect.php');
 

@@ -439,3 +439,26 @@ if (isset($_GET['contact'])|| (!empty($_GET['contact'])) ){
 } 
 
 ?>
+<?php
+if (isset($_GET['order']) && !empty($_GET['order'])) {
+    $id = $_GET['order'];
+    $new_status = $_POST['status'];
+    require('../config/connect.php');
+
+    // Make sure to sanitize your inputs to prevent SQL injection
+    $id = mysqli_real_escape_string($conn, $id);
+    $new_status = mysqli_real_escape_string($conn, $new_status);
+
+    $sql9 = "UPDATE orders SET `trạng thái` = '$new_status' WHERE order_id = '$id'";
+    $result = $conn->query($sql9);
+
+    if ($result) {
+        echo "<script>alert('Cập nhật thành công!!')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    } else {
+        echo "<script>alert('Lỗi!!!!')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    }
+}
+?>
+

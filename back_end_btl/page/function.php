@@ -43,6 +43,29 @@ function kiemtraHoa($str) {
 }
 
 ?>
+<?php
+if(isset($_GET['delete_oder'])&&(!empty($_GET['delete_oder']))){
+    $order_id=$_GET['delete_oder'];
+    require("../config/connect.php");
+    mysqli_set_charset($conn,'utf8');
+    $sql_delete= "DELETE FROM orders WHERE order_id = '$order_id'";
+    $result_delete=mysqli_query($conn,$sql_delete);
+    if($result_delete){
+        echo"<script>
+        alert('Bạn đã hủy đơn thành công!!!')
+        window.location.href='info.php'
+        </script>";
+    }
+    else{
+        echo"<script>
+        alert(' Hủy đơn hàng không thành công,Vui lòng liên hệ cửa hàng để biết thêm thông tin chi tiết!!!')
+        window.location.href='info.php'
+        </script>";
+     
+    }
+
+}
+?>
 
 
 
