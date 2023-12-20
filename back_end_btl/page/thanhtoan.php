@@ -231,6 +231,34 @@ session_start();
 });
     </script>
     <script src="../js/thanhtoan.js "></script>
+    <script>
+function myFunction() {
+    var input, filter, ul, li, h5, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    var found = false; // Khởi tạo biến để kiểm tra có sản phẩm nào được tìm thấy không
+    for (i = 0; i < li.length; i++) {
+        h5 = li[i].getElementsByTagName("h5")[0];
+        txtValue = h5.textContent || h5.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            found = true; // Đánh dấu là đã tìm thấy sản phẩm
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+    if (!found) {
+        // Nếu không tìm thấy sản phẩm, hiển thị thông báo
+        var notFound = document.createElement("li");
+        notFound.textContent = "Không tìm thấy sản phẩm";
+        ul.appendChild(notFound);
+    }
+}
+
+    </script>
+
 
 </body>
   
@@ -282,6 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "<script>alert('Không có sản phẩm để thanh toán');</script>";
         }
+        $conn->close();
     } else {
         echo "<script>alert('Vui lòng chọn phương thức thanh toán');</script>";
     }

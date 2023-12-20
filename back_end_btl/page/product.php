@@ -130,7 +130,8 @@ if ($ketqua->num_rows > 0) {
     } else {
         echo "Không có sản phẩm nào.";
     }
-}    
+}
+$conn->close();    
     ?>
 
 
@@ -297,18 +298,32 @@ if ($ketqua->num_rows > 0) {
     <!-- main js -->
     <script src="..//assets//js//main.js "></script>
     <script src="..//lib//waypoints//waypoints.min.js "></script>
-    <script
-
     <script>
-        $(document).ready(function() {
-            $('.search-bar-icon').click(function() {
-                $('.search-area').toggleClass('search-active');
-            });
+function myFunction() {
+    var input, filter, ul, li, h5, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    var found = false; // Khởi tạo biến để kiểm tra có sản phẩm nào được tìm thấy không
+    for (i = 0; i < li.length; i++) {
+        h5 = li[i].getElementsByTagName("h5")[0];
+        txtValue = h5.textContent || h5.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            found = true; // Đánh dấu là đã tìm thấy sản phẩm
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+    if (!found) {
+        // Nếu không tìm thấy sản phẩm, hiển thị thông báo
+        var notFound = document.createElement("li");
+        notFound.textContent = "Không tìm thấy sản phẩm";
+        ul.appendChild(notFound);
+    }
+}
 
-            $('.close-btn').click(function() {
-                $('.search-area').removeClass('search-active');
-            });
-        });
     </script>
 
 </body>

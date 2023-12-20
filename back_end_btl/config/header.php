@@ -1,7 +1,6 @@
    <?php
     session_start();
   ?>  
-     <form action="header.php" method="post">
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
@@ -9,8 +8,8 @@
         </div>
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="#" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><a href="index.html"><i class="fa fa-utensils me-3"></i>HK Restaurant</a></h1>
+                <a href="index.php" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0"><a href="index.php"><i class="fa fa-utensils me-3"></i>HK Restaurant</a></h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -60,7 +59,7 @@ mysqli_close($conn); // Đóng kết nối
 
 
 
-                        <a class="mobile-hide search-bar-icon nav-item nav-link"><i class="fas fa-search"></i></a>
+<a class="mobile-hide search-bar-icon nav-item nav-link" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></a>
                     </div>
                 </div>
             </nav>
@@ -81,19 +80,46 @@ mysqli_close($conn); // Đóng kết nối
                 </div>
             </div>
         </div>
-        <div class="search-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                        <div class="search-bar">
-                            <div class="search-bar-tablecell">
-                                <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
-                                <input type="text" placeholder="Từ Khóa">
-                                <button style="display: flex;margin:0 auto;" type="submit" class="search-button"><h4 style="padding-bottom: 1.5em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button> </button>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                <input style="width: 60em;margin-left: 20%;" id="myInput" type="search" onkeyup="myFunction()" class="form-control bg-transparent p-3" placeholder="Nhập vào món ăn của bạn" aria-describedby="search-icon-1">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    
+                        <div style="position: absolute; left: 10%; top: 13%; display: flex; flex-wrap: wrap;">
+                            <ul id="myUL" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap;">
+                            <?php
+                                require('../config/connect.php');
+                                mysqli_set_charset($conn, 'utf8');
+                                $sql_header = "SELECT * FROM products";
+                                $path_img = '../admin/image'; 
+                                $kq_header = $conn->query($sql_header);
+                                if ($kq_header->num_rows > 0) {
+                                    while ($row = $kq_header->fetch_assoc()) {
+                                        $img = $path_img . '/' . $row['prd_img'];
+                                        echo '<li style="width: calc(45% - 10px); margin-bottom: 1em; margin-left: 1em; border-radius: 3em; min-width: 30em; background-color: #fff;">
+                                        <a href="../page/product_detail.php?prd_id=' . $row["prd_id"] . '" style="text-decoration: none; color: inherit;">
+                                            <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                                                <img src="' . $img . '" style="width: 3em; height: 3em; border-radius: 50%; margin-right: 10px;">
+                                                <div style="flex-grow: 1;">
+                                                    <h5 style="margin: 0;">' . $row["prd_name"] . '</h5>
+                                                    <p style="margin: 0;">' . $row["prd_price"] . '<span> >>>>>>>>>>>>>> </span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>';
+                                
+                                    }
+                                }
+                                    $conn->close();
+                            ?>
+                     </ul>
+                </div>
                 </div>
             </div>
         </div>
+    </div>

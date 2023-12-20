@@ -28,6 +28,40 @@
 
     <!-- Template Stylesheet -->
     <link href="..//css//style.css" rel="stylesheet">
+    <style>
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
 </head>
 
 <body>
@@ -586,10 +620,6 @@
         <!-- Back to Top -->
         <a href="index.php" class="btn btn-lg btn-primary btn-lg-square back-to-top " aria-label="QUAY LẠI"><i class="bi bi-arrow-up "></i></a>
     </div>
-        <!-- Footer End -->
-
-
-      
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
     <script src="..//lib/wow//wow.min.js "></script>
@@ -601,73 +631,6 @@
     <script src="..//lib/tempusdominus//js//moment-timezone.min.js "></script>
     <script src="..//lib/tempusdominus/js//tempusdominus-bootstrap-4.min.js "></script>
 
-    <!-- Template Javascript -->
-    <script src="..//js//main.js "></script>
-</body>
-
-</html>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
-    <script src="lib/wow/wow.min.js "></script>
-    <script src="lib/easing/easing.min.js "></script>
-    <script src="lib/waypoints/waypoints.min.js "></script>
-    <script src="lib/counterup/counterup.min.js "></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js "></script>
-    <script src="lib/tempusdominus/js/moment.min.js "></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js "></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js "></script>
-    <!-- product -->
-    <script src="assets/js/jquery-1.11.3.min.js "></script>
-    <!-- bootstrap -->
-    <script src="assets/bootstrap/js/bootstrap.min.js "></script>
-    <!-- count down -->
-    <script src="assets/js/jquery.countdown.js "></script>
-    <!-- isotope -->
-    <script src="assets/js/jquery.isotope-3.0.6.min.js "></script>
-    <!-- waypoints -->
-    <script src="assets/js/waypoints.js "></script>
-    <!-- owl carousel -->
-    <script src="assets/js/owl.carousel.min.js "></script>
-    <!-- magnific popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js "></script>
-    <!-- mean menu -->
-    <script src="assets/js/jquery.meanmenu.min.js "></script>
-    <!-- sticker js -->
-    <script src="assets/js/sticker.js "></script>
-    <!-- main js -->
-    <script src="assets/js/main.js "></script>
-    <script src="lib/waypoints/waypoints.min.js "></script>
-    <script src="./js/menu.js "></script>
-    <script>
-        $(document).ready(function() {
-            $('.search-bar-icon').click(function() {
-                $('.search-area').toggleClass('search-active');
-            });
-
-            $('.close-btn').click(function() {
-                $('.search-area').removeClass('search-active');
-            });
-        });
-    </script>
-
-</body>
-
-
-</html>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
-    <script src="lib/wow/wow.min.js "></script>
-    <script src="lib/easing/easing.min.js "></script>
-    <script src="lib/waypoints/waypoints.min.js "></script>
-    <script src="lib/counterup/counterup.min.js "></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js "></script>
-    <script src="lib/tempusdominus/js/moment.min.js "></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js "></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js "></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Template Javascript -->
     <script src="..//js//main.js "></script>
     <!-- product -->
@@ -693,15 +656,31 @@
     <script src="..//lib//waypoints//waypoints.min.js "></script>
     <script src="..//js//menu.js "></script>
     <script>
-        $(document).ready(function() {
-            $('.search-bar-icon').click(function() {
-                $('.search-area').toggleClass('search-active');
-            });
+function myFunction() {
+    var input, filter, ul, li, h5, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    var found = false; // Khởi tạo biến để kiểm tra có sản phẩm nào được tìm thấy không
+    for (i = 0; i < li.length; i++) {
+        h5 = li[i].getElementsByTagName("h5")[0];
+        txtValue = h5.textContent || h5.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            found = true; // Đánh dấu là đã tìm thấy sản phẩm
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+    if (!found) {
+        // Nếu không tìm thấy sản phẩm, hiển thị thông báo
+        var notFound = document.createElement("li");
+        notFound.textContent = "Không tìm thấy sản phẩm";
+        ul.appendChild(notFound);
+    }
+}
 
-            $('.close-btn').click(function() {
-                $('.search-area').removeClass('search-active');
-            });
-        });
     </script>
 
 </body>

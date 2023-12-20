@@ -1,14 +1,4 @@
 $(document).ready(function() {
-    $('.search-bar-icon').click(function() {
-        $('.search-area').toggleClass('search-active');
-    });
-
-    $('.close-btn').click(function() {
-        $('.search-area').removeClass('search-active');
-    });
-}); <
-
-$(document).ready(function() {
     $('.add-to-cart-btn').click(function(e) {
         e.preventDefault();
         var productID = $(this).data('product-id');

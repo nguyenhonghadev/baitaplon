@@ -93,15 +93,23 @@
                         <div class="search-bar">
                             <div class="search-bar-tablecell">
                                 <h3>Tìm Kiếm Món Ăn Của Bạn:</h3>
-                                <input type="text" placeholder="Từ Khóa">
-                                <button style="display: flex;" type="submit" class="search-button"><h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4> </button>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Từ Khóa">
+                                <button style="display: flex;" type="submit" class="search-button">
+                                    <h4 style="padding-bottom: 1em;">Tìm Kiếm<i class="fas fa-search search-icon"></i></h4>
                                 </button>
                             </div>
                         </div>
+                        <ul id="myUL">
+                            <li><a href="#">Món ăn 1</a></li>
+                            <li><a href="#">Món ăn 2</a></li>
+                            <li><a href="#">Món ăn 3</a></li>
+                            <!-- Thêm các mục danh sách ở đây -->
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Navbar & Hero End -->
 
 
