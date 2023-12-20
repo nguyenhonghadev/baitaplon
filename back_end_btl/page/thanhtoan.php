@@ -238,23 +238,26 @@ function myFunction() {
     filter = input.value.toUpperCase();
     ul = document.getElementById("myUL");
     li = ul.getElementsByTagName("li");
-    var found = false; // Khởi tạo biến để kiểm tra có sản phẩm nào được tìm thấy không
+    var found = false; 
     for (i = 0; i < li.length; i++) {
         h5 = li[i].getElementsByTagName("h5")[0];
         txtValue = h5.textContent || h5.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
-            found = true; // Đánh dấu là đã tìm thấy sản phẩm
+            found = true; 
         } else {
             li[i].style.display = "none";
         }
     }
-    if (!found) {
-        // Nếu không tìm thấy sản phẩm, hiển thị thông báo
-        var notFound = document.createElement("li");
-        notFound.textContent = "Không tìm thấy sản phẩm";
-        ul.appendChild(notFound);
-    }
+    if (found === false) {
+    var notFound = document.createElement("li");
+    notFound.textContent = "Không tìm thấy sản phẩm";
+    setTimeout(function () {
+        notFound.remove();
+    }, 5000);
+    ul.appendChild(notFound);
+}
+
 }
 
     </script>
