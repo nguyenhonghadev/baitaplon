@@ -77,29 +77,25 @@ session_start();
                 </div>
                 <?php } ?>
                 <div class="single-product-form">
-                    <form >
                     <form action="product_detail.php" method="POST">
                     <input type="number" name="quantity" min="1" value="1" >
-                        <input type="hidden" name="product_id" value="<?php echo $_GET['prd_id']; ?>" /> <!-- Thêm echo để hiển thị giá trị -->
-                        <button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="<?php echo $row['prd_id']; ?>" style="font-family: 'Poppins', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">
-                            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
-                        </button>
+                        <input type="hidden" name="product_id" value="<?php echo $_GET['prd_id']; ?>" /> 
+                        <input type="submit"  class="add-to-cart-btn" data-product-id="<?php echo $row['prd_id']; ?>" style="font-family: 'Poppins', sans-serif; display: inline-block; background-color: #F28123; color: #fff; padding: 10px 20px; border: none; border-radius: 2em;" value="Thêm vào giỏ hàng">
                     </form>
 
                 </div>
                 <h4>Share:</h4>
                 <ul class="product-share">
-                    <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
             <?php } ?>
         </div>
     </div>
 </div>
-
 <?php
         require('function.php');
 
@@ -120,10 +116,7 @@ session_start();
                     $prd_img = $row['prd_img'];
                     $prd_name = $row['prd_name'];
                     $prd_price = $row['prd_price'];
-                    $max_quantity=$row['prd_quantity'];
-
-
-                    // Định dạng lại đường dẫn ảnh
+                    // $max_quantity=$row['prd_quantity'];
                     $path = '../admin/image/';
                     $prd_img_path = $path . $row['prd_img'];
 
@@ -133,60 +126,22 @@ session_start();
                         'price' => $prd_price . 'đ', // Đảm bảo giá trị giá là chuỗi
                         'quantity' => $quantity,
                         'image' => $prd_img_path,
-                        'max_quantity'=>$max_quantity,
+                        // 'max_quantity'=>$max_quantity,
                     );
 
                     // Thêm sản phẩm vào giỏ hàng của người dùng
                     addProductToCart($product);
+                    echo"<script>window.location.href='cart.php'</script>";
                    
                 }
             }
             $conn->close();
-           
         } 
-       
-    ?>
-    
+    ?>  
 <?php
 require('..//config//footer.php');
 ?>
-
-    <!-- Back to Top -->
-    <?php
-    echo '<a href="product_detail.php?prd_id=' . $_GET['prd_id'] . '" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="BACK"><i class="bi bi-arrow-up"></i></a>';
-?>
-
     </div>
-
-<script>
-    var prdQuantity = <?php echo $row['prd_quantity']; ?>; // Lấy giá trị prd_quantity từ PHP
-    $(document).ready(function() {
-    $('.add-to-cart-btn').click(function(e) {
-        e.preventDefault();
-
-        var productID = $(this).data('product-id');
-        var quantity = $('input[name="quantity"]').val(); // Lấy giá trị số lượng từ input
-
-        $.ajax({
-            type: 'POST',
-            url: 'product_detail.php',
-            data: { product_id: productID, quantity: quantity },
-            success: function(response) {
-                if (response && response.success) {
-                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
-                } else {
-                    alert('Sản phẩm đã được thêm vào giỏ hàng!!!');
-                }
-            },
-            error: function() {
-                alert('Đã có lỗi xảy ra khi gửi yêu cầu.');
-            }
-        });
-    });
-});
-
-
-    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>
     <script src="lib/wow/wow.min.js "></script>
