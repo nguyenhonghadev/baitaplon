@@ -32,7 +32,7 @@
                         <td style='text-align: center;'>
                         <form action='mode.php?order=".$row['order_id']."' method='post'> 
                             <select name='status' style='border:none'>
-                                <option value='".$row['trạng thái']."'>".$row['trạng thái']."</option> 
+                                <option value='".$row['trang_thai']."'>".$row['trang_thai']."</option> 
                                 <option value='Đã duyệt'>Đã duyệt</option>
                                 <option value='Đang vận chuyển'>Đang vận chuyển</option>
                                 <option value='Giao hàng thành công'>Giao hàng thành công</option>

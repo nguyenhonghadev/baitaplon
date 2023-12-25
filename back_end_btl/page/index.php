@@ -210,302 +210,92 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="../image/đồ ăn/cá chép om dưa.webp" alt="Cá chép om dưa" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Cá chép om dưa</span>
-                                                <span class="text-primary ">400.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/cá kjo.jpg " alt="Cá Kho" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Cá kho tộ</span>
-                                                <span class="text-primary ">250.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/bánh xeo.jpg " alt="Bánh xèo" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Bánh xèo</span>
-                                                <span class="text-primary ">90.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/bun-bo-1.jpg" alt="Bùn bò huế" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Bún bò huế</span>
-                                                <span class="text-primary ">50.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/kho tàu.jpg " alt="Thịt kho tàu" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Thịt kho tàu</span>
-                                                <span class="text-primary ">150.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/lợn quay.jpg " alt=" lợn quay" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Lợn quay Lạng Sơn</span>
-                                                <span class="text-primary ">400.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/gà chiên mắm tỏi.jpg " alt="GÀ CHIÊN MẮM  tỏi" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Gà chiên mắm tỏi</span>
-                                                <span class="text-primary ">230.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ ăn/sườn chua ngọt.jpg " alt="sườn chua ngọt" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Sườn chua ngọt</span>
-                                                <span class="text-primary ">250.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                               require('../config/connect.php');
+                               mysqli_set_charset($conn,'utf8');
+                               $sql = "SELECT * FROM sp_noibat WHERE sp_id LIKE '%DA%'";
+                               $result = $conn->query($sql);
+                               $path='../admin/image/';
+                               
+                               if ($result->num_rows > 0) {
+                                   while($row = $result->fetch_assoc()) {
+                                       echo '<div class="col-lg-6">
+                                                   <div class="d-flex align-items-center">';
+                                       $img_prd = $path . $row['sp_image'];
+                                       echo '<img class="flex-shrink-0 img-fluid rounded" src="' . $img_prd . '" alt="' . $row['sp_name'] . '" style="width: 80px;">
+                                               <div class="w-100 d-flex flex-column text-start ps-4">
+                                                   <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                       <span>' . $row['sp_name'] . '</span>
+                                                       <span class="text-primary ">' . $row['sp_price'] . '</span>
+                                                   </h5>
+                                                   <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
+                                               </div>
+                                           </div>
+                                       </div>';
+                                   }
+                               }
+                               $conn->close();
+                               ?>               
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane fade show p-0">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="../image/đồ uống/7 up.jpg" alt="7 up" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span> 7 up</span>
-                                                <span class="text-primary ">15.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/bia hà nội.jpg " alt=" bia hà nội" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Bia Hà Nội</span>
-                                                <span class="text-primary ">25.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/cacacola.png " alt="cocacola" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Coca Cola</span>
-                                                <span class="text-primary ">15.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/fanta.jpg " alt=" fanta" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>fanta</span>
-                                                <span class="text-primary ">15.000</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/rượu mơ.jpeg " alt="rượu mơ" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Rượu mơ</span>
-                                                <span class="text-primary ">75.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/rượu vang đỏ chile.jpg " alt=" rượu  vang đỏ" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Rượu vang chile</span>
-                                                <span class="text-primary ">750.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/rượu ngô.jpg " alt="rượu ngô " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Rượu ngô</span>
-                                                <span class="text-primary ">95.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/đồ uống/rượu nếp.png " alt="rượu nếp" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Rượu nếp</span>
-                                                <span class="text-primary ">75.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
+                            <?php
+                               require('../config/connect.php');
+                               mysqli_set_charset($conn,'utf8');
+                               $sql = "SELECT * FROM sp_noibat WHERE sp_id LIKE '%DU%'";
+                               $result = $conn->query($sql);
+                               $path='../admin/image/';
+                               
+                               if ($result->num_rows > 0) {
+                                   while($row = $result->fetch_assoc()) {
+                                       echo '<div class="col-lg-6">
+                                                   <div class="d-flex align-items-center">';
+                                       $img_prd = $path . $row['sp_image'];
+                                       echo '<img class="flex-shrink-0 img-fluid rounded" src="' . $img_prd . '" alt="' . $row['sp_name'] . '" style="width: 80px;">
+                                               <div class="w-100 d-flex flex-column text-start ps-4">
+                                                   <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                       <span>' . $row['sp_name'] . '</span>
+                                                       <span class="text-primary ">' . $row['sp_price'] . '</span>
+                                                   </h5>
+                                                   <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
+                                               </div>
+                                           </div>
+                                       </div>';
+                                   }
+                               }
+                               $conn->close();
+                               ?>             
                             </div>
                         </div>
                         <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/cam.jpg " alt=" cam" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Cam đường</span>
-                                                <span class="text-primary ">75.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/dưa hấu.jpg " alt="dưa hấu" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Dưa hấu</span>
-                                                <span class="text-primary ">150.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/kem dâu.jpg " alt="kem dâu " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Kem dâu</span>
-                                                <span class="text-primary ">25.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/đu đủ đỏ.jpg " alt=" đu đủ" style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Đu đủ đỏ</span>
-                                                <span class="text-primary ">75.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/thanh long.jpg " alt="thanh long " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Thanh long</span>
-                                                <span class="text-primary ">30.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/hoa quả tổng hợ.jpg " alt="Hoa qủa tôngr hợp " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Hoa quả tổng hợp</span>
-                                                <span class="text-primary ">100.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/dưa leo.jpg " alt="dưa leo " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Dưa leo</span>
-                                                <span class="text-primary ">25.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="d-flex align-items-center ">
-                                        <img class="flex-shrink-0 img-fluid rounded " src="../image/tráng miệng/dâu tây.jpg " alt="dâu tây " style="width: 80px; ">
-                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2 ">
-                                                <span>Dâu tây</span>
-                                                <span class="text-primary ">65.000đ</span>
-                                            </h5>
-                                            <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
-                                        </div>
-                                    </div>
-                                </div>
+                            <?php
+                               require('../config/connect.php');
+                               mysqli_set_charset($conn,'utf8');
+                               $sql = "SELECT * FROM sp_noibat WHERE sp_id LIKE '%TM%'";
+                               $result = $conn->query($sql);
+                               $path='../admin/image/';
+                               
+                               if ($result->num_rows > 0) {
+                                   while($row = $result->fetch_assoc()) {
+                                       echo '<div class="col-lg-6">
+                                                   <div class="d-flex align-items-center">';
+                                       $img_prd = $path . $row['sp_image'];
+                                       echo '<img class="flex-shrink-0 img-fluid rounded" src="' . $img_prd . '" alt="' . $row['sp_name'] . '" style="width: 80px;">
+                                               <div class="w-100 d-flex flex-column text-start ps-4">
+                                                   <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                       <span>' . $row['sp_name'] . '</span>
+                                                       <span class="text-primary ">' . $row['sp_price'] . '</span>
+                                                   </h5>
+                                                   <small class="fst-italic ">Sản phẩm bán chạy nhất của cửa hàng</small>
+                                               </div>
+                                           </div>
+                                       </div>';
+                                   }
+                               }
+                               $conn->close();
+                               ?>             
                             </div>
                         </div>
                     </div>

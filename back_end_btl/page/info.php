@@ -87,40 +87,38 @@ $(document).ready(function(){
         <section class="donmoi">
                 <h2>Chờ xác nhận</h2>
                 <ul class="accept_order">
-                    <li>
                     <?php
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
                         $user_curtainly=$_SESSION['username'];
-                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đơn mới'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đơn mới'";
                         $result_temp = $conn->query($sql_temp);
-                        if ($result_temp->num_rows > 0) {
+                        if ($result_temp->num_rows > 0) { 
                             while ($row = $result_temp->fetch_assoc()) {
                                 $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price
                                 FROM orders
-                                JOIN products ON orders.oder_prd = products.prd_name
+                                INNER JOIN products ON orders.oder_prd = products.prd_name
                                 WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
                                 ORDER BY orders.order_date DESC";      
                       $resultnew = $conn->query($sqlnew);
                       if ($resultnew->num_rows > 0) {
                           while($row_new = $resultnew->fetch_assoc()) {
-                              echo "<div class='don-ok'>";
+                              echo " <li>
+                              <div class='don-ok'>";
                               $path_img = '../admin/image';
                               $prd_img_new=$path_img .'/' . $row_new['prd_img'];
                               echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
                              echo'<div class="order_details">
-                             <div class="order_details">
                                  <h6 class="product">'.$row_new["oder_prd"].'</h6>';
                                  echo '<div class="details">
                                  <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
                                  echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
                                  echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
                                  echo' </div>
-                                 <p class="time">'.$row_new["order_date"].'</p>
+                                 <p class="time">'.$row_new["order_date"].'</p><button id="cancelOrderBtn" data-order-id="'.$row_new['order_id'].'" style="border: none;width: 3em;margin-left: 80%;color:red;background-color:#fff">Hủy</button>
                              </div>
-                         </div>
-                     </div>';
+                         </div>  </li>';
                           }
                       }             
                             }
@@ -130,7 +128,6 @@ $(document).ready(function(){
                         }   
                         $conn->close();      
                         ?>
-                </li>
             </ul>
             </section>
             <section class="donduyet">
@@ -141,7 +138,7 @@ $(document).ready(function(){
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
-                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đã duyệt'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã duyệt'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) {
                             while ($row = $result_temp->fetch_assoc()) {
@@ -165,7 +162,7 @@ $(document).ready(function(){
                                  echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
                                  echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
                                  echo' </div>
-                                 <p class="time">'.$row_new["order_date"].'</p><button style="border: none;width: 3em;margin-left: 80%;"><a href="#">Hủy</a></button>
+                                 <p class="time">'.$row_new["order_date"].'</p><button id="cancelOrderBtn" data-order-id="'.$row_new['order_id'].'" style="border: none;width: 3em;margin-left: 80%;">Hủy</button>
                              </div>
                          </div>
                      </div>';
@@ -190,7 +187,7 @@ $(document).ready(function(){
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
-                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Đang vận chuyển'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đang vận chuyển'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) {
                             while ($row = $result_temp->fetch_assoc()) {
@@ -238,7 +235,7 @@ $(document).ready(function(){
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
-                        $sql_temp = "SELECT * FROM orders WHERE `trạng thái` = 'Giao hàng thành công'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Giao hàng thành công'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) {
                             while ($row = $result_temp->fetch_assoc()) {
@@ -376,6 +373,25 @@ function myFunction() {
 }
 
     </script>
+    <script>
+var cancelOrderBtns = document.querySelectorAll("#cancelOrderBtn");
+
+cancelOrderBtns.forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var order_id = this.getAttribute("data-order-id");
+    var confirmed = confirm('Bạn có chắc chắn muốn hủy đơn hàng này?');
+    if (confirmed) {
+        window.location.href = 'remove_product.php?order_id=' + order_id;
+    }
+    else{
+        // Xử lý khác nếu người dùng không xác nhận hủy đơn hàng
+    }
+  });
+});
+
+</script>
+
 
 
 </body>
+

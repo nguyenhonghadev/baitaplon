@@ -214,21 +214,16 @@ session_start();
     <!-- Template Javascript -->
     <script src="../js/main.js "></script>
     <script>
-        document.querySelector('.search-bar-icon').addEventListener('click', function() {
-            document.querySelector('.search-area').style.display = 'block';
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.querySelector('.search-area').style.display = 'none';
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('banking').onclick = function() {
-        document.getElementById('bybanking').style.display = 'block';
-    }
-    document.getElementById('nhanhang').onclick = function() {
-        document.getElementById('bybanking').style.display = 'none';
-    }
+  $(document).ready(function() {
+    $('input[name="option"]').change(function() {
+        if ($(this).val() === "Đã thanh toán") {
+            $('#bybanking').show();
+        } else {
+            $('#bybanking').hide();
+        }
+    });
 });
+
     </script>
     <script src="../js/thanhtoan.js "></script>
     <script>

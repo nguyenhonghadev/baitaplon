@@ -33,7 +33,8 @@ session_start();
     <link rel="stylesheet" href="..//assets//css//main.css">
     <link rel="stylesheet" href="..//assets//css//responsive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <style>
+    </style>
 </head>
 
 <body>
@@ -47,7 +48,15 @@ session_start();
         });
         </script>";
         ?>
-    <!-- Navbar & Hero End -->
+<div class="notification-container" style="    display: none;
+    position:fixed;
+    top:30%;
+    right: 35%;
+    padding: 3em 4em;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;"></div>
 
     <div class="product-section mt-150 mb-150">
         <div class="container">
@@ -110,9 +119,10 @@ if ($ketqua->num_rows > 0) {
                     echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';
                     echo '<form method="POST" >';
                     echo '<input type="hidden" name="product_id" value="' . $row['prd_id'] . '">';
-                    echo '<button type="submit" name="add_to_cart" class="add-to-cart-btn" data-product-id="' . $row['prd_id'] . '" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
+                    echo '<button type="submit" data-product-id="' . $row['prd_id'] . '" name="add_to_cart" class="add-to-cart-btn" style="font-family: \'Poppins\', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border: none;border-radius: 2em;">';
                     echo '<i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng';
-                    echo '</button>';            
+                    echo '</button>';
+                             
                     echo '</form>';
                 }
                 else{
@@ -225,44 +235,28 @@ $conn->close();
     <script src="assets/js/main.js "></script>
     <script src="lib/waypoints/waypoints.min.js "></script>
     <script>
-        $(document).ready(function() {
-            $('.search-bar-icon').click(function() {
-                $('.search-area').toggleClass('search-active');
-            });
-
-            $('.close-btn').click(function() {
-                $('.search-area').removeClass('search-active');
-            });
-        });
-        $(document).ready(function() {
+$(document).ready(function() {
     $('.add-to-cart-btn').click(function(e) {
         e.preventDefault();
         var productID = $(this).data('product-id');
-        
         $.ajax({
             type: 'POST',
-            url: 'product.php', // Đường dẫn đến trang xử lý thêm vào giỏ hàng
+            url: 'product.php', 
             data: { product_id: productID },
             success: function(response) {
-                // Kiểm tra phản hồi từ server
-                if (response && response.success) {
-                    // Hiển thị thông báo khi thêm vào giỏ hàng thành công
-                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
-                } else {
-                    // Hiển thị thông báo khi thêm vào giỏ hàng gặp lỗi
-                    alert('Sản phẩm đã được thêm vào giỏ hàng!!!!!');
-                }
+                $('.notification-container').text('Sản phẩm đã được thêm vào giỏ hàng!!!!'); 
+                $('.notification-container').fadeIn().delay(2000).fadeOut(); 
             },
             error: function() {
-                // Hiển thị thông báo khi có lỗi trong quá trình gửi yêu cầu
-                alert('Đã có lỗi xảy ra khi gửi yêu cầu.');
+                var errorNotification = $('.error-notification');
+                errorNotification.text('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.');
+                errorNotification.fadeIn().delay(2000).fadeOut();
             }
         });
     });
 });
 
-
-</script>
+</script> 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "></script>

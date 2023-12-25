@@ -49,7 +49,7 @@ if (isset($_SESSION["username"]) ) {
         $username = $_SESSION["username"];
     
     // Thay đổi phần in link dựa trên user đã đăng nhập hay chưa
-    echo "<a href='info.php' class='nav-item nav-link'><i class='fa-regular fa-user'></i></a>";
+    echo "<a href='info.php' id='user' class='nav-item nav-link'><i class='fa-regular fa-user'></i></a>";
 }
 } else {
     echo "<a href='../user/login.php' id='user' class='nav-item nav-link' aria-label='Đăng nhập'><i class='fa-regular fa-user'></i></a>";
