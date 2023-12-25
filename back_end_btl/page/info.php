@@ -162,7 +162,7 @@ $(document).ready(function(){
                                  echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
                                  echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
                                  echo' </div>
-                                 <p class="time">'.$row_new["order_date"].'</p><button id="cancelOrderBtn" data-order-id="'.$row_new['order_id'].'" style="border: none;width: 3em;margin-left: 80%;">Hủy</button>
+                                 <p class="time">'.$row_new["order_date"].'</p><button id="cancelOrderBtn" data-order-id="'.$row_new['order_id'].'" style="border: none;width: 3em;margin-left: 80%;color:red;background-color:#fff"">Hủy</button>
                              </div>
                          </div>
                      </div>';
@@ -384,7 +384,6 @@ cancelOrderBtns.forEach(function(btn) {
         window.location.href = 'remove_product.php?order_id=' + order_id;
     }
     else{
-        // Xử lý khác nếu người dùng không xác nhận hủy đơn hàng
     }
   });
 });

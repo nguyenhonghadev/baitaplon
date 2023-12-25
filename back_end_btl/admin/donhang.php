@@ -11,11 +11,12 @@
                     <th style="width: 10%;background-color: yellow;">Thanh toán </th>
                     <th style="width: 15%;background-color: yellow;">Lời nhắn</th>
                     <th style="width: 20%;background-color: yellow;">Trạng thái </th>
+                    <th style="width: 20%;background-color: yellow;">Hành động</th>
                 </tr>
                 <?php
                 require('../config/connect.php');
                 mysqli_set_charset($conn, 'utf8');
-                $sql = "SELECT * FROM orders ORDER BY order_date DESC"; // Corrected the ORDER BY clause
+                $sql = "SELECT * FROM orders ORDER BY order_date DESC"; 
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0) {
                    while ($row = $result->fetch_assoc()) {
@@ -39,7 +40,9 @@
                             </select>
                             <input type='submit' style='color:red;border:none;background-color:#fff' value='Lưu'>     
                     </form>
-                    </td>";
+                    </td>
+                    <td style='text-align: center;'><a href='mode.php?delete_order=".$row['order_id']."'><i style='color:red;font-size:1.7em' class='fa fa-trash-o'></i></a></td>";
+
                    }
                      }
                 ?>

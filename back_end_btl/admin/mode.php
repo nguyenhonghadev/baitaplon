@@ -260,7 +260,6 @@ if (isset($_GET['deleteuser']) && !empty($_GET['deleteuser'])) {
     $sql = "DELETE FROM users WHERE username=?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $prd_id); 
-
     if (mysqli_stmt_execute($stmt)) {
         if (mysqli_affected_rows($conn) > 0) {
             echo "<script>alert('Xóa thành công')</script>";
@@ -379,7 +378,6 @@ if (isset($_GET['contact'])|| (!empty($_GET['contact'])) ){
     require('../config/connect.php');
 
     if ($conn) {
-        // Prepare the DELETE statement
         $sql = "DELETE FROM contacts WHERE ct_id=?";
         $stmt = mysqli_prepare($conn, $sql);
         
@@ -425,6 +423,24 @@ if (isset($_GET['order']) && !empty($_GET['order'])) {
         echo "<script>alert('Lỗi!!!!')</script>";
         echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
     }
+    $conn->close();
 }
 ?>
 
+<?php
+require('../config/connect.php');
+mysqli_set_charset($conn, 'UTF-8');
+if(isset($_GET['delete_order'])){
+ $order_id = $_GET['delete_order'];
+    $sql = "DELETE FROM orders WHERE order_id = '$order_id'";
+    $result = $conn->query($sql);
+    if($result===TRUE){
+        echo "<script>alert('Bạn đã xóa đơn hàng thành công')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    }
+    else{
+        echo "<script>alert('lỗi!!!!!!')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    }
+}
+?>

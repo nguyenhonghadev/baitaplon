@@ -15,7 +15,6 @@ function addProductToCart($product) {
     }
 
     if (!$found && $product['name'] !== 'Dưa leo') {
-        // Thêm sản phẩm vào giỏ hàng với max_quantity
         $_SESSION['user_cart'][$_SESSION['username']][] = array(
             'name' => $product['name'],
             'price' => $product['price'],
