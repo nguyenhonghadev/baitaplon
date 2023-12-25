@@ -34,8 +34,41 @@ session_start();
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
-
 <body>
+        <div id="update-address" style="background-color: aliceblue;max-width: 40em;position: fixed;z-index: 1000;top:20%;left:40%; display: none;">
+            <div class="billing-address-form">
+                <form action="thanhtoan.php" method="post">
+                    <button id="close-btn" style="background-color:aliceblue;border: none;margin-left: 99%;margin-top: -2em;" onclick="hideUpdateForm()">X</button>
+                    <h2 style="font-family: Arial;font-weight: 100;">Cập nhật địa chỉ</h2>
+                    <p><input name="nameoder" type="text" placeholder="Họ và Tên" id="name" required></p>
+                    <p><input name="addressoder" type="text" placeholder="Địa Chỉ" minlength="15" id="address" required></p>
+                    <p><input name="phoneoder" type="tel" placeholder="Số điện Thọai" id="phone" required></p>
+                    <input type="submit" style="font-family: 'Poppins', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border-radius: 2em;" value="Xác Nhận">
+                </form>
+            </div>
+        </div>
+        <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['addressoder'], $_POST['phoneoder'], $_SESSION['username'])) {
+    require('../config/connect.php');
+    mysqli_set_charset($conn, 'utf8');
+    
+    $nameoder = $_POST['nameoder'];
+    $addressoder = $_POST['addressoder'];
+    $phoneoder = $_POST['phoneoder'];
+    $user4 = $_SESSION['username'];
+
+    $address = $nameoder . ', ' . $phoneoder . ', ' . $addressoder;
+    $sql = "UPDATE users SET address='$address' WHERE username='$user4'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "<script>alert('Địa chỉ đã cập nhật thành công.')</script>";
+    } else {
+     
+    }
+    $conn->close();
+} 
+?>
+
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <?php
@@ -81,9 +114,8 @@ session_start();
                                                     echo "Tên người dùng không tồn tại.";
                                                 }
                                                 ?>
-                                                <button style="border: none;"><a href="../user/updateaddr.php">Sửa</a></button>
                                             </div>
-
+                                            <button type="button" onclick="showUpdateForm()" style="border: none;background-color: #fff;color: red;">Sửa</button>
                                         </div>
                                     </div>
                                 </div>
@@ -254,10 +286,15 @@ function myFunction() {
 }
 
 }
-
     </script>
-
-
+  <script>
+    function showUpdateForm() {
+        document.getElementById('update-address').style.display = "block";
+    }
+    function hideUpdateForm() {
+        document.getElementById('update-address').style.display = "none";
+    }
+</script>
 </body>
   
 </html>
