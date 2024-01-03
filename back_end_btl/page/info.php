@@ -92,7 +92,7 @@ $(document).ready(function(){
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
                         $user_curtainly=$_SESSION['username'];
-                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đơn mới'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đơn mới' AND status != 'Hủy Đơn'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) { 
                             while ($row = $result_temp->fetch_assoc()) {
@@ -138,7 +138,7 @@ $(document).ready(function(){
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
-                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã duyệt'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã duyệt' AND status != 'Hủy Đơn'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) {
                             while ($row = $result_temp->fetch_assoc()) {

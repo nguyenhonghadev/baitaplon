@@ -33,8 +33,11 @@ if (isset($_GET['order_id'])) {
             $sql="UPDATE products SET prd_quantity = '$quantity_update' WHERE prd_name = '$prd_name'";
            $result=$conn->query($sql);
         }
-        $sql="DELETE FROM orders WHERE order_id = '$order_id'";
-       $result1=$conn->query($sql);
+   // Cập nhật trạng thái đơn hàng thành 'Canceled'
+   $cancel_order_sql = "UPDATE orders SET status = 'Hủy Đơn' WHERE order_id = '$order_id'";
+   $cancel_order_result = $conn->query($cancel_order_sql);
+
+$result1=$conn->query($sql);
        if ($result1===TRUE){
         $conn->close();
                 echo "<script>alert('Bạn đã hủy đơn thành công');window.location.href='info.php';</script>";
