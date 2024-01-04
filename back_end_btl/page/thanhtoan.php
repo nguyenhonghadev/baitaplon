@@ -194,6 +194,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['a
                                                 ?>
                             </tbody>
                         </table>
+                        <?php
+                        if ($total_amount >= 2000000) {
+                            echo '<p>Bạn cần thanh toán trước tiền cọc là : ' . number_format($total_amount * 0.3, 2, ".", ",") . ' đ</p>';                            }
+                        ?>
                         <button type="submit" name="pay_now" style=" border: none;font-family: 'Poppins', sans-serif; display: inline-block; background-color: #F28123; color: #fff; padding: 10px 20px; border-radius: 2em;">Thanh Toán</button>
             </div>
         </form>
