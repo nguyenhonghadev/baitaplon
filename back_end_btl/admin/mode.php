@@ -444,3 +444,22 @@ if(isset($_GET['delete_order'])){
     }
 }
 ?>
+<?php
+if(isset($_GET['huydon']))
+{
+    $order_id=$_GET['huydon'];
+    require('../config/connect.php');
+    mysqli_set_charset($conn,'utf8');
+    $sql = "UPDATE orders SET trang_thai='Đã Hủy' WHERE order_id = '$order_id'";
+    $result = $conn->query($sql);
+    if($result===TRUE){
+        echo "<script>alert('Bạn đã hủy đơn hàng thành công')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    }
+    else{
+        echo "<script>alert('lỗi!!!!!!')</script>";
+        echo "<script>window.location.href='admin.php?quanly=donhang'</script>";
+    }
+    $conn->close();
+}
+?>

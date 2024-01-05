@@ -39,10 +39,11 @@ if (isset($_GET['order_id'])) {
 
 $result1=$conn->query($sql);
        if ($result1===TRUE){
-        $conn->close();
+      
                 echo "<script>alert('Bạn đã hủy đơn thành công');window.location.href='info.php';</script>";
        }
-    }
+    }  
+    $conn->close();
 }
 ?>
 
