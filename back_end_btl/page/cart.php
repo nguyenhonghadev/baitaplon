@@ -86,8 +86,7 @@ if(!isset($_SESSION['username'])){
                                         echo '<td class="product-price">' . $prd['price'] . '</td>';
                                         echo '<td class="product-quantity">
                                         <input type="number" placeholder="0" value="' . $prd["quantity"] . '" data-key="' . $key . '" data-product="' . $prd["name"] . '" max="' . $row['prd_quantity'] . '" min="0" class="quantity-input">
-                                        </td>';
-                                
+                                        </td>';                                            
                                         $total_price =(float) $prd['quantity'] * (float)$prd['price'];
                                         $formatted_total_price = number_format($total_price, 2, '.', ',');
                                         echo '<td class="product-total">' . $formatted_total_price . '</td>';
@@ -242,15 +241,28 @@ if(isset($_POST['key']) && isset($_POST['quantity']) && isset($_POST['product'])
     </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var inputs = document.getElementsByClassName("quantity-input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("change", function() {
+            var max = this.getAttribute("max"); 
+            var currentValue = this.value;
+            if (parseInt(currentValue) > parseInt(max)) {
+                this.value = max; 
+            }
+        });
+    }
+});
+</script>
+<script>
 $(document).ready(function(){
-    $('.quantity-input').on('change', function(){
+    $('.quantity-input').on('change', function(event){
+        event.preventDefault();
         var key = $(this).data('key');
         var quantity = $(this).val();
         var product = $(this).data('product');
-        
-        // Gửi thông tin cập nhật số lượng lên máy chủ
         $.ajax({
-            url: 'cart.php', // Đường dẫn đến file xử lý cập nhật số lượng
+            url: 'cart.php',
             method: 'POST',
             data: {
                 key: key,
@@ -258,11 +270,11 @@ $(document).ready(function(){
                 product: product
             },
             success: function(response){
-                // Xử lý kết quả trả về từ máy chủ nếu cần
             }
         });
     });
 });
+
 </script>
 <script>
 function myFunction() {

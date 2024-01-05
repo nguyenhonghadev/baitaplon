@@ -82,6 +82,7 @@ $(document).ready(function(){
             <div onclick="showSection('donduyet')">Chờ lấy hàng</div>
             <div onclick="showSection('don-ship')">Chờ giao hàng</div>
             <div onclick="showSection('don-thanh-cong')">Đơn hoàn thành</div>
+            <div onclick="showSection('don-huy')">Đơn đã hủy</div>
         </div>
         <div class="order">
         <section class="donmoi">
@@ -92,7 +93,7 @@ $(document).ready(function(){
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
                         $user_curtainly=$_SESSION['username'];
-                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đơn mới' AND status != 'Hủy Đơn'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đơn mới'";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) { 
                             while ($row = $result_temp->fetch_assoc()) {
@@ -138,7 +139,7 @@ $(document).ready(function(){
                         $userorder = $_SESSION['username'];
                         require('../config/connect.php');
                         mysqli_set_charset($conn, 'utf8');
-                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã duyệt' AND status != 'Hủy Đơn'";
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã duyệt' ";
                         $result_temp = $conn->query($sql_temp);
                         if ($result_temp->num_rows > 0) {
                             while ($row = $result_temp->fetch_assoc()) {
@@ -261,6 +262,53 @@ $(document).ready(function(){
                                  echo' </div>
                                  <p class="time">'.$row_new["order_date"].'</p>
                              </div>
+                         </div>
+                     </div>';
+                          }
+                      }             
+                            }
+                        } 
+                        else{
+                            echo"<h3>Không có đơn hàng nào!!!<a href='product.php'>Mua ngay</a></h3>";
+                        }   
+                        $conn->close();      
+                        ?></li>
+                </ul>
+            </section>
+            <section class="don-huy">
+                <h2>Đơn đã hủy</h2>
+                <ul class="huy-orders">
+                <div class="form_order" ></div>
+                    <li><?php
+                        $userorder = $_SESSION['username'];
+                        require('../config/connect.php');
+                        mysqli_set_charset($conn, 'utf8');
+                        $sql_temp = "SELECT * FROM orders WHERE trang_thai = 'Đã Hủy'";
+                        $result_temp = $conn->query($sql_temp);
+                        if ($result_temp->num_rows > 0) {
+                            while ($row = $result_temp->fetch_assoc()) {
+                                $sqlnew = "SELECT orders.order_id, orders.oder_prd, orders.order_date, orders.oder_quantity, orders.order_total, products.prd_img, products.prd_price,products.prd_id
+                                FROM orders
+                                JOIN products ON orders.oder_prd = products.prd_name
+                                WHERE orders.oder_prd = '" . $row['oder_prd'] . "' AND orders.oder_username = '" . $user_curtainly . "'
+                                ORDER BY orders.order_date DESC";      
+                      $resultnew = $conn->query($sqlnew);
+                      if ($resultnew->num_rows > 0) {
+                          while($row_new = $resultnew->fetch_assoc()) {
+                              echo "<div class='don-ok'>";
+                              $path_img = '../admin/image';
+                              $prd_img_new=$path_img .'/' . $row_new['prd_img'];
+                              echo "<img src='" . $prd_img_new. "' alt='ảnh'>";
+                             echo'<div class="order_details">
+                             <div class="order_details">
+                                 <h6 class="product">'.$row_new["oder_prd"].'</h6>';
+                                 echo '<div class="details">
+                                 <p class="price">Giá: ' . $row_new["prd_price"] . '</p>';                             
+                                 echo'<p class="quantity">'.$row_new["oder_quantity"].'</p>';
+                                 echo'<p class="total">Thành tiền:'.$row_new["order_total"].'đ</p>';
+                                 echo' </div>
+                                 <p class="time">'.$row_new["order_date"].' <a href="product_detail.php?prd_id='.$row_new['prd_id'].'"><button style="background:#fff;color:green;border:none">Mua lại</button></a></p>
+                                 </div>
                          </div>
                      </div>';
                           }
