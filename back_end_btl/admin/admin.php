@@ -28,6 +28,96 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     <!-- Chart JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <link rel="stylesheet"href="..//css//admin.css">
+    <style>
+        
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            z-index: 1000000;
+            margin-left: 3em;
+            display: none;
+            margin-top: -12em;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="file"] {
+            display: none;
+            /* Ẩn trường chọn file mặc định */
+        }
+        
+        .image-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .image-upload {
+            position: relative;
+            width: calc(33.33% - 10px);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .image-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+        
+        .image-label {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+        }
+        
+        .image-label i {
+            margin-right: 8px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            background-color: #F28123;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: red;
+        }
+   
+    </style>
 
 </head>
 
@@ -94,6 +184,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     <li class="nav-item"><a href="admin.php?quanly=donhang" class="nav-link" id='tp3'><i class="fa fa-file-text-o"></i> Đơn Hàng</a></li>
     <li class="nav-item"><a href="admin.php?quanly=user" class="nav-link" id='tp4'><i class="fa fa-address-book-o"></i> Khách Hàng</a></li>
     <li class="nav-item"><a href="admin.php?quanly=spnb" class="nav-link" id='tp5'><i class="fa fa-star"></i> Sản Phẩm Nổi Bật</a></li>
+    <li class="nav-item"><a href="admin.php?quanly=baiviet" class="nav-link" id='tp6'><i class="fa fa-book"></i>Bài viết</a></li>
     <li class="nav-item"><hr></li>
     <li class="nav-item">
         <a href="logout.php" class="nav-link">
@@ -140,6 +231,14 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                 });
                 </script>";
                 include('donhang.php');
+            }
+            else if($temp==="baiviet") {
+                echo"<script>
+                $(document).ready(function(){
+                    $('#tp6').addClass('active');
+                });
+                </script>";
+                include('about.php');
             }
                
             else{
@@ -228,6 +327,28 @@ document.getElementById('notificationButton').addEventListener('click', function
 });
 
 </script>
+<script>
+    function toggleContainer() {
+        var containers = document.getElementsByClassName('container');
+        for (var i = 0; i < containers.length; i++) {
+            var container = containers[i];
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+    }
+</script>
+<script>
+    function hideContainer() {
+        var containers = document.getElementsByClassName('container');
+        for (var i = 0; i < containers.length; i++) {
+            containers[i].style.display = 'none';
+        }
+    }
+</script>
+
 
 
 </html>

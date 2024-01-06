@@ -7,6 +7,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Thanh toán</title>
     <style>
         body {
@@ -73,6 +75,51 @@ session_start();
         button:hover {
             background-color: #0056b3;
         }
+       /* CSS cho phần tải ảnh minh chứng */
+       .image-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7em;
+    width: 10em;
+}
+
+.image-upload {
+    position: relative;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+}
+
+.image-label {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; 
+    padding-left: 3.5em;
+}
+
+.image-label i {
+    margin-bottom: 5px;
+}
+
+.image-upload input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>
@@ -92,8 +139,14 @@ session_start();
                 }
                 ?>
                <img src="../image/mã qr.jpg" alt="mã qr">
-                <label for="minh-chung">Vui lòng gửi minh chứng của bạn:</label>
-                <input type="file" id="minh-chung" name="minh-chung" onchange="checkFileUpload()">
+               <div class="image-inputs">
+                <div class="image-upload">
+                <label for="minh-chung" class="image-label">
+                    <i class="fas fa-cloud-upload-alt"></i> Tải ảnh minh chứng
+                    <input type="file" id="minh-chung" name="minh-chung" onchange="checkFileUpload()" style="display: none;">
+                </label>
+               </div>
+             </div>
                 <label for="loinhan">Lời Nhắn</label>
                 <input class="loinhan" name="loinhan" type="text">
                 <input type="hidden" value="<?php echo $total_30; ?>" name="nhanhangthanhtoan">
