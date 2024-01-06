@@ -34,23 +34,28 @@ if (isset($_GET['order_id'])) {
             $quantity_old = $row1['prd_quantity'];
             $quantity_update = (int)$quantity_old + (int)$quantity;
 
-            $sql = "UPDATE products SET prd_quantity = '$quantity_update' WHERE prd_name = '$prd_name'";
-            $result2 = $conn->query($sql);
-
-            $cancel_order_sql = "UPDATE orders SET trang_thai = 'Đã Hủy' WHERE order_id = '$order_id'";
-            $cancel_order_result = $conn->query($cancel_order_sql);
-
-            if ($result2 === TRUE && $cancel_order_result === TRUE) {
-                echo "<script>alert('Bạn đã hủy đơn thành công');window.location.href='info.php';</script>";
+            $update_product_sql = "UPDATE products SET prd_quantity = '$quantity_update' WHERE prd_name = '$prd_name'";
+            if ($conn->query($update_product_sql) === TRUE) {
+                $cancel_order_sql = "UPDATE orders SET trang_thai = 'Đã Hủy' WHERE order_id = '$order_id'";
+                if ($conn->query($cancel_order_sql) === TRUE) {
+                    echo "<script>alert('Bạn đã hủy đơn hàng thành công');window.location.href='info.php';</script>";
+                } else {
+                    echo "<script>alert('Đã xảy ra lỗi khi hủy đơn hàng');</script>";
+                }
             } else {
-                echo "<script>alert('Đã xảy ra lỗi khi hủy đơn hàng');</script>";
+                echo "<script>alert('Đã xảy ra lỗi khi cập nhật số lượng sản phẩm');</script>";
             }
+        } else {
+            echo "<script>alert('Không tìm thấy sản phẩm trong kho');</script>";
         }
+    } else {
+        echo "<script>alert('Không tìm thấy đơn hàng');</script>";
     }
 
     $conn->close();
 }
 ?>
+
 
 
 

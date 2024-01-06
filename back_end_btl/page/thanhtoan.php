@@ -321,41 +321,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status = $_POST['loinhan'];
         $address_oder = $_SESSION['address'];
 
-        if ($address_oder === '') {
+        if ($address_oder == '') {
             echo "<script>alert('Vui lòng cập nhật địa chỉ giao hàng');</script>";
             exit();
         }
 
-        foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
-            $nameprd = $prd['name'];
-            $quantityprd = $prd['quantity'];
-            $priceprd = $prd['price'];
-
-            $total_price = (float)$quantityprd * (float)$priceprd;
-
-            $sql = "SELECT * FROM products WHERE prd_name ='$nameprd'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $soluong = $row['prd_quantity'];
-                $newquantity = (int)$soluong - (int)$quantityprd;
-
-                if ($newquantity < 0) {
-                    echo "<script>alert('Sản phẩm $nameprd không đủ số lượng');</script>";
-                    exit();
-                }
-
-                $sql1 = "UPDATE products SET prd_quantity ='$newquantity' WHERE prd_name ='$nameprd'";
-                $conn->query($sql1);
-            }
-
-            $idoder = generateRandomString();
+        
             if ($type_pay === 'Thanh toán khi nhận hàng') {
                 if ($total_price > 2000000) {
                     echo "<script>alert('Bạn cần đặt cọc trước 30% giá trị đơn hàng');</script>";
                     echo "<script>window.location.href = 'Thanhtoan1.php?total-30=" . urlencode($total_pay) . "';</script>";
                 } else {
+                    foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+                        $nameprd = $prd['name'];
+                        $quantityprd = $prd['quantity'];
+                        $priceprd = $prd['price'];
+            
+                        $total_price = (float)$quantityprd * (float)$priceprd;
+            
+                        $sql = "SELECT * FROM products WHERE prd_name ='$nameprd'";
+                        $result = $conn->query($sql);
+            
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                            $soluong = $row['prd_quantity'];
+                            $newquantity = (int)$soluong - (int)$quantityprd;
+            
+                            if ($newquantity < 0) {
+                                echo "<script>alert('Sản phẩm $nameprd không đủ số lượng');</script>";
+                                exit();
+                            }
+            
+                            $sql1 = "UPDATE products SET prd_quantity ='$newquantity' WHERE prd_name ='$nameprd'";
+                            $conn->query($sql1);
+                        }
+            
+                        $idoder = generateRandomString();
                     $ghi_chu = 'Thanh toán 100% khi nhận hàng';
                     $sql_pay = "INSERT INTO orders (order_id, oder_username, oder_prd, oder_quantity, type_pay, order_status, order_total, order_address, ghi_chu) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd', '$type_pay' ,'$status','$total_price', '$address_oder', '$ghi_chu')";
                     $conn->query($sql_pay);
@@ -364,13 +365,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<script>alert('Thanh toán thành công');</script>";
                     echo "<script>window.location.href = 'info.php';</script>";
                 }
+            }
             } else {
                 echo "<script>window.location.href = 'Thanhtoan1.php?total-100=".urlencode($total_pay)."';</script>";
             }
         }
         $conn->close();
-    } else {
-        echo "<script>alert('Vui lòng chọn phương thức thanh toán');</script>";
-    }
-}
+    } 
 ?>
