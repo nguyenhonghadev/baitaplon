@@ -34,30 +34,6 @@
             }
         }
         ?>
-        <?php
-        require('../config/connect.php');
-        mysqli_set_charset($conn, 'utf8');
-        $sql = "SELECT * FROM abouts ORDER BY about_id DESC"; 
-        $result = $conn->query($sql);
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                    <td style='text-align: center;'>".$row['about_id']."</td>
-                    <td style='text-align: center;'>".$row['about_title']."</td> 
-                    <td style='text-align: center;'>".$row['about_detail']."</td> 
-                    <td style='text-align: center;'>".$row['about_img1']."</td>
-                    <td style='text-align: center;'>".$row['about_img2']."</td>
-                    <td style='text-align: center;'>".$row['about_img3']."</td>
-                    <td style='text-align: center;'>".$row['trang_thai']."</td>
-                    <td style='text-align: center;'>
-                        <a href='mode.php?delete_about=".$row['about_id']."'>
-                            <i style='color:red;font-size:1.2em;text-align:center' class='fa fa-trash-o'></i>
-                        </a>            
-                    </td>
-                </tr>";
-            }
-        }
-        ?>
     </table>
 
     <div class="table-content"></div>

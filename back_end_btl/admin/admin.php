@@ -42,7 +42,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
             z-index: 1000000;
             margin-left: 3em;
             display: none;
-            margin-top: -12em;
+            /* margin-top: -12em; */
         }
         
         label {
