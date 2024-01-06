@@ -348,7 +348,22 @@ document.getElementById('notificationButton').addEventListener('click', function
         }
     }
 </script>
+<script>
+    function displayMessage(inputId, inputElement) {
+        const messageElement = document.getElementById(inputId + '-message');
+        const file = inputElement.files[0];
 
-
-
+        if (file) {
+            const fileSize = file.size / 1024;
+            if (fileSize > 1024) {
+                messageElement.innerText = 'Kích thước file vượt quá giới hạn cho phép.';
+                messageElement.style.display = 'block';
+                inputElement.value = '';
+            } else {
+                messageElement.innerText = 'File đã chọn: ' + file.name;
+                messageElement.style.display = 'block';
+            }
+        }
+    }
+</script>
 </html>

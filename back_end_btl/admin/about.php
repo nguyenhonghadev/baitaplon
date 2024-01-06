@@ -13,7 +13,7 @@
                 <?php
                 require('../config/connect.php');
                 mysqli_set_charset($conn, 'utf8');
-                $sql = "SELECT * FROM abouts  BY about_date DESC"; 
+                $sql = "SELECT * FROM abouts  BY about_time DESC"; 
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0) {
                    while ($row = $result->fetch_assoc()) {
@@ -54,22 +54,24 @@
 
     <div class="container">
     <p style="margin-left: 99%; cursor: pointer;" onclick="hideContainer()">X</p>
-        <form action="about.php" method="post">
-            <div class="image-inputs">
-                <div class="image-upload">
-                    <label for="image1" class="image-label"><i class="fas fa-cloud-upload-alt""></i>Hình ảnh 1</label>
-                    <input type="file" id="image1" name="image1">
-                </div>
-                <div class="image-upload">
-                    <label for="image2" class="image-label"><i class="fas fa-cloud-upload-alt""></i>Hình ảnh 2</label>
-                    <input type="file" id="image2" name="image2">
-                </div>
-                <div class="image-upload">
-                    <label for="image3" class="image-label"><i class="fas fa-cloud-upload-alt""></i>Hình ảnh 3</label>
-                    <input type="file" id="image3" name="image3">
-                </div>
-            </div>
-
+    <form action="admin.php?quanly=baiviet" method="post" enctype="multipart/form-data">
+    <div class="image-inputs">
+        <div class="image-upload">
+            <label for="image1" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 1</label>
+            <input type="file" id="image1" name="image1" onchange="displayMessage('image1', this)">
+            <div id="image1-message" class="upload-message"></div>
+        </div>
+        <div class="image-upload">
+            <label for="image2" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 2</label>
+            <input type="file" id="image2" name="image2" onchange="displayMessage('image2', this)">
+            <div id="image2-message" class="upload-message"></div>
+        </div>
+        <div class="image-upload">
+            <label for="image3" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 3</label>
+            <input type="file" id="image3" name="image3" onchange="displayMessage('image3', this)">
+            <div id="image3-message" class="upload-message"></div>
+        </div>
+    </div>
             <label for="title">Tiêu đề bài viết:</label>
             <input type="text" id="title" name="title">
 
@@ -87,53 +89,45 @@ if (
     isset($_FILES['image2']) &&
     isset($_FILES['image3'])
 ) {
-    require('../config/connect.php'); 
+    require('../config/connect.php');
     require('../page/function.php');
 
     $title = $_POST['title'];
     $content = $_POST['content'];
-    $target_dir = 'image/';
-
-    $imageNames = []; // Mảng để lưu tên các tệp ảnh
-
-    // Loop through the images
+    $target_dir = '../image/';
+    $trang_thai='Hiển Thị';
+    $imageNames = [];
     for ($i = 1; $i <= 3; $i++) {
         $fileKey = 'image' . $i;
         $target_file = $target_dir . basename($_FILES[$fileKey]["name"]);
         $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if the file is an image
         $check = getimagesize($_FILES[$fileKey]["tmp_name"]);
         if ($check !== false) {
-            // Move the uploaded file to the target directory
             if (move_uploaded_file($_FILES[$fileKey]["tmp_name"], $target_file)) {
-                // Lưu tên tệp ảnh vào mảng $imageNames
                 $imageNames[] = basename($_FILES[$fileKey]["name"]);
             } else {
-                // Handle the failure to move the file
-                echo "Sorry, there was an error uploading your file.";
+                echo "Xin lỗi đã xảy ra lỗi, Vui lòng thử lại.";
+                exit; 
             }
         } else {
-            // Handle if the uploaded file is not an image
-            echo "File is not an image.";
+            echo "File không phải ảnh.";
+            exit; 
         }
     }
 
-    // Lưu tên các tệp ảnh vào cơ sở dữ liệu
     if (!empty($imageNames)) {
-        // Chuyển mảng thành một chuỗi để lưu vào cơ sở dữ liệu
-        $imageNamesStr = implode(",", $imageNames);
-
-        // Thực hiện truy vấn SQL để lưu tên tệp ảnh vào cơ sở dữ liệu
-        // Ví dụ sử dụng PDO và prepared statement
-        $stmt = $pdo->prepare("INSERT INTO image_table (title, content, image_names) VALUES (?, ?, ?)");
-        $stmt->execute([$title, $content, $imageNamesStr]);
-        // Thay đổi 'image_table' thành tên bảng thực tế của bạn và điều chỉnh tên cột nếu cần
-
-        echo "Images uploaded and file names saved to the database.";
+        $about_id = generateRandomString(); 
+        $sql = "INSERT INTO abouts (`about_id`, `about_img1`, `about_img2`, `about_img3`, `about_title`, `about_detail`, `trang_thai`) 
+        VALUES ('$about_id', '$imageNames[0]', '$imageNames[1]', '$imageNames[2]', '$title', '$content', '$trang_thai')";
+        $result = $conn->query($sql);
+        if ($result === TRUE) {
+            echo "<script>alert('Đã đăng bài thành công!!')</script>";
+            echo "<script>window.location.href='admin.php?quanly=baiviet'</script>";
+        } else {
+            echo "<script>alert('Lỗi!!')</script>";
+            echo "<script>window.location.href='admin.php?quanly=baiviet'</script>";
+        }
     }
 }
 ?>
-
-
-
