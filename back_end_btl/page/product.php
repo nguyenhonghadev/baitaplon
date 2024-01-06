@@ -113,7 +113,7 @@ if ($ketqua->num_rows > 0) {
     
             echo '<h3>' . $row["prd_name"] . '</h3>';
             echo '<div style="text-align: center; margin-bottom: 10px;">';
-            echo '<div class="product-price name-product" style="display: inline-block; margin-right: 10px; font-family: \'Poppins\', sans-serif;font-size: 30px;font-weight: 700;">' . $row["prd_price"] . 'đ</div>';
+            echo '<div class="product-price name-product" style="display: inline-block; margin-right: 10px; font-family: \'Poppins\', sans-serif;font-size: 30px;font-weight: 700;">' . number_format($row["prd_price"], 0, ',', '.') . 'đ</div>';
             echo '</div>';
                 if($row["prd_quantity"]>0){
                     echo '<p>Còn lại: ' . $row["prd_quantity"] . '</p>';

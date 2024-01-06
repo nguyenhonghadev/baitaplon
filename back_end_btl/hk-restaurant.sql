@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 06, 2024 lúc 01:52 AM
+-- Thời gian đã tạo: Th1 06, 2024 lúc 01:58 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `hk-restaurant`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `abouts`
+--
+
+CREATE TABLE `abouts` (
+  `about_id` varchar(10) NOT NULL,
+  `about_img1` varchar(200) NOT NULL,
+  `about_img2` varchar(200) NOT NULL,
+  `about_img3` varchar(200) NOT NULL,
+  `about_title` varchar(100) NOT NULL,
+  `about_detail` text NOT NULL,
+  `about_time` date NOT NULL DEFAULT current_timestamp(),
+  `trang_thai` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,9 +106,16 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `oder_username`, `oder_prd`, `oder_quantity`, `type_pay`, `order_date`, `order_status`, `order_total`, `order_address`, `Image_bank`, `ghi_chu`, `trang_thai`) VALUES
+('B5klN', 'manhkien', 'Cá chép om dưa', 1, 'Thanh toán khi nhận hàng', '2024-01-06 01:13:00', '', '400000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
+('I59Zn', 'manhkien', 'Bò Bít Tết', 1, 'Thanh toán khi nhận hàng', '2024-01-06 01:13:00', '', '300000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
+('IVZRY', 'manhkien', 'Cá chép om dưa', 1, 'Thanh toán khi nhận hàng', '2024-01-06 01:12:40', '', '400000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
 ('JxGrx', 'Kiênpr0123', 'Thanh long trắng', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Giao hàng thành công'),
 ('kcfUe', 'Kiênpr0123', 'Cam siêu ngọt', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '150,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Đơn mới'),
+('KL5kK', 'manhkien', 'Cá chép om dưa', 8, 'Đã thanh toán', '2024-01-06 03:09:07', '', '3200000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'lợn quay.jpg', 'Đã thanh toán 100%', 'Đơn mới'),
 ('LrHiN', 'Kiênpr0123', 'Cá chép om dưa', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '400,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Giao hàng thành công'),
+('sp7ru', 'manhkien', 'Cá chép om dưa', 90, 'Thanh toán khi nhận hàng', '2024-01-06 01:14:48', '', '36000000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
+('uIYCg', 'manhkien', 'Cá chép om dưa', 10, 'Thanh toán khi nhận hàng', '2024-01-06 01:13:56', '', '4000000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
+('Va6Jq', 'manhkien', 'Cá chép om dưa', 15, 'Thanh toán khi nhận hàng', '2024-01-06 01:13:29', '', '6000000', 'hà manh kiên, 0865544662, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', 'Thanh toán 100% khi nhận hàng', 'Đã Hủy'),
 ('vQTIF', 'Kiênpr0123', 'Dâu Tây', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Đơn mới');
 
 -- --------------------------------------------------------
@@ -115,7 +139,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prd_id`, `prd_name`, `prd_detail`, `prd_price`, `prd_quantity`, `prd_img`, `prd_category`) VALUES
-('DA01', 'Cá chép om dưa', 'Cá chép om dưa', 400000.00, 2, 'cá chép om dưa.webp', 'Đồ ăn'),
+('DA01', 'Cá chép om dưa', 'Cá chép om dưa', 400000.00, 82, 'cá chép om dưa.webp', 'Đồ ăn'),
 ('DA02', 'Bò Bít Tết', 'Bò Bít Tết', 300000.00, 54, 'bò bit tết.jpg', 'Đồ ăn'),
 ('DA03', 'Bò hầm rau củ', 'Bò hầm rau củ', 200000.00, 35, 'bò hầm rau củ.jpg', 'Đồ ăn'),
 ('DA04', 'Bún bò Huế', 'Bún bò huế nổi tiếng xứ Huế', 50000.00, 19, 'bun-bo-1.jpg', 'Đồ ăn'),
@@ -194,6 +218,12 @@ INSERT INTO `users` (`username`, `password`, `numberphone`, `address`) VALUES
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `abouts`
+--
+ALTER TABLE `abouts`
+  ADD PRIMARY KEY (`about_id`);
 
 --
 -- Chỉ mục cho bảng `admin`
