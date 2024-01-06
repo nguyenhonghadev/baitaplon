@@ -66,29 +66,6 @@
         <i class="fa fa-plus-square"></i> Thêm bài viết
     </button>
 </div>
-
-<div class="container">
-    <p style="margin-left: 99%; cursor: pointer;" onclick="hideContainer()">X</p>
-    <form action="about.php" method="post" enctype="multipart/form-data">
-        <div class="image-inputs">
-            <div class="image-upload">
-                <label for="image1" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 1</label>
-                <input type="file" id="image1" name="image1">
-            </div>
-            <div class="image-upload">
-                <label for="image2" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 2</label>
-                <input type="file" id="image2" name="image2">
-            </div>
-            <div class="image-upload">
-                <label for="image3" class="image-label"><i class="fas fa-cloud-upload-alt"></i>Hình ảnh 3</label>
-                <input type="file" id="image3" name="image3">
-            </div>
-        </div>
-
-        <label for="title">Tiêu đề bài viết:</label>
-        <input type="text" id="title" name="title">
-
-<<<<<<< HEAD
     <div class="container">
     <p style="margin-left: 99%; cursor: pointer;" onclick="hideContainer()">X</p>
     <form action="admin.php?quanly=baiviet" method="post" enctype="multipart/form-data">
