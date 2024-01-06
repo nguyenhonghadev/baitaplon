@@ -10,8 +10,9 @@
                     <th style="width: 10%;background-color: yellow;">Ngày giờ </th>
                     <th style="width: 10%;background-color: yellow;">Thanh toán </th>
                     <th style="width: 15%;background-color: yellow;">Lời nhắn</th>
-                    <th style="width: 20%;background-color: yellow;">Trạng thái </th>
-                    <th style="width: 20%;background-color: yellow;">Hành động</th>
+                    <th style="width: 5%;background-color: yellow;">Trạng thái </th>
+                    <th style="width: 20%;background-color: yellow;">Ghi Chú</th>
+                    <th style="width: 15%;background-color: yellow;">Hành động</th>
                 </tr>
                 <?php
                 require('../config/connect.php');
@@ -30,10 +31,23 @@
                         <td style='text-align: center;'>".$row['order_date']."</td>
                         <td style='text-align: center;'>".$row['type_pay']."</td>
                         <td style='text-align: center;'>".$row['order_status']."</td>
+                      
                        <td style='text-align: center;'>";
 
                     if($row['trang_thai']==='Đã Hủy'){
                         echo "Đã Hủy";
+                        echo "</td>";
+                        echo"
+                    </td>
+                    <td style='text-align: center;'><a href='view_transactions.php?oderid=".$row['order_id']."'>".$row['ghi_chu']."</a></td>
+
+                    <td style='text-align: center;'>
+                    <a href='mode.php?delete_order=".$row['order_id']."'>
+                        <i style='color:red;font-size:1.2em;text-align:center' class='fa fa-trash-o'></i>
+                    </a>            
+                </td>
+                
+                                    ";
                     } else {
                         echo "
                         <form action='mode.php?order=".$row['order_id']."' method='post'>
@@ -45,9 +59,12 @@
                             </select>
                             <input type='submit' style='color:red;border:none;background-color:#fff' value='Lưu'>
                         </form>";
-                    }
+                        
+                    
 
                     echo "</td>";
+                   echo" <td style='text-align: center;'><a href='view_transactions.php?oderid=".$row['order_id']."'>".$row['ghi_chu']."</a></td>
+                   ";
                         echo"
                     </td>
                     <td style='text-align: center;'>
@@ -61,7 +78,7 @@
                     </div>
                     
                 </td>
-                                    ";
+                                    ";}
 
                    }
                      }

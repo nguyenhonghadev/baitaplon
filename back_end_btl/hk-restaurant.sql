@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 03, 2024 lúc 07:46 PM
+-- Thời gian đã tạo: Th1 06, 2024 lúc 01:52 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -76,32 +76,23 @@ CREATE TABLE `orders` (
   `oder_quantity` int(11) NOT NULL,
   `type_pay` varchar(150) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `order_status` varchar(100) NOT NULL,
+  `order_status` varchar(150) NOT NULL,
   `order_total` varchar(15) DEFAULT NULL,
   `order_address` varchar(250) DEFAULT NULL,
-  `trang_thai` varchar(150) NOT NULL DEFAULT 'Đơn mới',
-  `status` varchar(100) NOT NULL
+  `Image_bank` varchar(200) NOT NULL,
+  `ghi_chu` varchar(150) NOT NULL,
+  `trang_thai` varchar(150) NOT NULL DEFAULT 'Đơn mới'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `oder_username`, `oder_prd`, `oder_quantity`, `type_pay`, `order_date`, `order_status`, `order_total`, `order_address`, `trang_thai`, `status`) VALUES
-('0Nb89', 'manhkien1', 'Gà đồi chiên mắm tỏi', 2, 'Thanh toán khi nhận hàng', '2024-01-03 17:28:06', '', '600,000.00', '', 'Đơn mới', 'Hủy Đơn'),
-('9Stta', 'manhkien1', 'Bánh xèo Hà Nội', 1, 'Thanh toán khi nhận hàng', '2024-01-03 17:28:35', '', '75,000.00', '', 'Đơn mới', 'Hủy Đơn'),
-('AN7hg', 'manhkien1', 'Bún bò Huế', 1, 'Thanh toán khi nhận hàng', '2024-01-03 17:28:06', '', '50,000.00', '', 'Đã duyệt', ''),
-('aWe4G', 'manhkien1', 'Gà đồi chiên mắm tỏi', 2, 'Thanh toán khi nhận hàng', '2024-01-03 16:20:38', '', '600,000.00', '', 'Đơn mới', ''),
-('Do9vl', 'Kiênpr0123', 'Rượu Nếp', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đã duyệt', ''),
-('DrqXK', 'Kiênpr0123', 'Rươu vang Chile', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '170,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đã duyệt', ''),
-('FoxlL', 'Kiênpr0123', 'Coca', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '15,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đang vận chuyển', ''),
-('gPkrv', 'manhkien1', 'Coca', 1, 'Thanh toán khi nhận hàng', '2024-01-03 16:20:38', '', '15,000.00', '', 'Đơn mới', ''),
-('JMrTD', 'Kiênpr0123', 'Bò Bít Tết', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '300,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đang vận chuyển', ''),
-('JxGrx', 'Kiênpr0123', 'Thanh long trắng', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Giao hàng thành công', ''),
-('kcfUe', 'Kiênpr0123', 'Cam siêu ngọt', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '150,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đơn mới', ''),
-('LrHiN', 'Kiênpr0123', 'Cá chép om dưa', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '400,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Giao hàng thành công', ''),
-('per88', 'manhkien1', 'Bánh xèo Hà Nội', 2, 'Thanh toán khi nhận hàng', '2024-01-03 17:28:06', '', '150,000.00', '', 'Đơn mới', 'Hủy Đơn'),
-('vQTIF', 'Kiênpr0123', 'Dâu Tây', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', 'giao hàng nhanh', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', 'Đơn mới', '');
+INSERT INTO `orders` (`order_id`, `oder_username`, `oder_prd`, `oder_quantity`, `type_pay`, `order_date`, `order_status`, `order_total`, `order_address`, `Image_bank`, `ghi_chu`, `trang_thai`) VALUES
+('JxGrx', 'Kiênpr0123', 'Thanh long trắng', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Giao hàng thành công'),
+('kcfUe', 'Kiênpr0123', 'Cam siêu ngọt', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '150,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Đơn mới'),
+('LrHiN', 'Kiênpr0123', 'Cá chép om dưa', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '400,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Giao hàng thành công'),
+('vQTIF', 'Kiênpr0123', 'Dâu Tây', 1, 'Thanh toán khi nhận hàng', '2023-12-25 10:22:03', '', '50,000.00', 'hà manh kiên, 0866539033, Thôn quyền ,ngọc sơn hiệp hòa ,bắc giang', '', '', 'Đơn mới');
 
 -- --------------------------------------------------------
 
@@ -124,23 +115,23 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prd_id`, `prd_name`, `prd_detail`, `prd_price`, `prd_quantity`, `prd_img`, `prd_category`) VALUES
-('DA01', 'Cá chép om dưa', 'Cá chép om dưa', 400000.00, 20, 'cá chép om dưa.webp', 'Đồ ăn'),
-('DA02', 'Bò Bít Tết', 'Bò Bít Tết', 300000.00, 19, 'bò bit tết.jpg', 'Đồ ăn'),
-('DA03', 'Bò hầm rau củ', 'Bò hầm rau củ', 200000.00, 68, 'bò hầm rau củ.jpg', 'Đồ ăn'),
+('DA01', 'Cá chép om dưa', 'Cá chép om dưa', 400000.00, 2, 'cá chép om dưa.webp', 'Đồ ăn'),
+('DA02', 'Bò Bít Tết', 'Bò Bít Tết', 300000.00, 54, 'bò bit tết.jpg', 'Đồ ăn'),
+('DA03', 'Bò hầm rau củ', 'Bò hầm rau củ', 200000.00, 35, 'bò hầm rau củ.jpg', 'Đồ ăn'),
 ('DA04', 'Bún bò Huế', 'Bún bò huế nổi tiếng xứ Huế', 50000.00, 19, 'bun-bo-1.jpg', 'Đồ ăn'),
-('DA05', 'Bánh xèo Hà Nội', 'bánh xèo', 75000.00, 22, 'bánh xeo.jpg', 'Đồ ăn'),
-('DA06', 'Gà đồi chiên mắm tỏi', 'Gà đồi chiên mắm tỏi', 300000.00, 38, 'gà chiên mắm tỏi.jpg', 'Đồ ăn'),
-('DU01', '7 Up', '7up', 15000.00, 20, '7 up.jpg', 'Đồ uống'),
-('DU02', 'Coca', 'Coca-Cola (hay còn gọi là Coca, Coke) là một thương hiệu nước ngọt có ga chứa nước cacbon dioxide bão hòa được sản xuất bởi Công ty Coca-Cola. Coca-Cola được điều chế bởi dược sĩ John Pemberton vào cuối thế kỷ XIX với mục đích ban đầu là trở thành một loại biệt dược.', 15000.00, 18, 'cacacola.png', 'Đồ uống'),
-('DU03', 'Rượu Nếp', 'Rượu nếp quê là rượu được ủ từ gạo nếp và được chưng cất theo phương pháp gia truyền. Không chỉ là đồ uống, rượu nếp cũng được dùng rất nhiều trong nấu ăn. Đây cũng là loại gia vị có chức năng khử mùi hiệu quả.', 50000.00, 19, 'rượu nếp.png', 'Đồ uống'),
-('DU04', 'Rươu vang Chile', 'Rươu vang Chile', 170000.00, 49, 'rượu vang đỏ chile.jpg', 'Đồ uống'),
-('DU05', 'Rượu ngô Tây Bắc', 'Rượu ngô Tây Bắc', 60000.00, 49, 'rượu ngô.jpg', 'Đồ uống'),
-('DU06', 'Rượu mơ ', 'Rượu mơ -đậm đà từng ly', 75000.00, 50, 'rượu mơ.jpeg', 'Đồ uống'),
-('TM01', 'Cam siêu ngọt', 'Cam siêu ngọt', 150000.00, 19, 'cam.jpg', 'Tráng miệng'),
-('TM02', 'Dâu Tây', 'quả đỏ, mọng nước, hương thơm mùi kẹo ngọt và có vị ngọt thanh đậm đà, khác với tất cả các loại dâu khác đang được trồng tại Đà Lạt và vùng lân cận hiện nay: Dâu tây nhật Đà Lạt – mê hoặc từ vị ngon! Dâu tây Nhật được xem là giống dâu cao cấp hiện nay được trồng tại Đà Lạt.', 50000.00, 17, 'dâu tây.jpg', 'Tráng miệng'),
-('TM03', 'Dưa Hấu', 'đa dạng về hình dạng và màu sắc, thường có màu xanh nhạt và có những đường kẻ từ trên xuống dưới. Hình dạng được xem xét với mặt phẳng cắt ngang từ cuống trái đến đuôi trái dưa. Có các dạng chính sau: dạng thuôn dài, dạng trái oval, dạng trái tròn. Hạt dưa cũng rất đa dạng về kích cỡ (lớn, trung bình, nhỏ).', 45000.00, 20, 'dưa hấu.jpg', 'Tráng miệng'),
+('DA05', 'Bánh xèo Hà Nội', 'bánh xèo', 75000.00, 40, 'bánh xeo.jpg', 'Đồ ăn'),
+('DA06', 'Gà đồi chiên mắm tỏi', 'Gà đồi chiên mắm tỏi', 300000.00, 109, 'gà chiên mắm tỏi.jpg', 'Đồ ăn'),
+('DU01', '7 Up', '7up', 15000.00, 17, '7 up.jpg', 'Đồ uống'),
+('DU02', 'Coca', 'Coca-Cola (hay còn gọi là Coca, Coke) là một thương hiệu nước ngọt có ga chứa nước cacbon dioxide bão hòa được sản xuất bởi Công ty Coca-Cola. Coca-Cola được điều chế bởi dược sĩ John Pemberton vào cuối thế kỷ XIX với mục đích ban đầu là trở thành một loại biệt dược.', 15000.00, 16, 'cacacola.png', 'Đồ uống'),
+('DU03', 'Rượu Nếp', 'Rượu nếp quê là rượu được ủ từ gạo nếp và được chưng cất theo phương pháp gia truyền. Không chỉ là đồ uống, rượu nếp cũng được dùng rất nhiều trong nấu ăn. Đây cũng là loại gia vị có chức năng khử mùi hiệu quả.', 50000.00, 85, 'rượu nếp.png', 'Đồ uống'),
+('DU04', 'Rươu vang Chile', 'Rươu vang Chile', 170000.00, 115, 'rượu vang đỏ chile.jpg', 'Đồ ăn'),
+('DU05', 'Rượu ngô Tây Bắc', 'Rượu ngô Tây Bắc', 60000.00, 114, 'rượu ngô.jpg', 'Đồ uống'),
+('DU06', 'Rượu mơ ', 'Rượu mơ -đậm đà từng ly', 75000.00, 48, 'rượu mơ.jpeg', 'Đồ uống'),
+('TM01', 'Cam siêu ngọt', 'Cam siêu ngọt', 150000.00, 17, 'cam.jpg', 'Tráng miệng'),
+('TM02', 'Dâu Tây', 'quả đỏ, mọng nước, hương thơm mùi kẹo ngọt và có vị ngọt thanh đậm đà, khác với tất cả các loại dâu khác đang được trồng tại Đà Lạt và vùng lân cận hiện nay: Dâu tây nhật Đà Lạt – mê hoặc từ vị ngon! Dâu tây Nhật được xem là giống dâu cao cấp hiện nay được trồng tại Đà Lạt.', 50000.00, 40, 'dâu tây.jpg', 'Tráng miệng'),
+('TM03', 'Dưa Hấu', 'đa dạng về hình dạng và màu sắc, thường có màu xanh nhạt và có những đường kẻ từ trên xuống dưới. Hình dạng được xem xét với mặt phẳng cắt ngang từ cuống trái đến đuôi trái dưa. Có các dạng chính sau: dạng thuôn dài, dạng trái oval, dạng trái tròn. Hạt dưa cũng rất đa dạng về kích cỡ (lớn, trung bình, nhỏ).', 45000.00, 65, 'dưa hấu.jpg', 'Tráng miệng'),
 ('TM04', 'Thanh long trắng', 'Thanh long trắng', 50000.00, 19, 'thanh long.jpg', 'Tráng miệng'),
-('TM05', 'Kem dâu', 'Kem dâu -với dâu tây xay nguyên chất 100%', 18000.00, 20, 'kem dâu.jpg', 'Tráng miệng'),
+('TM05', 'Kem dâu', 'Kem dâu -với dâu tây xay nguyên chất 100%', 18000.00, 60, 'kem dâu.jpg', 'Tráng miệng'),
 ('TM06', 'Dưa leo', 'Dưa leo bổ dọc', 15000.00, 20, 'dưa leo.jpg', 'Tráng miệng');
 
 -- --------------------------------------------------------

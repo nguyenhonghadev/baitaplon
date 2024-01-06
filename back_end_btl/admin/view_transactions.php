@@ -67,21 +67,56 @@
             padding: 20px;
             z-index: 9999;
             border-radius: 0.3em;
+           
         }
     </style>
     <title>View Transactions</title>
 </head>
 
 <body>
+<?php
+if(isset($_GET['oderid'])){
+    require('../config/connect.php');
+    $order_id=$_GET['oderid'];
+    $path='../admin/image/';
+    $sql="SELECT * FROM orders WHERE order_id= '$order_id'";
+    $result=$conn->query($sql);
+    if($result->num_rows > 0){
+        $row=$result->fetch_assoc();
+        $img=$path . $row['Image_bank'];
+        if($row['Image_bank']!=""){
+            echo'<div class="table-content">
+            <a href="javascript:history.go(-1)" style=" text-decoration:none">Quay lại</a>
+        </div>';
+        echo '
+    <div style="margin: 0 auto; text-align: center;">
+        <img src="' . $img . '" style="width: 25%; height: 30%;" >
+    </div>
+';
 
-    <div class="khachhang">
+
+    }else{
+        echo "<h1 style='text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);font-size:6em'>Không có ảnh!</h1>";
+        echo'<script>
+        setTimeout(function(){
+            history.back();
+        }, 2000);
+    </script>
+    ';
+    }
+
+}}
+
+?>
+
+   
         <?php
         require('../config/connect.php');
         mysqli_set_charset($conn, 'utf8');
 
         if (isset($_GET['username'])) {
             $selectedUsername = $_GET['username'];
-
+echo'<div class="khachhang">';
             $sql = "SELECT * FROM orders WHERE oder_username = '$selectedUsername'";
             $result = mysqli_query($conn, $sql);
 
@@ -111,18 +146,18 @@
                 echo "</table>";
             } else {
                 echo "Không có giao dịch nào của khách hàng $selectedUsername.";
+                echo'<div class="table-content">
+                <a href="javascript:history.go(-1)" style=" text-decoration:none">Quay lại</a>
+            </div>
+        </div>';
             }
-        } else {
-            echo "Không có thông tin khách hàng được chọn.";
-        }
+        } 
 
         $conn->close();
+       
         ?>
 
-        <div class="table-content">
-            <a href="javascript:history.go(-1)">Quay lại</a>
-        </div>
-    </div>
+        
 </body>
 
 </html>

@@ -57,17 +57,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['a
     $phoneoder = $_POST['phoneoder'];
     $user4 = $_SESSION['username'];
 
+    // Sử dụng prepared statement để tránh SQL Injection
     $address = $nameoder . ', ' . $phoneoder . ', ' . $addressoder;
-    $sql = "UPDATE users SET address='$address' WHERE username='$user4'";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        echo "<script>alert('Địa chỉ đã cập nhật thành công.')</script>";
+    $_SESSION['address'] = $address;
+
+    $sql = "UPDATE users SET address=? WHERE username=?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param('ss', $address, $user4);
+        $stmt->execute();
+        
+        if ($stmt->affected_rows > 0) {
+            echo "<script>alert('Địa chỉ đã cập nhật thành công.')</script>";
+        } else {
+            echo "<script>alert('Không thể cập nhật địa chỉ.')</script>";
+        }
+        
+        $stmt->close();
     } else {
-     
+        echo "<script>alert('Lỗi truy vấn.')</script>";
     }
+    
     $conn->close();
 } 
 ?>
+
 
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -134,11 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['a
                                             <h5> Quý khách muốn thanh toán theo:</h5>
                                             <input type="radio" id="nhanhang" name="option" value="Thanh toán khi nhận hàng">Thanh toán sau khi nhận hàng.<br>
                                             <input type="radio" id="banking" name="option" value="Đã thanh toán">Thanh toán trực tiếp qua banking.<br>
-                                            <div id="bybanking" style="display: none;">
-                                                <img src="../image/mã qr.jpg" alt="mã qr" style="width: 10em;height: 10em;margin-left: 5em;"><br>
-                                            </div>
-                                            <p>Lời Nhắn</p>
+                                            <div id='message' style="display: none;">
+                                                <p>Lời Nhắn</p>
                                             <input name="loinhan" type="text" >
+                                        </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -173,31 +187,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['a
                                                             </tr>';
                                                     }
                                                 }
-
-                                                // Thêm chi phí vận chuyển
                                                 $shipping_cost = 25000;
                                                 $total_amount += $shipping_cost;
-
-                                                // Hiển thị dòng và giá trị của vận chuyển trong bảng
                                                 echo '<tr class="total-data">
                                                         <td><strong>Vận chuyển </strong></td>
                                                         <td></td>
                                                         <td>' . number_format($shipping_cost, 2, ".", ",") . 'đ</td>
                                                     </tr>';
-
-                                                // Hiển thị tổng số tiền
                                                 echo '<tr class="total-data">
                                                         <td><strong>Tổng  </strong></td>
                                                         <td></td>
                                                         <td>' . number_format($total_amount, 2, ".", ",") . 'đ</td>
                                                     </tr>';
+                                                
                                                 ?>
                             </tbody>
                         </table>
-                        <?php
-                        if ($total_amount >= 2000000) {
-                            echo '<p>Bạn cần thanh toán trước tiền cọc là : ' . number_format($total_amount * 0.3, 2, ".", ",") . ' đ</p>';                            }
-                        ?>
+                        <input type="hidden" value="<?php echo $total_amount; ?>" name="total_pay">
                         <button type="submit" name="pay_now" style=" border: none;font-family: 'Poppins', sans-serif; display: inline-block; background-color: #F28123; color: #fff; padding: 10px 20px; border-radius: 2em;">Thanh Toán</button>
             </div>
         </form>
@@ -250,15 +256,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nameoder'], $_POST['a
     <!-- Template Javascript -->
     <script src="../js/main.js "></script>
     <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $('input[name="option"]').change(function() {
-        if ($(this).val() === "Đã thanh toán") {
-            $('#bybanking').show();
+        if ($(this).val() === "Thanh toán khi nhận hàng") {
+            $('#message').show(); // Changed from $('$message').show();
         } else {
-            $('#bybanking').hide();
+            $('#message').hide();
         }
     });
 });
+
 
     </script>
     <script src="../js/thanhtoan.js "></script>
@@ -302,52 +309,64 @@ function myFunction() {
 </body>
   
 </html>
-
-
-
-
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['option']) && isset($_SESSION['user_cart'][$_SESSION['username']]) && (isset($_POST['loinhan']))) {
+    if (isset($_POST['option']) && isset($_SESSION['user_cart'][$_SESSION['username']]) && isset($_POST['loinhan'])) {
         require('../config/connect.php');
         require('function.php');
+
         $user4 = $_SESSION['username'];
-         $type_pay= $_POST['option'];
-        if (count($_SESSION['user_cart'][$_SESSION['username']]) > 0) {
-            foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
-                $nameprd = $prd['name'];
-                $quantityprd = $prd['quantity'];
-                $priceprd = $prd['price'];
-                $status = $_POST['loinhan'];
-               
-                $total_price = (float)$quantityprd * (float)$priceprd;
-                $total_price_ok = number_format($total_price, 2, '.', ',');
-                $address_oder = $_SESSION['address'];
+        $type_pay = $_POST['option'];
+        $total_pay = $_POST['total_pay'];
+        $status = $_POST['loinhan'];
+        $address_oder = $_SESSION['address'];
 
-                // Update product quantity
-                $sql = "SELECT * FROM products WHERE prd_name ='$nameprd'";
-                $result = $conn->query($sql);
+        if ($address_oder === '') {
+            echo "<script>alert('Vui lòng cập nhật địa chỉ giao hàng');</script>";
+            exit();
+        }
 
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $soluong = $row['prd_quantity'];
-                    $newquantity = (int)$soluong - (int)$quantityprd;
-                    $sql1 = "UPDATE products SET prd_quantity ='$newquantity' WHERE prd_name ='$nameprd'";
-                    $conn->query($sql1);
+        foreach ($_SESSION['user_cart'][$_SESSION['username']] as $key => $prd) {
+            $nameprd = $prd['name'];
+            $quantityprd = $prd['quantity'];
+            $priceprd = $prd['price'];
+
+            $total_price = (float)$quantityprd * (float)$priceprd;
+
+            $sql = "SELECT * FROM products WHERE prd_name ='$nameprd'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $soluong = $row['prd_quantity'];
+                $newquantity = (int)$soluong - (int)$quantityprd;
+
+                if ($newquantity < 0) {
+                    echo "<script>alert('Sản phẩm $nameprd không đủ số lượng');</script>";
+                    exit();
                 }
 
-                $idoder = generateRandomString();
-                $sql_pay = "INSERT INTO orders (order_id,oder_username,oder_prd,oder_quantity,type_pay,order_status,order_total,order_address) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd','$type_pay' ,'$status','$total_price_ok', '$address_oder')";
-                $conn->query($sql_pay); 
-                unset($_SESSION['user_cart'][$_SESSION['username']][$key]); 
-               
+                $sql1 = "UPDATE products SET prd_quantity ='$newquantity' WHERE prd_name ='$nameprd'";
+                $conn->query($sql1);
             }
-            echo "<script>alert('Thanh toán thành công');</script>";
-            echo "<script>window.location.href = 'info.php';</script>";
-            exit();
-        } else {
-            echo "<script>alert('Không có sản phẩm để thanh toán');</script>";
+
+            $idoder = generateRandomString();
+            if ($type_pay === 'Thanh toán khi nhận hàng') {
+                if ($total_price > 2000000) {
+                    echo "<script>alert('Bạn cần đặt cọc trước 30% giá trị đơn hàng');</script>";
+                    echo "<script>window.location.href = 'Thanhtoan1.php?total-30=" . urlencode($total_pay) . "';</script>";
+                } else {
+                    $ghi_chu = 'Thanh toán 100% khi nhận hàng';
+                    $sql_pay = "INSERT INTO orders (order_id, oder_username, oder_prd, oder_quantity, type_pay, order_status, order_total, order_address, ghi_chu) VALUES ('$idoder', '$user4', '$nameprd', '$quantityprd', '$type_pay' ,'$status','$total_price', '$address_oder', '$ghi_chu')";
+                    $conn->query($sql_pay);
+                    unset($_SESSION['user_cart'][$_SESSION['username']][$key]);
+                    unset($_SESSION['address']);
+                    echo "<script>alert('Thanh toán thành công');</script>";
+                    echo "<script>window.location.href = 'info.php';</script>";
+                }
+            } else {
+                echo "<script>window.location.href = 'Thanhtoan1.php?total-100=".urlencode($total_pay)."';</script>";
+            }
         }
         $conn->close();
     } else {
